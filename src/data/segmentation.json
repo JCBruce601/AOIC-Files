@@ -1,0 +1,439 @@
+{
+  "_meta": {
+    "description": "Client segmentation data for Tyler D&I Socrata domains",
+    "lastUpdated": "2026-02-27",
+    "lenses": {
+      "verticalGroup": {
+        "values": [
+          "Justice",
+          "Public Admin",
+          "State"
+        ]
+      },
+      "tylerSegmentation": {
+        "values": [
+          "High Spend, High Maturity",
+          "High Spend, Low Maturity",
+          "Low Spend, High Maturity",
+          "Low Spend, Low Maturity"
+        ]
+      },
+      "marketSegment": {
+        "values": [
+          "Local Government - Enterprise",
+          "Local Government - Pro",
+          "Schools - Enterprise",
+          "Schools - Pro",
+          "State & Federal"
+        ]
+      }
+    }
+  },
+  "domains": {
+    "data.cityofnewyork.us": {
+      "clientName": "City of New York",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.cityofchicago.org": {
+      "clientName": "City of Chicago",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.lacity.org": {
+      "clientName": "City of Los Angeles",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "controllerdata.lacity.org": {
+      "clientName": "City of Los Angeles (Controller)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "www.dallasopendata.com": {
+      "clientName": "City of Dallas",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.seattle.gov": {
+      "clientName": "City of Seattle",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "cos-data.seattle.gov": {
+      "clientName": "City of Seattle (Internal)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "performance.seattle.gov": {
+      "clientName": "City of Seattle (Performance)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "datahub.austintexas.gov": {
+      "clientName": "City of Austin",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.brla.gov": {
+      "clientName": "City of Baton Rouge",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.nola.gov": {
+      "clientName": "City of New Orleans",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.kcmo.org": {
+      "clientName": "City of Kansas City",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.oaklandca.gov": {
+      "clientName": "City of Oakland",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.cincinnati-oh.gov": {
+      "clientName": "City of Cincinnati",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "insights.cincinnati-oh.gov": {
+      "clientName": "City of Cincinnati (Insights)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.honolulu.gov": {
+      "clientName": "City of Honolulu",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "citydata.mesaaz.gov": {
+      "clientName": "City of Mesa",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.fortworthtexas.gov": {
+      "clientName": "City of Fort Worth",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.providenceri.gov": {
+      "clientName": "City of Providence",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.norfolk.gov": {
+      "clientName": "City of Norfolk",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.cambridgema.gov": {
+      "clientName": "City of Cambridge",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.bloomington.in.gov": {
+      "clientName": "City of Bloomington",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.littlerock.gov": {
+      "clientName": "City of Little Rock",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.readingpa.gov": {
+      "clientName": "City of Reading",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.cstx.gov": {
+      "clientName": "City of College Station",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.somervillema.gov": {
+      "clientName": "City of Somerville",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.auburnwa.gov": {
+      "clientName": "City of Auburn, WA",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.everettwa.gov": {
+      "clientName": "City of Everett, WA",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.framinghamma.gov": {
+      "clientName": "City of Framingham",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.cityofgainesville.org": {
+      "clientName": "City of Gainesville",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.cityofberkeley.info": {
+      "clientName": "City of Berkeley",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.cityoforlando.net": {
+      "clientName": "City of Orlando",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.richmondgov.com": {
+      "clientName": "City of Richmond",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.urbanaillinois.us": {
+      "clientName": "City of Urbana",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.dumfriesva.gov": {
+      "clientName": "Town of Dumfries",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.montgomerycountymd.gov": {
+      "clientName": "Montgomery County, MD",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "stat.montgomerycountymd.gov": {
+      "clientName": "Montgomery County, MD (Stat)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.princegeorgescountymd.gov": {
+      "clientName": "Prince George's County, MD",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "performance.princegeorgescountymd.gov": {
+      "clientName": "Prince George's County, MD (Perf)",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.kingcounty.gov": {
+      "clientName": "King County, WA",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "opendata.howardcountymd.gov": {
+      "clientName": "Howard County, MD",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.sccgov.org": {
+      "clientName": "Santa Clara County",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.smcgov.org": {
+      "clientName": "San Mateo County",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.sonomacounty.ca.gov": {
+      "clientName": "Sonoma County",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.marincounty.gov": {
+      "clientName": "Marin County",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.ramseycountymn.gov": {
+      "clientName": "Ramsey County, MN",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.fultoncountyga.gov": {
+      "clientName": "Fulton County, GA",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "datacatalog.cookcountyil.gov": {
+      "clientName": "Cook County, IL",
+      "verticalGroup": "Justice",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "open.piercecountywa.gov": {
+      "clientName": "Pierce County, WA",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.ny.gov": {
+      "clientName": "State of New York",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "health.data.ny.gov": {
+      "clientName": "State of New York (Health)",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.ct.gov": {
+      "clientName": "State of Connecticut",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.texas.gov": {
+      "clientName": "State of Texas",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.wa.gov": {
+      "clientName": "State of Washington",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.colorado.gov": {
+      "clientName": "State of Colorado",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.oregon.gov": {
+      "clientName": "State of Oregon",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.delaware.gov": {
+      "clientName": "State of Delaware",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.vermont.gov": {
+      "clientName": "State of Vermont",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.pa.gov": {
+      "clientName": "Commonwealth of Pennsylvania",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.nj.gov": {
+      "clientName": "State of New Jersey",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "mydata.iowa.gov": {
+      "clientName": "State of Iowa",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.mo.gov": {
+      "clientName": "State of Missouri",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.michigan.gov": {
+      "clientName": "State of Michigan",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "opendata.maryland.gov": {
+      "clientName": "State of Maryland",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.cdc.gov": {
+      "clientName": "Centers for Disease Control",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.bts.gov": {
+      "clientName": "Bureau of Transportation Statistics",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "datahub.transportation.gov": {
+      "clientName": "US Dept of Transportation",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.nasa.gov": {
+      "clientName": "NASA",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "data.energystar.gov": {
+      "clientName": "EPA Energy Star",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "opendata.fcc.gov": {
+      "clientName": "Federal Communications Commission",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "datadiscovery.nlm.nih.gov": {
+      "clientName": "National Library of Medicine",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "datahub.hhs.gov": {
+      "clientName": "US Dept of Health & Human Services",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "performance.commerce.gov": {
+      "clientName": "US Dept of Commerce",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "policedata.coloradosprings.gov": {
+      "clientName": "Colorado Springs PD",
+      "verticalGroup": "Justice",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "policeview.johnscreekga.gov": {
+      "clientName": "Johns Creek PD",
+      "verticalGroup": "Justice",
+      "marketSegment": "Local Government - Pro"
+    },
+    "data.edmonton.ca": {
+      "clientName": "City of Edmonton",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.calgary.ca": {
+      "clientName": "City of Calgary",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.winnipeg.ca": {
+      "clientName": "City of Winnipeg",
+      "verticalGroup": "Public Admin",
+      "marketSegment": "Local Government - Enterprise"
+    },
+    "data.novascotia.ca": {
+      "clientName": "Province of Nova Scotia",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "www.datos.gov.co": {
+      "clientName": "Government of Colombia",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    },
+    "www.data.act.gov.au": {
+      "clientName": "Australian Capital Territory",
+      "verticalGroup": "State",
+      "marketSegment": "State & Federal"
+    }
+  }
+}

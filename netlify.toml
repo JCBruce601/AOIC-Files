@@ -1,0 +1,36 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/discover"
+  to = "/.netlify/functions/discover"
+  status = 200
+
+[[redirects]]
+  from = "/api/ask"
+  to = "/.netlify/functions/ask"
+  status = 200
+
+[[redirects]]
+  from = "/api/metadata"
+  to = "/.netlify/functions/metadata"
+  status = 200
+
+[[redirects]]
+  from = "/api/index-site"
+  to = "/.netlify/functions/index-site"
+  status = 200
+
+[[redirects]]
+  from = "/api/report-card"
+  to = "/.netlify/functions/report-card"
+  status = 200
+
+[[redirects]]
+  from = "/api/use-case-classifier"
+  to = "/.netlify/functions/use-case-classifier"
+  status = 200
