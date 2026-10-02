@@ -308,7 +308,7 @@ footer p { margin: 0; max-width: none; }
         <h2>Start Here: The Program in Two Minutes</h2>
       </div>
       <p>Tyler Technologies partners with the Administrative Office of the Illinois Courts (AOIC) to build a statewide court analytics program covering all 102 Illinois counties. County clerks, and in most cases the third-party case management system (CMS) vendors they rely on, submit case-level data to the Alliance Exchange Pipeline (AEP). The AEP is an API endpoint that checks every record against a published JSON contract before anything is stored. Accepted records are stored, combined across vendors, and published nightly to the AOIC Enterprise Data Platform (EDP) in Tyler's CJIS-compliant cloud. From there they power the analytics applications that judges, court administrators, clerks, probation staff, and AOIC leadership use.</p>
-      <p>The contract is Exhibit 4A to Agreement 22SPF11, originally effective August 1, 2021 and amended June 4, 2025. A further amendment in spring 2026 reset the delivery schedule, added Problem Solving Courts terms, and extended the term into 2027. Tyler signed it in late April 2026. Confirm the fully executed copy and its milestone dates with Justin before you quote them to the client.</p>
+      <p>The contract is Exhibit 4A to Agreement 22SPF11, originally effective August 1, 2021 and amended June 4, 2025. The Second Amendment, executed with a sign date of April 28, 2026, reset the delivery schedule, added Problem Solving Courts terms, and extended the term into 2027. Two of its clauses come up often: Tyler must notify the AOIC within three days of receiving first data from a new source, and the AOIC must have access to every staging application. As of August, the platform held about 1.32 million records across five program areas.</p>
       <div class="callout">
         <h3>The Core Challenge Has Shifted</h3>
         <p>In February the hard part was getting vendors to transmit consistently. That is still true, but the harder part now is proof. The AOIC is under public scrutiny over access to pretrial data, and it has asked Tyler for evidence that every dashboard is built, populated, and matches its requirements. Expect requests to arrive with urgency, and answer them with data, screenshots, and dates rather than assurances.</p>
@@ -431,9 +431,9 @@ footer p { margin: 0; max-width: none; }
             <div><h3>Courts</h3><div class="entity">di-aoic-trialcourt-* · di-aoic-reviewingcourt-*</div></div>
             <span class="chip idle">Parked</span>
           </div>
-          <p>The Trial Court and Reviewing Court workstreams cover 16 datasets and are the largest future body of work. Requirements were paused while the AOIC focused on pretrial and probation, and nothing has moved since spring.</p>
+          <p>The Trial Court and Reviewing Court workstreams cover 16 datasets and are the largest future body of work. Trial Court data still flows from Goodin, with about 132,000 records in August, but no dashboard work is under way. Justin expects the schema to shrink from roughly 2,000 elements to about 120.</p>
           <dl>
-            <dt>Next gate</dt><dd>Likely no action until the first quarter of 2027.</dd>
+            <dt>Next gate</dt><dd>Requirements in the fourth quarter of 2026 and a build in the first quarter of 2027, once the AOIC restarts the workstream.</dd>
           </dl>
         </article>
 
@@ -459,11 +459,11 @@ footer p { margin: 0; max-width: none; }
         <div class="month">
           <h3>Feb 2026</h3>
           <ul class="events">
+            <li data-ws="efile"><time>Feb 5</time><p><span class="tag">eFile</span>Skip Robertson escalated clerks who could see statewide metrics but not their own court. The cause was a circuit court mapping last refreshed in 2022.</p></li>
+            <li data-ws="program"><time>Feb 9</time><p><span class="tag">Program</span>Steve Rego and Shashank Kundavaram were introduced to the AOIC and joined the core team standup.</p></li>
             <li data-ws="pretrial"><time>Feb 16</time><p><span class="tag">Pretrial</span>Pretrial schema v3.1 went live in the AEP, with a vendor documentation package published to Confluence.</p></li>
             <li data-ws="pretrial"><time>Feb 17</time><p><span class="tag">Pretrial</span>Tyler met with the AOIC and Justice Doherty, who was pleased with progress. Tyler released v3.1.1 change documents, a draft vendor package, and the design rationale.</p></li>
             <li data-ws="pretrial"><time>Feb 24</time><p><span class="tag">Pretrial</span>John Chatz told pretrial CMS vendors that Phase 1 would use court CMS data only and asked them not to send pretrial data until further notice.</p></li>
-            <li data-ws="program"><time>Feb 9</time><p><span class="tag">Program</span>Steve Rego and Shashank Kundavaram were introduced to the AOIC and joined the core team standup.</p></li>
-            <li data-ws="efile"><time>Feb 5</time><p><span class="tag">eFile</span>Skip Robertson escalated clerks who could see statewide metrics but not their own court. The cause was a circuit court mapping last refreshed in 2022.</p></li>
           </ul>
         </div>
 
@@ -471,8 +471,8 @@ footer p { margin: 0; max-width: none; }
           <h3>Mar 2026</h3>
           <ul class="events">
             <li data-ws="pretrial"><time>Mar 2</time><p><span class="tag">Pretrial</span>Justin proposed a two-table pretrial design (cases and charges, task force elements only, Tyler-generated keys). Skip agreed on March 6 and the AOIC formally accepted v3.2.</p></li>
-            <li data-ws="pretrial"><time>Mar 12</time><p><span class="tag">Pretrial</span>A v3.2 release went out before the AOIC was ready. Skip and Justice Doherty asked Tyler to hold, and the release was reverted that evening. The lesson stands: nothing ships to vendors without the AOIC's explicit go-ahead.</p></li>
             <li data-ws="efile"><time>Mar 10</time><p><span class="tag">eFile</span>Circuit court mapping was updated for all users. Access problems for about 25 clerks continued into April and centered on a Henry and McHenry county mix-up.</p></li>
+            <li data-ws="pretrial"><time>Mar 12</time><p><span class="tag">Pretrial</span>A v3.2 release went out before the AOIC was ready. Skip and Justice Doherty asked Tyler to hold, and the release was reverted that evening. The lesson stands: nothing ships to vendors without the AOIC's explicit go-ahead.</p></li>
             <li data-ws="pretrial"><time>Mar 23</time><p><span class="tag">Pretrial</span>Tyler sent the AOIC a full Courts Pretrial vendor documentation package: integration guide, data element workbook, support workbook, and JSON examples.</p></li>
             <li data-ws="program"><time>Mar 27</time><p><span class="tag">Program</span>With the new amendment adding roughly 1,500 hours of remaining court analytics delivery, Justin requested a dedicated project manager. That request led to Michael Manis's hire.</p></li>
           </ul>
@@ -482,8 +482,8 @@ footer p { margin: 0; max-width: none; }
           <h3>Apr 2026</h3>
           <ul class="events">
             <li data-ws="efile"><time>Apr 27</time><p><span class="tag">eFile</span>Abby Carlstad corrected the McHenry records, closing the most visible clerk access complaint. Work on the TDS migration started the next day.</p></li>
+            <li data-ws="program"><time>Apr 28</time><p><span class="tag">Program</span>The Second Amendment was executed. It sets the analytics acceptance process, including a three-day notice to the AOIC when data arrives from a new source.</p></li>
             <li data-ws="probation"><time>Apr 29</time><p><span class="tag">Probation</span>Peoria and Kankakee completed their Tyler probation integrations. The AOIC set a target of a fourth-quarter 2026 production cutover, contingent on vendor submissions.</p></li>
-            <li data-ws="program"><time>Apr 28</time><p><span class="tag">Program</span>Tyler signed the amendment and expected the AOIC's signature shortly after.</p></li>
           </ul>
         </div>
 
@@ -491,7 +491,8 @@ footer p { margin: 0; max-width: none; }
           <h3>May 2026</h3>
           <ul class="events">
             <li data-ws="pretrial"><time>May 7</time><p><span class="tag">Pretrial</span>The Courts Pretrial workstream was created with two datasets, Cases and Charges, and released to the AEP. Pipelines moved to schema version 3.2.0.</p></li>
-            <li data-ws="pretrial"><time>May 13</time><p><span class="tag">Pretrial</span>The vendor guide went to clerks and vendors. Weekly pretrial office hours for clerks and vendors began on May 21.</p></li>
+            <li data-ws="pretrial"><time>May 13</time><p><span class="tag">Pretrial</span>John Chatz, writing on behalf of Justice Doherty, sent the vendor guide to every circuit clerk and CMS vendor and held two kickoff sessions. That started a 90-day vendor window that closed August 12. AOIC-hosted office hours began May 21.</p></li>
+            <li data-ws="probation"><time>May 15</time><p><span class="tag">Probation</span>With Tyler Enterprise Supervision not yet able to submit, the AOIC approved Tracker as the first controlled probation submitter, starting with 16 counties.</p></li>
             <li data-ws="pretrial"><time>May 18</time><p><span class="tag">Pretrial</span>John Chatz asked to add defendant date of birth and date of arrest back to the schema. That ticket remains open with a technical question unanswered.</p></li>
           </ul>
         </div>
@@ -499,18 +500,21 @@ footer p { margin: 0; max-width: none; }
         <div class="month">
           <h3>Jun 2026</h3>
           <ul class="events">
+            <li data-ws="pretrial"><time>Jun 16</time><p><span class="tag">Pretrial</span>The AOIC raised concerns that new submissions overwrite earlier values. Tyler explained that each record ID holds its current state and offered companion date fields as the fix.</p></li>
             <li data-ws="efile"><time>Jun 17</time><p><span class="tag">eFile</span>Population, spatial, and permission datasets were replicated into TDS. A geospatial data type issue surfaced and was later solved.</p></li>
-            <li data-ws="probation"><time>Jun 30</time><p><span class="tag">Probation</span>Probation data passed 80,000 records across 95 counties. Goodin, Tracker, ISS, and Nexus led the volume.</p></li>
             <li data-ws="program"><time>Jun 25</time><p><span class="tag">Program</span>Eric Burnson stepped in as a program manager on the Courts &amp; Justice side and started a biweekly compass check with the AOIC.</p></li>
+            <li data-ws="probation"><time>Jun 30</time><p><span class="tag">Probation</span>Probation data passed 80,000 records across 95 counties. Goodin, Tracker, ISS, and Nexus led the volume.</p></li>
           </ul>
         </div>
 
         <div class="month">
           <h3>Jul 2026</h3>
           <ul class="events">
-            <li data-ws="pretrial"><time>Jul 8</time><p><span class="tag">Pretrial</span>Cook County was added as a staging submitter for Courts Pretrial. Winnebago was added on July 27. Both submit their own data.</p></li>
             <li data-ws="program"><time>Jul 7</time><p><span class="tag">Program</span>A Monday.com project plan linked to Jira went live as the reporting backbone for the AOIC.</p></li>
+            <li data-ws="pretrial"><time>Jul 8</time><p><span class="tag">Pretrial</span>Cook County was added as a staging submitter for Courts Pretrial. Winnebago was added on July 27. Both submit their own data.</p></li>
+            <li data-ws="pretrial"><time>Jul 17</time><p><span class="tag">Pretrial</span>The AOIC told all clerks and vendors to send the circuit clerk NCIC code in the arresting agency field, settling a recurring validation failure.</p></li>
             <li data-ws="probation"><time>Jul 22</time><p><span class="tag">Probation</span>Probation reached 81,446 records from eight vendors. The first PSC records, 2,895 of them, arrived from Goodin and ISS.</p></li>
+            <li data-ws="efile"><time>Jul 29</time><p><span class="tag">eFile</span>John Chatz formally called eFile Analytics performance unacceptable, citing long load times and inconsistent totals. That pushed the move to TDS to the top of the list.</p></li>
           </ul>
         </div>
 
@@ -519,16 +523,19 @@ footer p { margin: 0; max-width: none; }
           <ul class="events">
             <li data-ws="pretrial"><time>Aug 6</time><p><span class="tag">Pretrial</span>The Courts Pretrial dashboard was shared with John Chatz and Justice Doherty. Tyler sent a metric logic reference on August 12 and walked the AOIC through it on August 13.</p></li>
             <li data-ws="probation"><time>Aug 11</time><p><span class="tag">Probation</span>PSC elements were reinstated as v3.2.1 and posted to the AEP and vendor folders. All six data element workbooks now share version 3.2.1.</p></li>
-            <li data-ws="efile"><time>Aug 20</time><p><span class="tag">eFile</span>Justin told John Chatz the TDS migration was expedited and about 80 percent built.</p></li>
-            <li data-ws="program"><time>Aug 20</time><p><span class="tag">Program</span>Justin confirmed the transition of AOIC to Michael Manis, who started September 7.</p></li>
+            <li data-ws="probation"><time>Aug 11</time><p><span class="tag">Probation</span>Dan Hunt confirmed the AOIC wants PSC version 2.2.1 as the base for the reinstated elements.</p></li>
+            <li data-ws="pretrial"><time>Aug 19</time><p><span class="tag">Pretrial</span>A volume report showed DuPage had sent 7,329 messages but none had arrived. Goodin was carrying most Courts Pretrial volume.</p></li>
+            <li data-ws="efile"><time>Aug 20</time><p><span class="tag">eFile</span>Justin told John Chatz the TDS migration was expedited and about 80 percent built. David Torres traced about six million extra TDS filing rows to deletions upstream that were never tracked.</p></li>
           </ul>
         </div>
 
         <div class="month">
           <h3>Sep 2026</h3>
           <ul class="events">
+            <li data-ws="pretrial"><time>Sep 2</time><p><span class="tag">Pretrial</span>Cook County's first successful submissions landed after switching its request from POST to PUT. Cook now sends records nightly.</p></li>
             <li data-ws="pretrial"><time>Sep 3</time><p><span class="tag">Pretrial</span>The AOIC reviewed Courts Pretrial and asked for a statewide-first layout, clearer captions, percentage conversions, and charge class ordering.</p></li>
-            <li data-ws="program"><time>Sep 14</time><p><span class="tag">Program</span>Public pressure on the AOIC over pretrial data transparency raised the urgency on eFile and Courts Pretrial. Michael Manis joined the weekly check-in.</p></li>
+            <li data-ws="program"><time>Sep 10</time><p><span class="tag">Program</span>Michael Manis started as project manager, transferring internally and reporting to Ben Varon.</p></li>
+            <li data-ws="program"><time>Sep 14</time><p><span class="tag">Program</span>Public pressure on the AOIC over pretrial data transparency raised the urgency on eFile and Courts Pretrial. About 50 of 102 counties were sharing some Courts Pretrial data.</p></li>
             <li data-ws="efile"><time>Sep 16</time><p><span class="tag">eFile</span>Tyler delivered a six-month sign-in report to John Chatz and shipped repeatable reporting scripts on September 21.</p></li>
             <li data-ws="efile"><time>Sep 18</time><p><span class="tag">eFile</span>David Torres rebuilt the TDS materialized views to carry the county, circuit, and district transforms the old plugin applied.</p></li>
             <li data-ws="efile"><time>Sep 28</time><p><span class="tag">eFile</span>The planned TDS cutover slipped. The AOIC paused testing until Tyler confirms the discrepancies are resolved.</p></li>
@@ -631,12 +638,14 @@ footer p { margin: 0; max-width: none; }
         <div class="person"><span class="name">Dan Hunt</span><span class="role">Director, Probation Services</span><p>Defines probation metric logic. Several blocked metrics wait on his answers.</p></div>
         <div class="person"><span class="name">Tom Cunningham</span><span class="role">Office of Statewide Pretrial Services</span><p>Reviews pretrial query logic in detail. A working session with him gates the September feedback.</p></div>
         <div class="person"><span class="name">Jacque Rogers</span><span class="role">Interim Director, Court Services</span><p>Weighs in on pretrial case definitions alongside Justice Doherty.</p></div>
-        <div class="person"><span class="name">Ryan Vaughn</span><span class="role">JMIS, eFile lead user</span><p>The heaviest eFile Analytics user. His team runs the AOIC's side-by-side comparison of the live and TDS sites.</p></div>
+        <div class="person"><span class="name">Ryan Vaughn</span><span class="role">JMIS Applications Manager</span><p>The heaviest eFile Analytics user. His team runs the AOIC's side-by-side comparison of the live and TDS sites.</p></div>
+        <div class="person"><span class="name">Angie Kanak</span><span class="role">AOIC communications</span><p>Runs the Thursday pretrial office hours and sends notices to clerks and vendors.</p></div>
+        <div class="person"><span class="name">Katie Blakeman</span><span class="role">Senior Data and Innovation Manager, JMIS</span><p>A key analytics user. TDS access for her team is pending.</p></div>
         <div class="person"><span class="name">Cara LeFevour Smith</span><span class="role">Office of Statewide Pretrial Services</span><p>Copied on pretrial decisions.</p></div>
       </div>
       <h3>Tyler</h3>
       <div class="people">
-        <div class="person new"><span class="name">Michael Manis</span><span class="role">Project Manager, joined September 2026</span><p>Taking over day-to-day management from Justin. Reports to Ben Varon.</p></div>
+        <div class="person new"><span class="name">Michael Manis</span><span class="role">Project Manager, started September 10, 2026</span><p>Taking over day-to-day management from Justin. Reports to Ben Varon.</p></div>
         <div class="person"><span class="name">Justin Bruce</span><span class="role">Director, AI Transformation &amp; Delivery</span><p>Program lead and owner of the AOIC relationship. Handing off to Michael through year end.</p></div>
         <div class="person"><span class="name">Ben Varon</span><span class="role">Manager</span><p>Michael's manager and Justin's partner on the ownership transition.</p></div>
         <div class="person"><span class="name">Abigail Carlstad</span><span class="role">Technical Consultant</span><p>Owns eFile Analytics, the TDS migration, and the Probation and PSC applications.</p></div>
@@ -662,13 +671,13 @@ footer p { margin: 0; max-width: none; }
             <tr><td>Integrated Software Specialists (ISS)</td><td>Probation, PSC, Courts Pretrial</td><td>Submitting for McHenry and asking how the AOIC defines a pretrial case.</td></tr>
             <tr><td>Tracker (Solution Specialties)</td><td>Probation, Pretrial</td><td>A leading probation submitter and the AOIC's preferred outreach partner.</td></tr>
             <tr><td>Nexus</td><td>Probation</td><td>Submitting at low volume.</td></tr>
-            <tr><td>Tyler Enterprise Supervision</td><td>Probation</td><td>Peoria and Kankakee completed integration in April.</td></tr>
+            <tr><td>Tyler Enterprise Supervision</td><td>Probation</td><td>Peoria and Kankakee completed integration in April, but Tyler's own software is not yet submitting to the pipeline.</td></tr>
             <tr><td>Journal Technologies</td><td>Probation</td><td>McLean County. Worked through validation issues in April.</td></tr>
             <tr><td>JANO Technologies</td><td>Courts Pretrial</td><td>Court CMS vendor for Champaign, DeKalb, Kendall, LaSalle, Madison, Sangamon, St. Clair, Vermilion, and Will. Asking how to correct a flag sent in error and how to code local ordinances.</td></tr>
             <tr><td>Cfive</td><td>Pretrial, Probation</td><td>Cook County's pretrial vendor. Earlier submissions were schema-valid but sparsely filled.</td></tr>
-            <tr><td>Cook County Circuit Court</td><td>Courts Pretrial</td><td>Self-submitting in staging since July.</td></tr>
+            <tr><td>Cook County Circuit Court</td><td>Courts Pretrial</td><td>Self-submitting in staging. Its first successful submissions landed September 2, and records now arrive nightly.</td></tr>
             <tr><td>Winnebago County</td><td>Courts Pretrial</td><td>Self-submitting since late July.</td></tr>
-            <tr><td>DuPage County</td><td>Courts Pretrial</td><td>An envelope returned success but no records have appeared. Bryce is investigating.</td></tr>
+            <tr><td>DuPage County</td><td>Courts Pretrial</td><td>DuPage reports sending 7,329 messages since August, but none have arrived. Bryce is investigating.</td></tr>
           </tbody>
         </table>
       </div>
@@ -686,9 +695,9 @@ footer p { margin: 0; max-width: none; }
           <thead><tr><th>Meeting</th><th>Cadence</th><th>Who</th><th>Why it matters</th></tr></thead>
           <tbody>
             <tr><td><b>All Things AOIC</b></td><td>Weekly, internal</td><td>Justin, Michael, the Tyler delivery team</td><td>The single internal sync. It replaced the "AOIC Analytics Check-in" on September 29. Justin posts written updates in the meeting chat when attendance is thin.</td></tr>
-            <tr><td><b>Compass Check</b></td><td>Biweekly, with the AOIC</td><td>Courts &amp; Justice, the AOIC, Tyler</td><td>Client-facing direction and status, started in July.</td></tr>
-            <tr><td><b>Executive Sync</b></td><td>Biweekly</td><td>Eric Burnson, John Chatz</td><td>Relationship-level escalations. Ask Eric for the takeaways.</td></tr>
-            <tr><td><b>Pretrial Office Hours</b></td><td>Thursdays, about 11:00 CT</td><td>Clerks, CMS vendors, Tyler</td><td>Live help for Courts Pretrial submitters.</td></tr>
+            <tr><td><b>Compass Check</b></td><td>Biweekly, with the AOIC</td><td>Courts &amp; Justice, the AOIC, Tyler</td><td>Client-facing direction and status, started July 8. At John Chatz's request, analytics topics stay off this call.</td></tr>
+            <tr><td><b>Executive Sync</b></td><td>Biweekly</td><td>Eric Burnson, John Chatz</td><td>Relationship-level escalations, started August 25. Ask Eric for the takeaways.</td></tr>
+            <tr><td><b>Pretrial Detention Data Office Hours</b></td><td>Thursdays, 11:00 CT</td><td>Angie Kanak hosts. Clerks, CMS vendors, and Tyler attend.</td><td>Live help for Courts Pretrial submitters. The AOIC runs it, and Tyler answers the technical questions.</td></tr>
             <tr><td><b>Task force briefings</b></td><td>As needed</td><td>Justin, AOIC leadership, Justice Doherty</td><td>Strategic direction on pretrial.</td></tr>
           </tbody>
         </table>
@@ -712,6 +721,8 @@ footer p { margin: 0; max-width: none; }
             <tr><td><b>Correcting a flag sent in error</b></td><td><span class="chip warn">Medium</span></td><td>JANO asked how to turn off a "Y" flag. Pipeline testing shows an explicit null clears a stored value and an omitted field leaves it unchanged. Confirm with Thomas before replying.</td><td>Thomas</td></tr>
             <tr><td><b>Usage data</b></td><td><span class="chip warn">Medium</span></td><td>Leadership wants recurring user-level usage. Today it is a manual pull.</td><td>Gabrielle, Eric</td></tr>
             <tr><td><b>Probation dashboard counts</b></td><td><span class="chip warn">Medium</span></td><td>A join inflates several tiles roughly tenfold. Probation tickets fell out of the sprint on September 14 while the team focused on TDS.</td><td>Abby</td></tr>
+            <tr><td><b>Tyler counties not submitting</b></td><td><span class="chip warn">Medium</span></td><td>Tyler's own court and supervision software is not yet sending Courts Pretrial or Probation data. Under public pressure, the AOIC may point to those counties as the gap.</td><td>Justin, Eric Burnson</td></tr>
+            <tr><td><b>Version 3.2.1 vendor package</b></td><td><span class="chip warn">Medium</span></td><td>Pipelines run on 3.2.1, but the updated Courts Pretrial vendor package was not yet published as of mid-September. Vendors also found errors in the JSON examples. Winnebago is waiting on it.</td><td>Thomas, Bryce</td></tr>
             <tr><td><b>Date of birth and arrest date</b></td><td><span class="chip warn">Medium</span></td><td>Requested by John Chatz on May 18 and carried through eleven sprints with a technical question unanswered.</td><td>Thomas, Justin</td></tr>
             <tr><td><b>Ownership after Justin</b></td><td><span class="chip warn">Medium</span></td><td>Michael is taking over. Courts &amp; Justice has signaled interest in a larger role, and eFile support needs a long-term home.</td><td>Ben Varon, Justin</td></tr>
             <tr><td><b>Old applications</b></td><td><span class="chip idle">Low</span></td><td>Several older pretrial applications still exist on the CJIS domain and confuse the AOIC.</td><td>Patricia, Abby</td></tr>
@@ -758,11 +769,12 @@ footer p { margin: 0; max-width: none; }
         </div>
       </div>
       <div class="callout warn">
-        <h3>Three Habits That Keep You Out of Trouble</h3>
+        <h3>Four Habits That Keep You Out of Trouble</h3>
         <ul class="plain">
           <li>Never release anything to vendors without the AOIC's explicit written go-ahead. The March 12 revert is the reason.</li>
           <li>Answer AOIC concerns with evidence: side-by-side numbers, screenshots, and record counts.</li>
           <li>Let the AOIC send vendor communications. Tyler drafts, the AOIC delivers.</li>
+          <li>Tell the AOIC within three days when data first arrives from a new source. The Second Amendment requires it.</li>
         </ul>
       </div>
     </section>
