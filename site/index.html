@@ -5,904 +5,1338 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>AOIC Analytics Onboarding</title>
-<meta name="description" content="Onboarding guide for the Tyler Technologies and Illinois AOIC statewide court analytics program, current as of October 2, 2026.">
+<meta name="description" content="Interactive onboarding guide for the Tyler Technologies and Illinois AOIC statewide court analytics program.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: a case file. A docket strip up top, a sticky index on wide screens, sections that read like tabs in a binder. */
+/* Layout: an operations console. A fixed navy rail on the left, a guided walkthrough of ten views on the right, drawers and a command palette on top. */
 :root {
-  --ink: #13243a;
-  --paper: #f5f7fa;
+  --navy: #0b1f3a;
+  --navy-2: #12305a;
+  --ink: #142033;
+  --paper: #f3f5f8;
   --sheet: #ffffff;
-  --rule: #d5dce5;
-  --muted: #566476;
-  --tyler: #1f4e79;
-  --tyler-2: #2e75b6;
-  --tyler-wash: #e8f0f8;
-  --ok: #1f7a4a;
-  --ok-wash: #e4f3ea;
-  --warn: #9a5b00;
-  --warn-wash: #fbf0dc;
+  --sheet-2: #f8f9fb;
+  --line: #dbe1e9;
+  --muted: #5a6779;
+  --blue: #1f4e79;
+  --sky: #2e75b6;
+  --sky-wash: #e6f0f9;
+  --brass: #a8792a;
+  --brass-wash: #f7efe0;
+  --teal: #217a74;
+  --teal-wash: #e2f2f0;
+  --slate: #56637a;
+  --slate-wash: #eceff4;
+  --ok: #1d7a49;
+  --ok-wash: #e2f3e9;
+  --warn: #a15d00;
+  --warn-wash: #fbefd9;
   --risk: #b3261e;
-  --risk-wash: #fbe7e5;
-  --idle: #5f6b7a;
+  --risk-wash: #fbe6e4;
+  --idle: #6b7686;
   --idle-wash: #eceff3;
-  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-body: "Public Sans", "Segoe UI", Arial, sans-serif;
+  --on-navy: #e9eef6;
+  --on-navy-muted: #9fb0c8;
+  --shadow: 0 1px 2px rgba(11,31,58,.06), 0 8px 24px rgba(11,31,58,.08);
+  --font-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-  --step--1: 0.84rem;
-  --step-0: 1rem;
-  --step-1: 1.2rem;
-  --step-2: 1.5rem;
-  --step-3: 2rem;
-  --step-4: 2.75rem;
-  --radius: 6px;
+  --r: 10px;
+  --rail: 268px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ink: #e6ecf3; --paper: #0e1622; --sheet: #152131; --rule: #2a3a4f; --muted: #9aa8ba;
-    --tyler: #8fbbe6; --tyler-2: #6aa5dc; --tyler-wash: #1a2d44;
-    --ok: #6cc795; --ok-wash: #15301f; --warn: #e3b04f; --warn-wash: #33270f;
-    --risk: #f08b83; --risk-wash: #3a1a18; --idle: #a3afbe; --idle-wash: #1e2a3a;
+    --ink: #e5ebf3; --paper: #0c1522; --sheet: #131f2f; --sheet-2: #172537; --line: #26364b; --muted: #9babbf;
+    --blue: #8fbbe6; --sky: #6aa8e0; --sky-wash: #16304b; --brass: #d9a94e; --brass-wash: #33280f;
+    --teal: #5cc2b8; --teal-wash: #12312f; --slate: #a9b6c9; --slate-wash: #1d2a3b;
+    --ok: #6cc795; --ok-wash: #13301f; --warn: #e3b04f; --warn-wash: #33260c; --risk: #f08b83; --risk-wash: #3a1917;
+    --idle: #a3afbe; --idle-wash: #1d2939; --navy: #07111f; --navy-2: #0f2140;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --ink: #e6ecf3; --paper: #0e1622; --sheet: #152131; --rule: #2a3a4f; --muted: #9aa8ba;
-  --tyler: #8fbbe6; --tyler-2: #6aa5dc; --tyler-wash: #1a2d44;
-  --ok: #6cc795; --ok-wash: #15301f; --warn: #e3b04f; --warn-wash: #33270f;
-  --risk: #f08b83; --risk-wash: #3a1a18; --idle: #a3afbe; --idle-wash: #1e2a3a;
+  --ink: #e5ebf3; --paper: #0c1522; --sheet: #131f2f; --sheet-2: #172537; --line: #26364b; --muted: #9babbf;
+  --blue: #8fbbe6; --sky: #6aa8e0; --sky-wash: #16304b; --brass: #d9a94e; --brass-wash: #33280f;
+  --teal: #5cc2b8; --teal-wash: #12312f; --slate: #a9b6c9; --slate-wash: #1d2a3b;
+  --ok: #6cc795; --ok-wash: #13301f; --warn: #e3b04f; --warn-wash: #33260c; --risk: #f08b83; --risk-wash: #3a1917;
+  --idle: #a3afbe; --idle-wash: #1d2939; --navy: #07111f; --navy-2: #0f2140;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: var(--step-0);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: var(--tyler-2); text-underline-offset: 2px; }
-a:hover { color: var(--tyler); }
-:focus-visible { outline: 3px solid var(--tyler-2); outline-offset: 2px; border-radius: 3px; }
-code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
-code { background: var(--tyler-wash); padding: 0.1em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--sky); text-underline-offset: 2px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 6px; }
+code, .mono { font-family: var(--font-mono); font-size: .86em; }
+code { background: var(--sky-wash); padding: .1em .4em; border-radius: 5px; overflow-wrap: anywhere; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
 
-.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
-
-/* Docket strip */
-.docket {
-  background: var(--tyler);
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.02em;
+/* ---------- Rail ---------- */
+.rail {
+  position: fixed; inset: 0 auto 0 0; width: var(--rail); z-index: 30;
+  background: var(--navy); color: var(--on-navy);
+  display: flex; flex-direction: column; padding: calc(env(safe-area-inset-top, 0px) + 22px) 16px 18px;
+  overflow-y: auto;
 }
-:root[data-theme="dark"] .docket { background: #0b2440; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .docket { background: #0b2440; } }
-.docket .wrap { display: flex; flex-wrap: wrap; gap: 6px 22px; padding-block: 8px; }
-.docket span { white-space: nowrap; opacity: 0.92; }
-
-/* Masthead */
-header.mast { border-bottom: 1px solid var(--rule); background: var(--sheet); }
-header.mast .wrap { padding-block: clamp(28px, 5vw, 52px) clamp(24px, 4vw, 40px); display: grid; gap: 18px; }
-.eyebrow { font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--tyler-2); margin: 0; }
-h1 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.1rem, 5vw, var(--step-4));
-  line-height: 1.1;
-  margin: 0;
-  text-wrap: balance;
-  letter-spacing: -0.01em;
+.brand { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 0 6px 18px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.seal { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(145deg, #2e75b6, #1f4e79); display: grid; place-items: center; font-family: var(--font-display); font-weight: 900; font-size: 15px; letter-spacing: .02em; color: #fff; font-stretch: 112%; }
+.brand b { display: block; font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: 15px; letter-spacing: .01em; line-height: 1.2; }
+.brand span { font-size: 12px; color: var(--on-navy-muted); }
+.search-btn {
+  margin: 16px 0 10px; display: flex; align-items: center; gap: 10px; width: 100%;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: var(--on-navy-muted);
+  border-radius: 8px; padding: 9px 12px; cursor: pointer; text-align: left; font-size: 14px;
 }
-.lede { font-size: var(--step-1); max-width: 62ch; margin: 0; color: var(--ink); }
-.meta { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: var(--step--1); color: var(--muted); }
-.meta b { color: var(--ink); font-weight: 600; }
-
-/* Shell: index + content */
-.shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; padding-block: 36px 80px; }
-@media (max-width: 900px) { .shell { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
-nav.index { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 18px); align-self: start; font-size: 0.92rem; }
-nav.index h2 { font-family: var(--font-body); font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
-nav.index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: tab; }
-nav.index li { counter-increment: tab; }
-nav.index a {
-  display: grid; grid-template-columns: 2.2em 1fr; align-items: baseline;
-  padding: 5px 8px; border-radius: 4px; color: var(--ink); text-decoration: none;
-  border-left: 2px solid transparent;
+.search-btn:hover { background: rgba(255,255,255,.1); color: var(--on-navy); }
+.search-btn kbd { margin-left: auto; font-family: var(--font-mono); font-size: 11px; border: 1px solid rgba(255,255,255,.18); border-radius: 4px; padding: 1px 6px; }
+.nav { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 2px; counter-reset: step; }
+.nav li { counter-increment: step; }
+.nav a {
+  display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 8px;
+  padding: 8px 10px; border-radius: 8px; color: var(--on-navy-muted); text-decoration: none; font-size: 14.5px;
+  transition: background .15s, color .15s;
 }
-nav.index a::before { content: counter(tab, decimal-leading-zero); font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
-nav.index a:hover { background: var(--tyler-wash); }
-nav.index a.active { border-left-color: var(--tyler-2); background: var(--tyler-wash); font-weight: 600; }
-@media (max-width: 900px) {
-  nav.index { position: static; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); padding: 14px; }
-  nav.index ol { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.nav a::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: 11px; opacity: .7; }
+.nav a:hover { background: rgba(255,255,255,.06); color: var(--on-navy); }
+.nav a[aria-current="page"] { background: rgba(46,117,182,.22); color: #fff; box-shadow: inset 3px 0 0 #6aa8e0; }
+.nav .seen { width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1px solid rgba(255,255,255,.25); }
+.nav a.visited .seen { background: #6cc795; border-color: #6cc795; }
+.rail-foot { margin-top: auto; padding-top: 18px; display: grid; gap: 12px; }
+.ring-row { display: grid; grid-template-columns: 46px 1fr; gap: 12px; align-items: center; padding: 12px; background: rgba(255,255,255,.05); border-radius: 10px; text-decoration: none; color: var(--on-navy); }
+.ring-row small { display: block; color: var(--on-navy-muted); font-size: 12px; }
+.ring-row b { font-size: 13.5px; font-weight: 600; }
+.rail-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--on-navy-muted); padding: 0 4px; }
+.theme-btn { background: transparent; border: 1px solid rgba(255,255,255,.18); color: var(--on-navy-muted); border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+.theme-btn:hover { color: #fff; }
+
+/* Mobile top bar */
+.topbar { display: none; }
+@media (max-width: 980px) {
+  .rail { transform: translateX(-100%); transition: transform .25s ease; box-shadow: 0 0 40px rgba(0,0,0,.4); }
+  body.nav-open .rail { transform: none; }
+  .topbar {
+    display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 20;
+    background: var(--navy); color: var(--on-navy); padding: calc(env(safe-area-inset-top, 0px) + 10px) 16px 10px;
+  }
+  .topbar b { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: 15px; flex: 1; }
+  .icon-btn { background: rgba(255,255,255,.08); border: 0; color: var(--on-navy); border-radius: 8px; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer; }
+  .scrim { position: fixed; inset: 0; background: rgba(5,12,24,.5); z-index: 25; }
 }
 
-main { min-width: 0; display: grid; gap: 64px; }
-section { scroll-margin-top: 20px; min-width: 0; }
-.sec-head { display: grid; gap: 6px; margin-bottom: 22px; border-top: 2px solid var(--ink); padding-top: 14px; }
-.tab-no { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
-h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, var(--step-3)); line-height: 1.2; margin: 0; text-wrap: balance; font-weight: 700; }
-h3 { font-family: var(--font-display); font-size: var(--step-1); margin: 0 0 6px; line-height: 1.3; font-weight: 600; }
-h4 { font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 8px; font-weight: 600; }
-p { margin: 0 0 14px; max-width: 70ch; }
-.sec-intro { font-size: 1.06rem; color: var(--ink); max-width: 68ch; margin: 0 0 18px; }
-ul.plain, ol.plain { margin: 0 0 14px; padding-left: 1.2em; display: grid; gap: 6px; max-width: 72ch; }
+/* ---------- Main ---------- */
+.main { margin-left: var(--rail); min-height: 100%; }
+@media (max-width: 980px) { .main { margin-left: 0; } }
+.view { padding-block: 0 72px; animation: enter .35s ease both; }
+@keyframes enter { from { opacity: .4; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 44px); }
+.view-head { padding-block: clamp(28px, 5vw, 48px) 8px; display: grid; gap: 10px; }
+.kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--sky); margin: 0; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font-family: var(--font-display); font-weight: 850; font-stretch: 112%; font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.04; letter-spacing: -.01em; }
+h2 { font-family: var(--font-display); font-weight: 800; font-stretch: 108%; font-size: clamp(1.6rem, 3vw, 2.25rem); line-height: 1.12; }
+h3 { font-family: var(--font-display); font-weight: 750; font-stretch: 104%; font-size: 1.15rem; line-height: 1.25; }
+.lede { font-size: 1.12rem; color: var(--muted); max-width: 66ch; margin: 0; }
+p { margin: 0 0 12px; }
+.block { margin-top: 34px; }
+.block-head { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: end; justify-content: space-between; margin-bottom: 16px; }
+.block-head p { color: var(--muted); margin: 4px 0 0; max-width: 62ch; }
+.panel { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); }
 
-/* Callout */
-.callout {
-  background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--tyler-2);
-  border-radius: var(--radius); padding: 16px 20px; margin: 18px 0; max-width: 78ch;
-}
-.callout.warn { border-left-color: var(--warn); }
-.callout p:last-child { margin-bottom: 0; }
+/* ---------- Hero ---------- */
+.hero { background: radial-gradient(1200px 400px at 85% -10%, rgba(46,117,182,.45), transparent 60%), linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; padding-block: clamp(36px, 6vw, 64px) clamp(36px, 5vw, 56px); align-items: center; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+.hero .kicker { color: #8fc0ec; }
+.hero h1 { color: #fff; }
+.hero h1 em { font-style: normal; color: #f0c674; }
+.hero .lede { color: #c5d3e6; margin-top: 16px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 8px; padding: 11px 18px; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; border: 1px solid transparent; transition: transform .12s, background .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: #f0c674; color: #1a1406; }
+.btn-ghost { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.2); }
+.btn-plain { background: var(--sheet); border-color: var(--line); color: var(--ink); }
+.counties { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 20px; }
+.counties-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.counties-top b { font-family: var(--font-display); font-weight: 850; font-stretch: 112%; font-size: 2.6rem; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
+.counties-top span { color: #c5d3e6; font-size: 14px; }
+.seg { display: inline-flex; background: rgba(0,0,0,.25); border-radius: 8px; padding: 3px; margin: 14px 0; flex-wrap: wrap; }
+.seg button { background: transparent; border: 0; color: #c5d3e6; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.seg button[aria-pressed="true"] { background: #fff; color: var(--navy); font-weight: 600; }
+.dots { display: grid; grid-template-columns: repeat(17, 1fr); gap: 5px; }
+.dot { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.14); transition: background .4s, transform .4s; }
+.dot.on { background: #f0c674; transform: scale(1.05); }
+.counties p { color: #9fb0c8; font-size: 12.5px; margin: 12px 0 0; }
 
-/* Status board */
-.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 16px; }
-.card {
-  background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius);
-  padding: 18px 20px; display: grid; gap: 10px; align-content: start; min-width: 0;
-}
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.card h3 { margin: 0; }
-.entity { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); overflow-wrap: anywhere; }
-.card p { margin: 0; font-size: 0.95rem; }
-.card dl { margin: 0; display: grid; gap: 8px; font-size: 0.92rem; }
-.card dt { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
-.card dd { margin: 0; }
-.chip {
-  display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
-  font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-  padding: 3px 9px; border-radius: 999px;
-}
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 14px; margin-top: -28px; position: relative; }
+.kpi { padding: 18px 18px 16px; display: grid; gap: 4px; }
+.kpi b { font-family: var(--font-display); font-weight: 850; font-stretch: 112%; font-size: 2rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kpi span { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.kpi i { font-style: normal; font-family: var(--font-mono); font-size: 11px; color: var(--muted); opacity: .85; }
+.kpi.accent b { color: var(--brass); }
+
+.three { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.note { padding: 18px 20px; display: grid; gap: 8px; align-content: start; border-top: 3px solid var(--sky); }
+.note.brass { border-top-color: var(--brass); }
+.note.teal { border-top-color: var(--teal); }
+.note p { margin: 0; color: var(--muted); font-size: 15px; }
+
+/* ---------- Chips ---------- */
+.chip { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; padding: 3px 9px; border-radius: 999px; }
 .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .chip.ok { color: var(--ok); background: var(--ok-wash); }
 .chip.warn { color: var(--warn); background: var(--warn-wash); }
 .chip.risk { color: var(--risk); background: var(--risk-wash); }
-.chip.info { color: var(--tyler-2); background: var(--tyler-wash); }
+.chip.info { color: var(--sky); background: var(--sky-wash); }
 .chip.idle { color: var(--idle); background: var(--idle-wash); }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 18px; font-size: 0.88rem; color: var(--muted); align-items: center; }
+
+/* ---------- Filters ---------- */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { border: 1px solid var(--line); background: var(--sheet); color: var(--ink); border-radius: 999px; padding: 6px 13px; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.pill i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.pill[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.field { flex: 1 1 220px; max-width: 340px; position: relative; }
+.field input { width: 100%; border: 1px solid var(--line); background: var(--sheet); color: var(--ink); border-radius: 8px; padding: 9px 12px 9px 34px; font: inherit; font-size: 14.5px; }
+.field svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+
+/* ---------- Workstream board ---------- */
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.ws {
+  text-align: left; cursor: pointer; padding: 18px 20px 16px; display: grid; gap: 12px; align-content: start;
+  border: 1px solid var(--line); background: var(--sheet); border-radius: var(--r); box-shadow: var(--shadow);
+  transition: transform .15s, box-shadow .15s, border-color .15s; position: relative; overflow: hidden; min-width: 0;
+}
+.ws::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--c, var(--sky)); }
+.ws:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--c, var(--sky)) 45%, var(--line)); }
+.ws-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.ws-top small { display: block; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; margin-top: 2px; }
+.ws p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.ws .more { font-size: 13px; font-weight: 600; color: var(--sky); }
+.stepper { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.stepper li { height: 6px; border-radius: 3px; background: var(--line); position: relative; }
+.stepper li.done { background: var(--c, var(--sky)); }
+.stepper li.now { background: repeating-linear-gradient(90deg, var(--c, var(--sky)) 0 6px, transparent 6px 10px); box-shadow: inset 0 0 0 1px var(--c, var(--sky)); }
+.stepper li.parked { background: var(--idle-wash); box-shadow: inset 0 0 0 1px var(--idle); }
+.stage-label { font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.stage-label b { color: var(--ink); font-weight: 600; }
+.stage-key { display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); margin-bottom: 16px; }
+
+/* ---------- Drawer ---------- */
+.drawer-scrim { position: fixed; inset: 0; background: rgba(5,12,24,.45); z-index: 50; animation: fade .2s ease both; }
+@keyframes fade { from { opacity: 0; } }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100%); z-index: 51;
+  background: var(--sheet); box-shadow: -20px 0 60px rgba(0,0,0,.25); overflow-y: auto;
+  padding: calc(env(safe-area-inset-top, 0px) + 24px) clamp(18px, 4vw, 32px) calc(env(safe-area-inset-bottom, 0px) + 32px);
+  animation: slide .28s cubic-bezier(.2,.8,.2,1) both; border-left: 4px solid var(--c, var(--sky));
+}
+@keyframes slide { from { transform: translateX(40px); opacity: 0; } }
+.drawer-close { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 18px); right: 18px; border: 1px solid var(--line); background: var(--sheet); border-radius: 8px; width: 36px; height: 36px; cursor: pointer; display: grid; place-items: center; color: var(--ink); }
+.drawer h2 { padding-right: 46px; }
+.drawer section { margin-top: 24px; }
+.drawer h4 { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; font-weight: 500; }
+.stage-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.stage-list li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; padding: 6px 0; font-size: 14.5px; }
+.stage-list .mark { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line); margin-top: 4px; }
+.stage-list .done .mark { background: var(--c); border-color: var(--c); }
+.stage-list .now .mark { border-color: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent); }
+.stage-list .now { font-weight: 600; }
+.stage-list .todo { color: var(--muted); }
+.mini-events { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.mini-events li { display: grid; grid-template-columns: 62px 1fr; gap: 10px; font-size: 14.5px; }
+.mini-events time { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--font-mono); font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--slate-wash); color: var(--ink); text-decoration: none; }
+a.tag:hover { background: var(--sky-wash); }
+.gate { background: var(--brass-wash); border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+
+/* ---------- Story timeline ---------- */
+.story { position: relative; }
+.month { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 24px; }
+@media (max-width: 700px) { .month { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+.month-label { position: sticky; top: 16px; align-self: start; padding-top: 18px; }
+@media (max-width: 980px) { .month-label { top: 68px; } }
+@media (max-width: 700px) { .month-label { position: static; padding-top: 22px; } }
+.month-label b { font-family: var(--font-display); font-weight: 850; font-stretch: 112%; font-size: 1.5rem; display: block; line-height: 1; }
+.month-label span { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.events { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); display: grid; gap: 12px; padding-block: 18px; }
+@media (max-width: 700px) { .events { padding-block: 8px 18px; } }
+.ev { position: relative; padding: 12px 16px; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; display: grid; gap: 4px; transition: box-shadow .3s, border-color .3s; }
+.ev::before { content: ""; position: absolute; left: -30px; top: 17px; width: 12px; height: 12px; border-radius: 50%; background: var(--sheet); border: 3px solid var(--c); }
+.ev.key { border-color: color-mix(in srgb, var(--c) 50%, var(--line)); }
+.ev.key::before { background: var(--c); }
+.ev-top { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.ev time { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+.ev .ws-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--c); }
+.ev p { margin: 0; font-size: 15px; }
+.flash { animation: flash 1.6s ease; }
+@keyframes flash { 0%, 40% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--brass) 55%, transparent); } 100% { box-shadow: none; } }
+.empty { padding: 28px; text-align: center; color: var(--muted); }
+
+/* ---------- Roadmap ---------- */
+.road { padding: 22px 22px 18px; overflow-x: auto; }
+.road-inner { position: relative; min-width: 1040px; }
+.road-months { display: grid; grid-template-columns: repeat(6, 1fr); border-bottom: 1px solid var(--line); }
+.road-months div { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding: 0 0 8px 8px; border-left: 1px dashed var(--line); }
+.lanes { position: relative; }
+.lane-line { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); opacity: .5; }
+.today { position: absolute; top: 0; bottom: 22px; width: 2px; background: var(--risk); z-index: 2; }
+.today span { position: absolute; bottom: -20px; left: -18px; font-family: var(--font-mono); font-size: 11px; color: var(--risk); white-space: nowrap; font-weight: 600; }
+.ritem {
+  position: absolute; height: 46px; border-radius: 8px; padding: 6px 10px; font-size: 12.5px; line-height: 1.3;
+  background: var(--sheet-2); border: 1px solid var(--line); border-left: 4px solid var(--c); cursor: pointer; text-align: left;
+  overflow: hidden; display: grid; align-content: center; transition: transform .15s;
+}
+.ritem:hover { transform: translateY(-2px); z-index: 3; }
+.ritem b { font-weight: 600; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ritem small { color: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+.ritem.span { background: color-mix(in srgb, var(--c) 12%, var(--sheet)); }
+.road-detail { margin-top: 16px; padding: 16px 18px; display: grid; gap: 6px; border-left: 4px solid var(--c, var(--sky)); }
+.road-detail p { margin: 0; }
+.road-list { display: none; }
+@media (max-width: 760px) {
+  .road { display: none; }
+  .road-list { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+  .road-list li { padding: 12px 14px; border-left: 4px solid var(--c); display: grid; gap: 2px; }
+  .road-list small { font-family: var(--font-mono); color: var(--muted); font-size: 12px; }
+}
+
+/* ---------- Pipeline ---------- */
+.pipe { padding: 24px; }
+.pipe-track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; position: relative; }
+@media (max-width: 860px) { .pipe-track { grid-template-columns: minmax(0, 1fr); } }
+.pipe-track::before { content: ""; position: absolute; left: 6%; right: 6%; top: 50%; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); z-index: 0; }
+@media (max-width: 860px) { .pipe-track::before { display: none; } }
+.node {
+  position: relative; z-index: 1; cursor: pointer; text-align: left; padding: 16px; border-radius: 10px;
+  background: var(--sheet); border: 1px solid var(--line); display: grid; gap: 6px; align-content: start; min-height: 132px;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.node:hover { transform: translateY(-2px); }
+.node[aria-pressed="true"] { border-color: var(--sky); box-shadow: 0 0 0 3px var(--sky-wash); }
+.node .n { font-family: var(--font-mono); font-size: 11.5px; color: var(--sky); }
+.node b { font-family: var(--font-display); font-weight: 800; font-stretch: 106%; font-size: 1.02rem; line-height: 1.2; }
+.node small { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.packet { position: absolute; top: calc(50% - 5px); width: 10px; height: 10px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 4px color-mix(in srgb, var(--brass) 25%, transparent); z-index: 2; animation: travel 6s linear infinite; }
+@keyframes travel { from { left: 6%; } to { left: 94%; } }
+@media (max-width: 860px) { .packet { display: none; } }
+.pipe-detail { margin-top: 18px; padding: 18px 20px; background: var(--sheet-2); border-radius: 10px; border: 1px solid var(--line); display: grid; gap: 10px; }
+.pipe-detail ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+
+/* Troubleshooter */
+.trouble { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 860px) { .trouble { grid-template-columns: minmax(0, 1fr); } }
+.symptoms { padding: 8px; display: grid; gap: 4px; align-content: start; }
+.symptom { text-align: left; background: transparent; border: 0; border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 14px; display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; }
+.symptom:hover { background: var(--sheet-2); }
+.symptom[aria-pressed="true"] { background: var(--sky-wash); font-weight: 600; }
+.symptom i { font-style: normal; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding-top: 2px; }
+.answer { padding: 22px 24px; display: grid; gap: 14px; align-content: start; }
+.answer .says { font-family: var(--font-mono); font-size: 13px; background: var(--slate-wash); border-radius: 8px; padding: 10px 12px; overflow-wrap: anywhere; }
+.answer dl { margin: 0; display: grid; gap: 12px; }
+.answer dt { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.answer dd { margin: 2px 0 0; }
 
 /* Tables */
-.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--sheet); }
-table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
-th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
-th { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); font-weight: 600; background: var(--paper); white-space: nowrap; }
-tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--paper) 55%, var(--sheet)); }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; background: var(--sheet-2); white-space: nowrap; }
 tr:last-child td { border-bottom: 0; }
-td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
-td .mono { font-size: 0.82rem; }
+td.mono { font-size: 12.5px; }
 
-/* Timeline */
-.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
-.filters button {
-  font: inherit; font-size: 0.86rem; padding: 6px 12px; border-radius: 999px; cursor: pointer;
-  border: 1px solid var(--rule); background: var(--sheet); color: var(--ink);
-}
-.filters button[aria-pressed="true"] { background: var(--tyler); border-color: var(--tyler); color: #fff; }
-:root[data-theme="dark"] .filters button[aria-pressed="true"] { color: #0e1622; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .filters button[aria-pressed="true"] { color: #0e1622; } }
-.month { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; padding: 18px 0; border-top: 1px solid var(--rule); }
-.month:first-of-type { border-top: 0; }
-@media (max-width: 640px) { .month { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
-.month h3 { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 500; color: var(--tyler-2); margin: 3px 0 0; text-transform: uppercase; letter-spacing: 0.06em; }
-.events { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.events li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; }
-.events time { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
-.events p { margin: 0; }
-.tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-right: 6px; }
+/* ---------- People ---------- */
+.ask { padding: 18px 20px; margin-bottom: 18px; display: grid; gap: 12px; }
+.ask-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 12px; }
+.person { padding: 16px; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: start; transition: opacity .25s, transform .25s, box-shadow .25s; }
+.person.dim { opacity: .3; }
+.person.hit { box-shadow: 0 0 0 2px var(--brass), var(--shadow); }
+.avatar { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-stretch: 110%; font-size: 15px; color: #fff; background: var(--c); }
+.person b { display: block; font-size: 15px; }
+.person .role { font-size: 12.5px; color: var(--c); font-weight: 600; line-height: 1.35; display: block; margin-bottom: 4px; }
+.person p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+.person .badge { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--brass); }
+.group-title { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 12px; }
+.group-title span { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 
-/* Pipeline */
-.pipeline { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
-@media (max-width: 1000px) { .pipeline { grid-template-columns: minmax(0, 1fr); } }
-.pipeline li { position: relative; background: var(--sheet); border: 1px solid var(--rule); padding: 16px 16px 16px; margin: 0 0 0 -1px; display: grid; gap: 6px; align-content: start; }
-.pipeline li:first-child { margin-left: 0; border-radius: var(--radius) 0 0 var(--radius); }
-.pipeline li:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
-@media (max-width: 1000px) {
-  .pipeline li { margin: -1px 0 0 0; }
-  .pipeline li:first-child { border-radius: var(--radius) var(--radius) 0 0; margin-top: 0; }
-  .pipeline li:last-child { border-radius: 0 0 var(--radius) var(--radius); }
-}
-.pipeline .step { font-family: var(--font-mono); font-size: 0.76rem; color: var(--tyler-2); }
-.pipeline strong { font-family: var(--font-display); font-size: 1.05rem; }
-.pipeline p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+/* ---------- Rhythm ---------- */
+.meetings { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.meeting { padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.meeting .cad { font-family: var(--font-mono); font-size: 12px; color: var(--sky); text-transform: uppercase; letter-spacing: .06em; }
+.meeting p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.meeting .who { font-size: 13.5px; color: var(--ink); }
 
-.rules { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
-.rule { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); padding: 14px 16px; }
-.rule p { margin: 0; font-size: 0.93rem; }
-.rule h3 { font-size: 1rem; }
+/* ---------- Risks ---------- */
+.risk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+@media (max-width: 900px) { .risk-grid { grid-template-columns: minmax(0, 1fr); } }
+.risk-col h3 { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 1rem; }
+.risk-col h3 .count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-weight: 400; }
+.risk { padding: 0; margin-bottom: 10px; overflow: hidden; }
+.risk summary { list-style: none; cursor: pointer; padding: 14px 16px; display: grid; gap: 4px; }
+.risk summary::-webkit-details-marker { display: none; }
+.risk summary b { font-size: 15px; }
+.risk summary small { font-size: 12.5px; color: var(--muted); }
+.risk[open] summary { border-bottom: 1px solid var(--line); }
+.risk .body { padding: 12px 16px 16px; font-size: 14.5px; display: grid; gap: 8px; }
+.risk .body p { margin: 0; }
+.risk.high { border-top: 3px solid var(--risk); }
+.risk.medium { border-top: 3px solid var(--warn); }
+.risk.low { border-top: 3px solid var(--idle); }
 
-/* People */
-.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 12px; margin-bottom: 26px; }
-.person { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
-.person .name { font-weight: 700; }
-.person .role { font-size: 0.84rem; color: var(--tyler-2); font-weight: 600; }
-.person p { margin: 0; font-size: 0.9rem; }
-.person.new { border-color: var(--tyler-2); box-shadow: inset 0 0 0 1px var(--tyler-2); }
+/* ---------- Checklist ---------- */
+.prog { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; padding: 20px 22px; margin-bottom: 18px; }
+.prog p { margin: 0; color: var(--muted); }
+.ring { --p: 0; width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--ok) calc(var(--p) * 1%), var(--line) 0); transition: background .4s; }
+.ring span { width: 70px; height: 70px; border-radius: 50%; background: var(--sheet); display: grid; place-items: center; font-family: var(--font-display); font-weight: 850; font-stretch: 110%; font-size: 1.25rem; }
+.ring.small { width: 46px; height: 46px; background: conic-gradient(#6cc795 calc(var(--p) * 1%), rgba(255,255,255,.12) 0); }
+.ring.small span { width: 36px; height: 36px; background: var(--navy); color: #fff; font-size: 12px; font-family: var(--font-mono); font-weight: 600; }
+.weeks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; }
+.week { padding: 18px 20px; }
+.week h3 { margin-bottom: 4px; }
+.week .when { font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: block; margin-bottom: 12px; }
+.week ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.check { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; cursor: pointer; padding: 8px 10px; border-radius: 8px; font-size: 14.5px; transition: background .15s; }
+.check:hover { background: var(--sheet-2); }
+.check input { appearance: none; width: 20px; height: 20px; border: 2px solid var(--line); border-radius: 6px; margin: 2px 0 0; display: grid; place-items: center; cursor: pointer; background: var(--sheet); }
+.check input:checked { background: var(--ok); border-color: var(--ok); }
+.check input:checked::after { content: ""; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px, -1px); }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.habits { padding: 20px 22px; margin-top: 18px; border-left: 4px solid var(--brass); }
+.habits ol { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 8px; }
 
-/* Checklist */
-.weeks { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; }
-.week { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); padding: 16px 18px; }
-.week ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.week label { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; cursor: pointer; font-size: 0.94rem; }
-.week input { margin-top: 4px; accent-color: var(--tyler-2); width: 16px; height: 16px; }
-.week input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rule); }
-.progress { font-family: var(--font-mono); font-size: 0.84rem; color: var(--muted); margin: 0 0 14px; }
+/* ---------- Library ---------- */
+.eras { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; }
+@media (max-width: 860px) { .eras { grid-template-columns: minmax(0, 1fr); } }
+.era { padding: 16px 18px; border-right: 1px solid var(--line); display: grid; gap: 6px; align-content: start; }
+.era:last-child { border-right: 0; }
+@media (max-width: 860px) { .era { border-right: 0; border-bottom: 1px solid var(--line); } .era:last-child { border-bottom: 0; } }
+.era .yr { font-family: var(--font-mono); font-size: 12px; color: var(--brass); font-weight: 600; }
+.era b { font-size: 14.5px; }
+.era p { margin: 0; font-size: 13.5px; color: var(--muted); }
+.links { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.link-card { padding: 16px 18px; text-decoration: none; color: var(--ink); display: grid; gap: 4px; transition: transform .15s, border-color .15s; }
+.link-card:hover { transform: translateY(-2px); border-color: var(--sky); }
+.link-card b { color: var(--sky); }
+.link-card span { font-size: 13.5px; color: var(--muted); }
+.link-card code { font-size: 12px; justify-self: start; }
+.gloss { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 10px; }
+.term { padding: 14px 16px; }
+.term b { font-family: var(--font-mono); color: var(--blue); font-size: 14px; font-weight: 600; }
+.term p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
 
-/* Glossary */
-dl.gloss { display: grid; grid-template-columns: minmax(110px, 180px) minmax(0, 1fr); gap: 0; margin: 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--radius); }
-dl.gloss dt, dl.gloss dd { padding: 10px 14px; border-bottom: 1px solid var(--rule); margin: 0; }
-dl.gloss dt { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 500; color: var(--tyler); }
-dl.gloss dt:last-of-type, dl.gloss dd:last-of-type { border-bottom: 0; }
-@media (max-width: 560px) { dl.gloss { grid-template-columns: minmax(0, 1fr); } dl.gloss dt { border-bottom: 0; padding-bottom: 0; } }
+/* ---------- Tour footer ---------- */
+.tour { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 48px; }
+.tour a { padding: 16px 18px; text-decoration: none; color: var(--ink); display: grid; gap: 2px; }
+.tour a:hover { border-color: var(--sky); }
+.tour small { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.tour b { font-family: var(--font-display); font-weight: 800; font-stretch: 106%; font-size: 1.1rem; }
+.tour .next { text-align: right; grid-column: 2; }
 
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 24px; }
+/* ---------- Palette ---------- */
+.pal-scrim { position: fixed; inset: 0; background: rgba(5,12,24,.5); z-index: 60; display: grid; place-items: start center; padding: 12vh 16px 16px; animation: fade .15s ease both; }
+.pal { width: min(620px, 100%); background: var(--sheet); border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.35); overflow: hidden; border: 1px solid var(--line); }
+.pal input { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-size: 17px; padding: 16px 18px; outline: none; }
+.pal ul { list-style: none; margin: 0; padding: 6px; max-height: 52vh; overflow-y: auto; }
+.pal li { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 10px 12px; border-radius: 8px; cursor: pointer; align-items: center; }
+.pal li[aria-selected="true"] { background: var(--sky-wash); }
+.pal li b { font-weight: 600; font-size: 15px; display: block; }
+.pal li span { font-size: 13px; color: var(--muted); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pal li em { font-style: normal; font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; }
+.pal-foot { padding: 8px 14px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); font-family: var(--font-mono); }
 
-footer { border-top: 1px solid var(--rule); background: var(--sheet); font-size: var(--step--1); color: var(--muted); }
-footer .wrap { padding-block: 24px; display: grid; gap: 6px; }
-footer p { margin: 0; max-width: none; }
-
-@media print { nav.index, .filters { display: none; } .shell { grid-template-columns: 1fr; } }
+footer.site { border-top: 1px solid var(--line); padding-block: 22px; font-size: 13px; color: var(--muted); }
+footer.site p { margin: 0; }
 </style>
 </head>
 <body>
 
-<div class="docket" aria-label="Program reference">
-  <div class="wrap">
-    <span>Agreement 22SPF11 · Exhibit 4A</span>
-    <span>102 counties</span>
-    <span>6 workstreams</span>
-    <span>CJIS cloud · aoic.cjis.socrata.com</span>
-    <span>Current as of Oct 2, 2026</span>
-  </div>
-</div>
-
-<header class="mast">
-  <div class="wrap">
-    <p class="eyebrow">Tyler Technologies · Data &amp; Insights · Internal</p>
-    <h1>AOIC Analytics Onboarding</h1>
-    <p class="lede">Everything a new project manager needs to run the Illinois statewide court analytics program: where each workstream stands, what changed this year, who matters, and what to do in your first thirty days.</p>
-    <div class="meta">
-      <span><b>Program lead</b> Justin Bruce</span>
-      <span><b>Incoming project manager</b> Michael Manis</span>
-      <span><b>Client</b> Administrative Office of the Illinois Courts</span>
-      <span><b>Last refreshed</b> October 2, 2026</span>
-    </div>
-  </div>
+<header class="topbar">
+  <button class="icon-btn" id="menuBtn" aria-label="Open navigation"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  <b>AOIC Analytics Onboarding</b>
+  <button class="icon-btn" data-open-palette aria-label="Search"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 </header>
+<div class="scrim" id="scrim" hidden></div>
 
-<div class="wrap shell">
-  <nav class="index" aria-label="Sections">
-    <h2>In this binder</h2>
-    <ol>
-      <li><a href="#start">Start Here</a></li>
-      <li><a href="#status">Where Things Stand</a></li>
-      <li><a href="#changes">What Changed in 2026</a></li>
-      <li><a href="#next">The Next 90 Days</a></li>
-      <li><a href="#flow">How the Data Flows</a></li>
-      <li><a href="#workstreams">Workstream Reference</a></li>
-      <li><a href="#people">People</a></li>
-      <li><a href="#rhythm">Meeting Rhythm</a></li>
-      <li><a href="#risks">Risks and Open Questions</a></li>
-      <li><a href="#first30">Your First 30 Days</a></li>
-      <li><a href="#find">Where Things Live</a></li>
-      <li><a href="#glossary">Glossary</a></li>
-    </ol>
-  </nav>
-
-  <main>
-
-    <!-- 01 -->
-    <section id="start">
-      <div class="sec-head">
-        <span class="tab-no">Tab 01</span>
-        <h2>Start Here: The Program in Two Minutes</h2>
-      </div>
-      <p>Tyler Technologies partners with the Administrative Office of the Illinois Courts (AOIC) to build a statewide court analytics program covering all 102 Illinois counties. County clerks, and in most cases the third-party case management system (CMS) vendors they rely on, submit case-level data to the Alliance Exchange Pipeline (AEP). The AEP is an API endpoint that checks every record against a published JSON contract before anything is stored. Accepted records are stored, combined across vendors, and published nightly to the AOIC Enterprise Data Platform (EDP) in Tyler's CJIS-compliant cloud. From there they power the analytics applications that judges, court administrators, clerks, probation staff, and AOIC leadership use.</p>
-      <p>The contract is Exhibit 4A to Agreement 22SPF11, originally effective August 1, 2021 and amended June 4, 2025. The Second Amendment, executed with a sign date of April 28, 2026, reset the delivery schedule, added Problem Solving Courts terms, and extended the term into 2027. Two of its clauses come up often: Tyler must notify the AOIC within three days of receiving first data from a new source, and the AOIC must have access to every staging application. As of August, the platform held about 1.32 million records across five program areas.</p>
-      <div class="callout">
-        <h3>The Core Challenge Has Shifted</h3>
-        <p>In February the hard part was getting vendors to transmit consistently. That is still true, but the harder part now is proof. The AOIC is under public scrutiny over access to pretrial data, and it has asked Tyler for evidence that every dashboard is built, populated, and matches its requirements. Expect requests to arrive with urgency, and answer them with data, screenshots, and dates rather than assurances.</p>
-      </div>
-      <h3>How Decisions Get Made</h3>
-      <p>A Supreme Court task force led by Justice Eugene Doherty of the Illinois Appellate Court, Fourth District, sets strategic direction. The AOIC runs the program day to day through John Chatz and Skip Robertson. Direction flows from the task force to the AOIC, and from the AOIC to Tyler. The AOIC prefers to send communications to CMS vendors itself, so Tyler drafts and the AOIC delivers.</p>
-      <h3>How We Got Here</h3>
-      <p>The program is five years old and has passed through several project managers. Knowing the eras helps when the AOIC references a decision you weren't there for.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Era</th><th>Led by</th><th>What it produced</th></tr></thead>
-          <tbody>
-            <tr><td class="num">2021 to 2023</td><td>David Fadette</td><td>The contract took effect on August 1, 2021. The first data elements were defined and CMS vendors went through their first round of connection testing in spring 2023.</td></tr>
-            <tr><td class="num">2023 to 2024</td><td>Gabrielle Scott</td><td>The data platform went into production on the CJIS cloud and early pretrial data loaded from the Office of Statewide Pretrial Services.</td></tr>
-            <tr><td class="num">2024 to 2025</td><td>Parker Belvis, Chris De Sisto</td><td>eFile Analytics passed production readiness on October 4, 2024. The version 3.0 schemas shipped on October 14, 2024, along with the vendor staging process still in use.</td></tr>
-            <tr><td class="num">2025</td><td>Chelsea Nichols</td><td>The contract was amended on June 4, 2025, and Chelsea bridged the program from Parker to Justin.</td></tr>
-            <tr><td class="num">2026</td><td>Justin Bruce, then Michael Manis</td><td>Pretrial was rebuilt as Courts Pretrial, Probation and PSC began receiving data, and eFile started its move to TDS.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 02 -->
-    <section id="status">
-      <div class="sec-head">
-        <span class="tab-no">Tab 02</span>
-        <h2>Where Things Stand: Built, and Now Being Asked to Prove It</h2>
-      </div>
-      <p class="sec-intro">Status as of October 2, 2026. Each card names the dataset family vendors submit to, the current state, and the next gate.</p>
-      <div class="legend" aria-label="Status legend">
-        <span class="chip ok">Live</span>
-        <span class="chip info">In review</span>
-        <span class="chip warn">Needs attention</span>
-        <span class="chip idle">Parked</span>
-      </div>
-      <div class="board">
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>eFile Analytics</h3><div class="entity">Source: eFileIL filing data</div></div>
-            <span class="chip warn">Needs attention</span>
-          </div>
-          <p>The application is live and clerks use it daily. Tyler is moving it from its current backend to the Tyler Data Store (TDS). The TDS version is built and Tyler's QA largely passed, but the AOIC still sees metric differences between the live site and the TDS site. On September 28 the AOIC paused its own testing until Tyler confirms those discrepancies, including filtering, are resolved.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Close David Torres's parity list, give the AOIC a written assurance with side-by-side evidence, then cut over and hand the application to support.</dd>
-            <dt>Sites</dt><dd><code>aoic-efileanalytics.insights.cjis.socrata.com</code> is live. <code>aoic-efiletds.insights.cjis.socrata.com</code> is the TDS candidate.</dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Courts Pretrial</h3><div class="entity">di-aoic-courtspretrial-cases · -charges</div></div>
-            <span class="chip warn">Needs attention</span>
-          </div>
-          <p>The schema (v3.2.1, two datasets) and the dashboard are built. Patricia King is applying the AOIC's September 3 review feedback. As of September 17, three vendors covering 50 counties had submitted 5,886 records. On September 28 the AOIC asked for evidence that every required metric is built and populated, and on October 1 asked for a working session on how data is displayed and filtered.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Hold the AOIC data review the week of October 5, close the September 3 feedback, and receive the AOIC's user list for acceptance testing. The AOIC is expected to ask for production readiness in November.</dd>
-            <dt>Site</dt><dd><code>aoic-courts-pretrial.insights.cjis.socrata.com</code></dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Probation</h3><div class="entity">di-aoic-probation-*</div></div>
-            <span class="chip info">Built, data flowing</span>
-          </div>
-          <p>The application is built and more than 81,000 records have arrived from eight vendors, with coverage reaching 95 of 102 counties by midyear. The MVP dashboard still has a join problem that inflates counts on several tiles, and four metrics wait on answers from the AOIC probation team. The AOIC plans to tell all probation departments the pipeline is ready, and has asked Tyler to confirm it can absorb a large influx.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Fix the dashboard counts, resolve the blocked metrics with Michelle Repp and Dan Hunt, and prepare for production readiness testing in December.</dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Problem Solving Courts</h3><div class="entity">di-aoic-problemsolvingcourts-*</div></div>
-            <span class="chip info">Ready to receive</span>
-          </div>
-          <p>The original Problem Solving Courts (PSC) elements were reinstated as v3.2.1, contracts are live in staging, and vendor mapping mirrors Probation. The pipeline can receive PSC data now. Metrics are a few weeks of work, scheduled for an October sprint. The amendment caps PSC at 29 metrics, 150 elements, and two roles.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Agree on the vendor announcement with the AOIC, which wants to send it, then build the metrics.</dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>eFile Public Reporting</h3><div class="entity">Public story on aoic.cjis.socrata.com</div></div>
-            <span class="chip ok">Live, accepted</span>
-          </div>
-          <p>Tyler delivered the public dashboard on January 14, 2026, made the copy changes the AOIC requested in February, and the AOIC accepted it. Its datasets move to TDS along with eFile Analytics.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Swap the public story to TDS sources as part of the eFile cutover, and confirm the numbers match before and after.</dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Usage Reporting</h3><div class="entity">Sign-in and activity data</div></div>
-            <span class="chip warn">Needs attention</span>
-          </div>
-          <p>AOIC leadership escalated repeatedly for user-level usage data. Tyler delivered a one-time six-month sign-in report in mid-September and shipped the reporting scripts to production on September 21. The AOIC still lacks a repeatable or self-service way to get this data.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Agree on a recurring cadence and owner with Eric Burnson and Gabrielle Scott.</dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Pretrial (Original)</h3><div class="entity">di-aoic-pretrial-*</div></div>
-            <span class="chip idle">Parked</span>
-          </div>
-          <p>This is the original pretrial application on the older schema. It has not changed in about a year and no new vendor direction has gone out. The AOIC confused it with Courts Pretrial on October 1, so be ready to explain the difference. All active pretrial work happens in Courts Pretrial.</p>
-          <dl>
-            <dt>Next gate</dt><dd>No action expected before the first quarter of 2027. Consider retiring or clearly labeling the old applications.</dd>
-            <dt>Site</dt><dd><code>aoic-pretrial.insights.cjis.socrata.com</code></dd>
-          </dl>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div><h3>Courts</h3><div class="entity">di-aoic-trialcourt-* · di-aoic-reviewingcourt-*</div></div>
-            <span class="chip idle">Parked</span>
-          </div>
-          <p>The Trial Court and Reviewing Court workstreams cover 16 datasets and are the largest future body of work. Trial Court data still flows from Goodin, with about 132,000 records in August, but no dashboard work is under way. Justin expects the schema to shrink from roughly 2,000 elements to about 120.</p>
-          <dl>
-            <dt>Next gate</dt><dd>Requirements in the fourth quarter of 2026 and a build in the first quarter of 2027, once the AOIC restarts the workstream.</dd>
-          </dl>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- 03 -->
-    <section id="changes">
-      <div class="sec-head">
-        <span class="tab-no">Tab 03</span>
-        <h2>What Changed in 2026</h2>
-      </div>
-      <p class="sec-intro">The milestones that shaped the program since the last version of this guide in February. Filter by workstream to follow one thread.</p>
-      <div class="filters" role="group" aria-label="Filter timeline by workstream">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="efile" aria-pressed="false">eFile</button>
-        <button type="button" data-filter="pretrial" aria-pressed="false">Pretrial</button>
-        <button type="button" data-filter="probation" aria-pressed="false">Probation and PSC</button>
-        <button type="button" data-filter="program" aria-pressed="false">Program and contract</button>
-      </div>
-      <div id="timeline">
-
-        <div class="month">
-          <h3>Feb 2026</h3>
-          <ul class="events">
-            <li data-ws="efile"><time>Feb 5</time><p><span class="tag">eFile</span>Skip Robertson escalated clerks who could see statewide metrics but not their own court. The cause was a circuit court mapping last refreshed in 2022.</p></li>
-            <li data-ws="program"><time>Feb 9</time><p><span class="tag">Program</span>Steve Rego and Shashank Kundavaram were introduced to the AOIC and joined the core team standup.</p></li>
-            <li data-ws="pretrial"><time>Feb 16</time><p><span class="tag">Pretrial</span>Pretrial schema v3.1 went live in the AEP, with a vendor documentation package published to Confluence.</p></li>
-            <li data-ws="pretrial"><time>Feb 17</time><p><span class="tag">Pretrial</span>Tyler met with the AOIC and Justice Doherty, who was pleased with progress. Tyler released v3.1.1 change documents, a draft vendor package, and the design rationale.</p></li>
-            <li data-ws="pretrial"><time>Feb 24</time><p><span class="tag">Pretrial</span>John Chatz told pretrial CMS vendors that Phase 1 would use court CMS data only and asked them not to send pretrial data until further notice.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Mar 2026</h3>
-          <ul class="events">
-            <li data-ws="pretrial"><time>Mar 2</time><p><span class="tag">Pretrial</span>Justin proposed a two-table pretrial design (cases and charges, task force elements only, Tyler-generated keys). Skip agreed on March 6 and the AOIC formally accepted v3.2.</p></li>
-            <li data-ws="efile"><time>Mar 10</time><p><span class="tag">eFile</span>Circuit court mapping was updated for all users. Access problems for about 25 clerks continued into April and centered on a Henry and McHenry county mix-up.</p></li>
-            <li data-ws="pretrial"><time>Mar 12</time><p><span class="tag">Pretrial</span>A v3.2 release went out before the AOIC was ready. Skip and Justice Doherty asked Tyler to hold, and the release was reverted that evening. The lesson stands: nothing ships to vendors without the AOIC's explicit go-ahead.</p></li>
-            <li data-ws="pretrial"><time>Mar 23</time><p><span class="tag">Pretrial</span>Tyler sent the AOIC a full Courts Pretrial vendor documentation package: integration guide, data element workbook, support workbook, and JSON examples.</p></li>
-            <li data-ws="program"><time>Mar 27</time><p><span class="tag">Program</span>With the new amendment adding roughly 1,500 hours of remaining court analytics delivery, Justin requested a dedicated project manager. That request led to Michael Manis's hire.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Apr 2026</h3>
-          <ul class="events">
-            <li data-ws="efile"><time>Apr 27</time><p><span class="tag">eFile</span>Abby Carlstad corrected the McHenry records, closing the most visible clerk access complaint. Work on the TDS migration started the next day.</p></li>
-            <li data-ws="program"><time>Apr 28</time><p><span class="tag">Program</span>The Second Amendment was executed. It sets the analytics acceptance process, including a three-day notice to the AOIC when data arrives from a new source.</p></li>
-            <li data-ws="probation"><time>Apr 29</time><p><span class="tag">Probation</span>Peoria and Kankakee completed their Tyler probation integrations. The AOIC set a target of a fourth-quarter 2026 production cutover, contingent on vendor submissions.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>May 2026</h3>
-          <ul class="events">
-            <li data-ws="pretrial"><time>May 7</time><p><span class="tag">Pretrial</span>The Courts Pretrial workstream was created with two datasets, Cases and Charges, and released to the AEP. Pipelines moved to schema version 3.2.0.</p></li>
-            <li data-ws="pretrial"><time>May 13</time><p><span class="tag">Pretrial</span>John Chatz, writing on behalf of Justice Doherty, sent the vendor guide to every circuit clerk and CMS vendor and held two kickoff sessions. That started a 90-day vendor window that closed August 12. AOIC-hosted office hours began May 21.</p></li>
-            <li data-ws="probation"><time>May 15</time><p><span class="tag">Probation</span>With Tyler Enterprise Supervision not yet able to submit, the AOIC approved Tracker as the first controlled probation submitter, starting with 16 counties.</p></li>
-            <li data-ws="pretrial"><time>May 18</time><p><span class="tag">Pretrial</span>John Chatz asked to add defendant date of birth and date of arrest back to the schema. That ticket remains open with a technical question unanswered.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Jun 2026</h3>
-          <ul class="events">
-            <li data-ws="pretrial"><time>Jun 16</time><p><span class="tag">Pretrial</span>The AOIC raised concerns that new submissions overwrite earlier values. Tyler explained that each record ID holds its current state and offered companion date fields as the fix.</p></li>
-            <li data-ws="efile"><time>Jun 17</time><p><span class="tag">eFile</span>Population, spatial, and permission datasets were replicated into TDS. A geospatial data type issue surfaced and was later solved.</p></li>
-            <li data-ws="program"><time>Jun 25</time><p><span class="tag">Program</span>Eric Burnson stepped in as a program manager on the Courts &amp; Justice side and started a biweekly compass check with the AOIC.</p></li>
-            <li data-ws="probation"><time>Jun 30</time><p><span class="tag">Probation</span>Probation data passed 80,000 records across 95 counties. Goodin, Tracker, ISS, and Nexus led the volume.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Jul 2026</h3>
-          <ul class="events">
-            <li data-ws="program"><time>Jul 7</time><p><span class="tag">Program</span>A Monday.com project plan linked to Jira went live as the reporting backbone for the AOIC.</p></li>
-            <li data-ws="pretrial"><time>Jul 8</time><p><span class="tag">Pretrial</span>Cook County was added as a staging submitter for Courts Pretrial. Winnebago was added on July 27. Both submit their own data.</p></li>
-            <li data-ws="pretrial"><time>Jul 17</time><p><span class="tag">Pretrial</span>The AOIC told all clerks and vendors to send the circuit clerk NCIC code in the arresting agency field, settling a recurring validation failure.</p></li>
-            <li data-ws="probation"><time>Jul 22</time><p><span class="tag">Probation</span>Probation reached 81,446 records from eight vendors. The first PSC records, 2,895 of them, arrived from Goodin and ISS.</p></li>
-            <li data-ws="efile"><time>Jul 29</time><p><span class="tag">eFile</span>John Chatz formally called eFile Analytics performance unacceptable, citing long load times and inconsistent totals. That pushed the move to TDS to the top of the list.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Aug 2026</h3>
-          <ul class="events">
-            <li data-ws="pretrial"><time>Aug 6</time><p><span class="tag">Pretrial</span>The Courts Pretrial dashboard was shared with John Chatz and Justice Doherty. Tyler sent a metric logic reference on August 12 and walked the AOIC through it on August 13.</p></li>
-            <li data-ws="probation"><time>Aug 11</time><p><span class="tag">Probation</span>PSC elements were reinstated as v3.2.1 and posted to the AEP and vendor folders. All six data element workbooks now share version 3.2.1.</p></li>
-            <li data-ws="probation"><time>Aug 11</time><p><span class="tag">Probation</span>Dan Hunt confirmed the AOIC wants PSC version 2.2.1 as the base for the reinstated elements.</p></li>
-            <li data-ws="pretrial"><time>Aug 19</time><p><span class="tag">Pretrial</span>A volume report showed DuPage had sent 7,329 messages but none had arrived. Goodin was carrying most Courts Pretrial volume.</p></li>
-            <li data-ws="efile"><time>Aug 20</time><p><span class="tag">eFile</span>Justin told John Chatz the TDS migration was expedited and about 80 percent built. David Torres traced about six million extra TDS filing rows to deletions upstream that were never tracked.</p></li>
-          </ul>
-        </div>
-
-        <div class="month">
-          <h3>Sep 2026</h3>
-          <ul class="events">
-            <li data-ws="pretrial"><time>Sep 2</time><p><span class="tag">Pretrial</span>Cook County's first successful submissions landed after switching its request from POST to PUT. Cook now sends records nightly.</p></li>
-            <li data-ws="pretrial"><time>Sep 3</time><p><span class="tag">Pretrial</span>The AOIC reviewed Courts Pretrial and asked for a statewide-first layout, clearer captions, percentage conversions, and charge class ordering.</p></li>
-            <li data-ws="program"><time>Sep 10</time><p><span class="tag">Program</span>Michael Manis started as project manager, transferring internally and reporting to Ben Varon.</p></li>
-            <li data-ws="program"><time>Sep 14</time><p><span class="tag">Program</span>Public pressure on the AOIC over pretrial data transparency raised the urgency on eFile and Courts Pretrial. About 50 of 102 counties were sharing some Courts Pretrial data.</p></li>
-            <li data-ws="efile"><time>Sep 16</time><p><span class="tag">eFile</span>Tyler delivered a six-month sign-in report to John Chatz and shipped repeatable reporting scripts on September 21.</p></li>
-            <li data-ws="efile"><time>Sep 18</time><p><span class="tag">eFile</span>David Torres rebuilt the TDS materialized views to carry the county, circuit, and district transforms the old plugin applied.</p></li>
-            <li data-ws="efile"><time>Sep 28</time><p><span class="tag">eFile</span>The planned TDS cutover slipped. The AOIC paused testing until Tyler confirms the discrepancies are resolved.</p></li>
-            <li data-ws="pretrial"><time>Sep 28</time><p><span class="tag">Pretrial</span>John Chatz, copying Justice Doherty, asked for evidence that the pretrial dashboard is built to requirements and populated with data. McHenry's vendor asked how the AOIC defines a pretrial case.</p></li>
-            <li data-ws="probation"><time>Sep 30</time><p><span class="tag">Probation</span>Justin confirmed the pipeline is ready for PSC data and all probation departments. The AOIC will draft the announcement to CMS vendors.</p></li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 04 -->
-    <section id="next">
-      <div class="sec-head">
-        <span class="tab-no">Tab 04</span>
-        <h2>The Next 90 Days</h2>
-      </div>
-      <p class="sec-intro">The outlook Justin shared with the team on September 22, plus the dates already on the calendar.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>When</th><th>What</th><th>Owner</th></tr></thead>
-          <tbody>
-            <tr><td class="num">Week of Oct 5</td><td>Hold the AOIC working session on Courts Pretrial data, display, and filtering that John Chatz requested.</td><td>Justin, Michael, Patricia King</td></tr>
-            <tr><td class="num">Early October</td><td>Close the eFile TDS parity list, send the AOIC written evidence, and schedule the cutover.</td><td>Abby Carlstad, David Torres</td></tr>
-            <tr><td class="num">October</td><td>Communicate PSC elements to vendors through the AOIC and build PSC metrics.</td><td>Michael, Bryce Beltran, Abby</td></tr>
-            <tr><td class="num">Oct 12</td><td>Current sprint ends. Courts Pretrial feedback, acceptance testing prep, the TDS migration, and the date of birth ticket are all in it.</td><td>Sprint team</td></tr>
-            <tr><td class="num">Oct 21</td><td>Zephrin Allen meets the AOIC in Chicago for two hours. Analytics is on the agenda and Tyler owes content.</td><td>Zephrin Allen, Justin, Michael</td></tr>
-            <tr><td class="num">Q4 2026</td><td>Transition eFile Analytics to support once it runs on TDS.</td><td>Justin, Melissa Bridges</td></tr>
-            <tr><td class="num">November</td><td>The AOIC is expected to ask for production readiness and cutover for Courts Pretrial.</td><td>Michael</td></tr>
-            <tr><td class="num">December</td><td>The AOIC is expected to ask for production readiness testing and validation for Probation.</td><td>Michael, Abby</td></tr>
-            <tr><td class="num">Q1 2027</td><td>The original Pretrial and the Courts workstreams are likely to restart.</td><td>To be decided</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 05 -->
-    <section id="flow">
-      <div class="sec-head">
-        <span class="tab-no">Tab 05</span>
-        <h2>How the Data Flows</h2>
-      </div>
-      <p class="sec-intro">Every workstream except eFile follows the same five steps. eFile Analytics draws from Tyler's own eFileIL filing data instead of CMS vendor submissions.</p>
-      <ol class="pipeline">
-        <li><span class="step">Step 1</span><strong>County and vendor</strong><p>A clerk's CMS vendor, or a county submitting for itself, exports records and builds a JSON envelope.</p></li>
-        <li><span class="step">Step 2</span><strong>Alliance Exchange Pipeline</strong><p>The vendor authenticates and sends the envelope. The AEP checks it against the entity and event contracts.</p></li>
-        <li><span class="step">Step 3</span><strong>Storage</strong><p>Accepted records are backed up and merged into one row per record ID, one table per dataset.</p></li>
-        <li><span class="step">Step 4</span><strong>Data platform</strong><p>A scheduled job publishes the tables to the AOIC Enterprise Data Platform. eFile is moving to the Tyler Data Store.</p></li>
-        <li><span class="step">Step 5</span><strong>Applications</strong><p>Analytics applications on the CJIS cloud read the datasets, with access set by role and jurisdiction.</p></li>
-      </ol>
-      <h3>Rules That Answer Most Vendor Questions</h3>
-      <div class="rules">
-        <div class="rule"><h3>Two contracts decide acceptance</h3><p>The entity contract defines the fields and allowed values for a dataset. The event contract defines which vendor may submit which workstream for which county. A record can be well-formed and still be refused because the vendor is not mapped to that county.</p></div>
-        <div class="rule"><h3>Updates reuse the record ID</h3><p>There is no update event. A vendor corrects a record by sending a new-record event with the same record ID. Omitted fields keep their value. A field sent explicitly as null is cleared.</p></div>
-        <div class="rule"><h3>Always validate synchronously</h3><p>Vendors should set synchronous validation to true. Without it, an invalid record still returns success and the errors arrive only by email, which vendors often never see.</p></div>
-        <div class="rule"><h3>Staging is stricter than production</h3><p>Staging enforces allowed values and patterns. Production does not, by design. Vendors prove quality in staging, never in the development environment.</p></div>
-        <div class="rule"><h3>Values are case-sensitive</h3><p>Vendor names and county names must match the contract exactly. "cFive" fails where the contract says "Cfive," and "Dupage" fails where it says "DuPage."</p></div>
-        <div class="rule"><h3>Releases run on a schedule</h3><p>Contract changes ship through the Alliance team every other Thursday afternoon. Opening the pull request deploys to development immediately, and closing it does not undo that.</p></div>
-      </div>
-      <div class="callout">
-        <p>The full technical reference, including envelope anatomy, error triage, and environment details, lives in the AOIC knowledge base on SharePoint. See <a href="#find">Where Things Live</a>.</p>
-      </div>
-    </section>
-
-    <!-- 06 -->
-    <section id="workstreams">
-      <div class="sec-head">
-        <span class="tab-no">Tab 06</span>
-        <h2>Workstream Reference</h2>
-      </div>
-      <p class="sec-intro">All six data element workbooks share version 3.2.1. The geography field determines which counties a vendor may submit for.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Workstream</th><th>Datasets</th><th>Vendor field</th><th>Geography field</th></tr></thead>
-          <tbody>
-            <tr><td><b>Courts Pretrial</b><br><span class="mono">courtspretrial</span></td><td>Cases, Charges</td><td class="mono">name</td><td class="mono">county</td></tr>
-            <tr><td><b>Probation</b><br><span class="mono">probation</span></td><td>Individual Background, Intake, Ancillary Assessment, Programming and Treatment, Supervision and Sentencing, Drug Testing, Offenses, Violations and Sanctions, Termination</td><td class="mono">name</td><td class="mono">sentencingcountyname or supervisingcountyname</td></tr>
-            <tr><td><b>Problem Solving Courts</b><br><span class="mono">problemsolvingcourts</span></td><td>Individual Background, Drug Testing, Offenses, Violations and Sanctions, Termination, Screening, Assessments, Redeploy</td><td class="mono">name</td><td class="mono">supervisingcountyname</td></tr>
-            <tr><td><b>Pretrial (original)</b><br><span class="mono">pretrial</span></td><td>Jail, Individual Background, Intake and Assessment, Courts and Charges, Drug Screening, Court Appearance and Judicial Decisions, Violations, Disposition and Release</td><td class="mono">name</td><td class="mono">prosecutingcountyncic</td></tr>
-            <tr><td><b>Trial Court</b><br><span class="mono">trialcourt</span></td><td>ADR, Pretrial, Hearings, Financial, Documents, Case Status, Party Hearing, JA, Party</td><td class="mono">vendorname</td><td class="mono">circuitcourtncicnumber</td></tr>
-            <tr><td><b>Reviewing Court</b><br><span class="mono">reviewingcourt</span></td><td>Hearings, Financial, Party Hearing, Party, Reviewing Courts, Administration, Case Status</td><td class="mono">vendorname</td><td class="mono">circuitcourtncicnumber</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="margin-top:14px">Dataset contracts follow the pattern <code>di-aoic-&lt;workstream&gt;-&lt;dataset&gt;</code>. County codes use the NCIC format, for example <code>IL016025J</code>.</p>
-    </section>
-
-    <!-- 07 -->
-    <section id="people">
-      <div class="sec-head">
-        <span class="tab-no">Tab 07</span>
-        <h2>People</h2>
-      </div>
-      <h3>AOIC</h3>
-      <div class="people">
-        <div class="person"><span class="name">John Chatz</span><span class="role">Chief of e-Business and Data Strategies</span><p>Your first call for anything AOIC. He runs day-to-day alignment with Tyler and coordinates vendor messaging.</p></div>
-        <div class="person"><span class="name">Skip Robertson</span><span class="role">Chief Information Officer</span><p>Final approval on security, user access, and anything external-facing. He drives eFile clerk training.</p></div>
-        <div class="person"><span class="name">Hon. Eugene Doherty</span><span class="role">Task force lead, Appellate Court, Fourth District</span><p>Sets strategic direction for pretrial analytics and reviews dashboards closely.</p></div>
-        <div class="person"><span class="name">Michelle Repp</span><span class="role">Data Manager, Probation Services</span><p>Owns probation and PSC requirements and will send the readiness notice to probation departments.</p></div>
-        <div class="person"><span class="name">Dan Hunt</span><span class="role">Director, Probation Services</span><p>Defines probation metric logic. Several blocked metrics wait on his answers.</p></div>
-        <div class="person"><span class="name">Tom Cunningham</span><span class="role">Office of Statewide Pretrial Services</span><p>Reviews pretrial query logic in detail. A working session with him gates the September feedback.</p></div>
-        <div class="person"><span class="name">Jacque Rogers</span><span class="role">Interim Director, Court Services</span><p>Weighs in on pretrial case definitions alongside Justice Doherty.</p></div>
-        <div class="person"><span class="name">Ryan Vaughn</span><span class="role">JMIS Applications Manager</span><p>The heaviest eFile Analytics user. His team runs the AOIC's side-by-side comparison of the live and TDS sites.</p></div>
-        <div class="person"><span class="name">Angie Kanak</span><span class="role">AOIC communications</span><p>Runs the Thursday pretrial office hours and sends notices to clerks and vendors.</p></div>
-        <div class="person"><span class="name">Katie Blakeman</span><span class="role">Senior Data and Innovation Manager, JMIS</span><p>A key analytics user. TDS access for her team is pending.</p></div>
-        <div class="person"><span class="name">Cara LeFevour Smith</span><span class="role">Office of Statewide Pretrial Services</span><p>Copied on pretrial decisions.</p></div>
-      </div>
-      <h3>Tyler</h3>
-      <div class="people">
-        <div class="person new"><span class="name">Michael Manis</span><span class="role">Project Manager, started September 10, 2026</span><p>Taking over day-to-day management from Justin. Reports to Ben Varon.</p></div>
-        <div class="person"><span class="name">Justin Bruce</span><span class="role">Director, AI Transformation &amp; Delivery</span><p>Program lead and owner of the AOIC relationship. Handing off to Michael through year end.</p></div>
-        <div class="person"><span class="name">Ben Varon</span><span class="role">Manager</span><p>Michael's manager and Justin's partner on the ownership transition.</p></div>
-        <div class="person"><span class="name">Abigail Carlstad</span><span class="role">Technical Consultant</span><p>Owns eFile Analytics, the TDS migration, and the Probation and PSC applications.</p></div>
-        <div class="person"><span class="name">Patricia King</span><span class="role">Technical Consultant</span><p>Built the Courts Pretrial dashboard and owns its feedback and acceptance testing.</p></div>
-        <div class="person"><span class="name">David Torres</span><span class="role">Data Engineer</span><p>Owns the pipeline storage, TDS materialized views, and the eFile parity fixes.</p></div>
-        <div class="person"><span class="name">Thomas Morrison</span><span class="role">AEP schemas and contracts, Tyler Federal</span><p>Maintains data element workbooks, contract releases, and vendor technical questions.</p></div>
-        <div class="person"><span class="name">Eric Burnson</span><span class="role">Client Executive, Courts &amp; Justice</span><p>Holds the AOIC relationship on the Courts &amp; Justice side and runs the biweekly compass check.</p></div>
-        <div class="person"><span class="name">Zephrin Allen</span><span class="role">Courts &amp; Justice leadership</span><p>Meeting the AOIC in Chicago on October 21.</p></div>
-        <div class="person"><span class="name">Scott Blackwell</span><span class="role">Client Executive on the contract</span><p>Named Tyler client executive in Exhibit 4A.</p></div>
-        <div class="person"><span class="name">Bryce Beltran</span><span class="role">Vendor integration, Courts</span><p>Supports court CMS vendor onboarding, including Cook and DuPage.</p></div>
-        <div class="person"><span class="name">Shashank Kundavaram</span><span class="role">Vendor integration support</span><p>Supports integrators through the customer portal and office hours.</p></div>
-        <div class="person"><span class="name">Gabrielle Scott</span><span class="role">Principal Program Manager</span><p>Owns the usage reporting request and the analytics launch framework.</p></div>
-        <div class="person"><span class="name">Ellen Reed</span><span class="role">Data &amp; Insights leadership</span><p>Reviewed the amendment and backs the team on escalations.</p></div>
-        <div class="person"><span class="name">Melissa Bridges</span><span class="role">Client Success Manager</span><p>Takes eFile Analytics into a supported posture after the TDS cutover.</p></div>
-        <div class="person"><span class="name">Steve Rego</span><span class="role">Program management, Courts &amp; Justice</span><p>Follows the weekly check-in.</p></div>
-      </div>
-      <h3>Vendors and Submitters</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Submitter</th><th>Workstreams</th><th>Where things stand</th></tr></thead>
-          <tbody>
-            <tr><td>Goodin &amp; Associates</td><td>Probation, PSC, Courts Pretrial, Trial Court</td><td>Largest submitter. Sent 1,477 cases and 3,197 charges across 48 counties to Courts Pretrial as of September 17.</td></tr>
-            <tr><td>Integrated Software Specialists (ISS)</td><td>Probation, PSC, Courts Pretrial</td><td>Submitting for McHenry and asking how the AOIC defines a pretrial case.</td></tr>
-            <tr><td>Tracker (Solution Specialties)</td><td>Probation, Pretrial</td><td>A leading probation submitter and the AOIC's preferred outreach partner.</td></tr>
-            <tr><td>Nexus</td><td>Probation</td><td>Submitting at low volume.</td></tr>
-            <tr><td>Tyler Enterprise Supervision</td><td>Probation</td><td>Peoria and Kankakee completed integration in April, but Tyler's own software is not yet submitting to the pipeline.</td></tr>
-            <tr><td>Journal Technologies</td><td>Probation</td><td>McLean County. Worked through validation issues in April.</td></tr>
-            <tr><td>JANO Technologies</td><td>Courts Pretrial</td><td>Court CMS vendor for Champaign, DeKalb, Kendall, LaSalle, Madison, Sangamon, St. Clair, Vermilion, and Will. Asking how to correct a flag sent in error and how to code local ordinances.</td></tr>
-            <tr><td>Cfive</td><td>Pretrial, Probation</td><td>Cook County's pretrial vendor. Earlier submissions were schema-valid but sparsely filled.</td></tr>
-            <tr><td>Cook County Circuit Court</td><td>Courts Pretrial</td><td>Self-submitting in staging. Its first successful submissions landed September 2, and records now arrive nightly.</td></tr>
-            <tr><td>Winnebago County</td><td>Courts Pretrial</td><td>Self-submitting since late July.</td></tr>
-            <tr><td>DuPage County</td><td>Courts Pretrial</td><td>DuPage reports sending 7,329 messages since August, but none have arrived. Bryce is investigating.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="margin-top:14px">Older vendor and county lists disagree with one another. The vendor mapping workbook that generates the pipeline contracts is the authoritative source for which vendor may submit for which county.</p>
-    </section>
-
-    <!-- 08 -->
-    <section id="rhythm">
-      <div class="sec-head">
-        <span class="tab-no">Tab 08</span>
-        <h2>Meeting Rhythm</h2>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Meeting</th><th>Cadence</th><th>Who</th><th>Why it matters</th></tr></thead>
-          <tbody>
-            <tr><td><b>All Things AOIC</b></td><td>Weekly, internal</td><td>Justin, Michael, the Tyler delivery team</td><td>The single internal sync. It replaced the "AOIC Analytics Check-in" on September 29. Justin posts written updates in the meeting chat when attendance is thin.</td></tr>
-            <tr><td><b>Compass Check</b></td><td>Biweekly, with the AOIC</td><td>Courts &amp; Justice, the AOIC, Tyler</td><td>Client-facing direction and status, started July 8. At John Chatz's request, analytics topics stay off this call.</td></tr>
-            <tr><td><b>Executive Sync</b></td><td>Biweekly</td><td>Eric Burnson, John Chatz</td><td>Relationship-level escalations, started August 25. Ask Eric for the takeaways.</td></tr>
-            <tr><td><b>Pretrial Detention Data Office Hours</b></td><td>Thursdays, 11:00 CT</td><td>Angie Kanak hosts. Clerks, CMS vendors, and Tyler attend.</td><td>Live help for Courts Pretrial submitters. The AOIC runs it, and Tyler answers the technical questions.</td></tr>
-            <tr><td><b>Task force briefings</b></td><td>As needed</td><td>Justin, AOIC leadership, Justice Doherty</td><td>Strategic direction on pretrial.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="margin-top:14px">The biweekly AOIC Analytics Steering Committee from 2025 was frequently canceled in 2026. Confirm with Justin whether to formally retire it.</p>
-    </section>
-
-    <!-- 09 -->
-    <section id="risks">
-      <div class="sec-head">
-        <span class="tab-no">Tab 09</span>
-        <h2>Risks and Open Questions</h2>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Risk or question</th><th>Level</th><th>What we know</th><th>Owner</th></tr></thead>
-          <tbody>
-            <tr><td><b>eFile TDS parity</b></td><td><span class="chip risk">High</span></td><td>The AOIC paused testing after finding live and TDS metrics still disagree. Record counts in TDS have drifted above the live source more than once because of upstream deletions.</td><td>Abby, David</td></tr>
-            <tr><td><b>Proof for Courts Pretrial</b></td><td><span class="chip risk">High</span></td><td>The AOIC wants evidence that every required metric is built and populated. Two metrics are open, one of them blocked on a field that does not exist yet.</td><td>Patricia, Michael</td></tr>
-            <tr><td><b>What counts as a pretrial case</b></td><td><span class="chip warn">Medium</span></td><td>Justice Doherty and Jacque Rogers said vendors should send all criminal cases except petty, minor traffic, and business offenses. ISS had built for jailed defendants only. The vendor guide should state the rule plainly.</td><td>Michael, Thomas</td></tr>
-            <tr><td><b>Correcting a flag sent in error</b></td><td><span class="chip warn">Medium</span></td><td>JANO asked how to turn off a "Y" flag. Pipeline testing shows an explicit null clears a stored value and an omitted field leaves it unchanged. Confirm with Thomas before replying.</td><td>Thomas</td></tr>
-            <tr><td><b>Usage data</b></td><td><span class="chip warn">Medium</span></td><td>Leadership wants recurring user-level usage. Today it is a manual pull.</td><td>Gabrielle, Eric</td></tr>
-            <tr><td><b>Probation dashboard counts</b></td><td><span class="chip warn">Medium</span></td><td>A join inflates several tiles roughly tenfold. Probation tickets fell out of the sprint on September 14 while the team focused on TDS.</td><td>Abby</td></tr>
-            <tr><td><b>Tyler counties not submitting</b></td><td><span class="chip warn">Medium</span></td><td>Tyler's own court and supervision software is not yet sending Courts Pretrial or Probation data. Under public pressure, the AOIC may point to those counties as the gap.</td><td>Justin, Eric Burnson</td></tr>
-            <tr><td><b>Version 3.2.1 vendor package</b></td><td><span class="chip warn">Medium</span></td><td>Pipelines run on 3.2.1, but the updated Courts Pretrial vendor package was not yet published as of mid-September. Vendors also found errors in the JSON examples. Winnebago is waiting on it.</td><td>Thomas, Bryce</td></tr>
-            <tr><td><b>Date of birth and arrest date</b></td><td><span class="chip warn">Medium</span></td><td>Requested by John Chatz on May 18 and carried through eleven sprints with a technical question unanswered.</td><td>Thomas, Justin</td></tr>
-            <tr><td><b>Ownership after Justin</b></td><td><span class="chip warn">Medium</span></td><td>Michael is taking over. Courts &amp; Justice has signaled interest in a larger role, and eFile support needs a long-term home.</td><td>Ben Varon, Justin</td></tr>
-            <tr><td><b>Old applications</b></td><td><span class="chip idle">Low</span></td><td>Several older pretrial applications still exist on the CJIS domain and confuse the AOIC.</td><td>Patricia, Abby</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- 10 -->
-    <section id="first30">
-      <div class="sec-head">
-        <span class="tab-no">Tab 10</span>
-        <h2>Your First 30 Days</h2>
-      </div>
-      <p class="sec-intro">A working checklist for an incoming project manager. Your checkmarks are saved in this browser only.</p>
-      <p class="progress" id="progress" aria-live="polite">0 of 0 complete</p>
-      <div class="weeks">
-        <div class="week">
-          <h4>Week 1 · Get in the room</h4>
-          <ul>
-            <li><label><input type="checkbox" id="c1"><span>Get added to All Things AOIC, the compass check, and Thursday office hours.</span></label></li>
-            <li><label><input type="checkbox" id="c2"><span>Request access to the four CJIS applications, the AOIC SharePoint sites, Jira epic CSE-21, and the Monday.com board.</span></label></li>
-            <li><label><input type="checkbox" id="c3"><span>Read Exhibit 4A and the 2026 amendment, with special attention to acceptance language.</span></label></li>
-            <li><label><input type="checkbox" id="c4"><span>Read the knowledge base pages on the AEP overview, submissions, and release process.</span></label></li>
-          </ul>
-        </div>
-        <div class="week">
-          <h4>Week 2 · Meet the client</h4>
-          <ul>
-            <li><label><input type="checkbox" id="c5"><span>Have Justin introduce you to John Chatz and Skip Robertson.</span></label></li>
-            <li><label><input type="checkbox" id="c6"><span>Sit in on the Courts Pretrial data review with the AOIC.</span></label></li>
-            <li><label><input type="checkbox" id="c7"><span>Walk the eFile TDS parity list with Abby and David, and agree on the evidence the AOIC will see.</span></label></li>
-            <li><label><input type="checkbox" id="c8"><span>Take over the weekly written status post in the All Things AOIC chat.</span></label></li>
-          </ul>
-        </div>
-        <div class="week">
-          <h4>Weeks 3 and 4 · Take the wheel</h4>
-          <ul>
-            <li><label><input type="checkbox" id="c9"><span>Build the October 21 Chicago content with Zephrin Allen and Justin.</span></label></li>
-            <li><label><input type="checkbox" id="c10"><span>Agree on the PSC vendor announcement with the AOIC and Bryce Beltran.</span></label></li>
-            <li><label><input type="checkbox" id="c11"><span>Schedule the blocked probation metric answers with Michelle Repp and Dan Hunt.</span></label></li>
-            <li><label><input type="checkbox" id="c12"><span>Own sprint planning for AOIC tickets and clear the stale ones.</span></label></li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout warn">
-        <h3>Four Habits That Keep You Out of Trouble</h3>
-        <ul class="plain">
-          <li>Never release anything to vendors without the AOIC's explicit written go-ahead. The March 12 revert is the reason.</li>
-          <li>Answer AOIC concerns with evidence: side-by-side numbers, screenshots, and record counts.</li>
-          <li>Let the AOIC send vendor communications. Tyler drafts, the AOIC delivers.</li>
-          <li>Tell the AOIC within three days when data first arrives from a new source. The Second Amendment requires it.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 11 -->
-    <section id="find">
-      <div class="sec-head">
-        <span class="tab-no">Tab 11</span>
-        <h2>Where Things Live</h2>
-      </div>
-      <div class="two">
-        <div>
-          <h3>Applications</h3>
-          <ul class="plain">
-            <li>eFile Analytics, live: <code>aoic-efileanalytics.insights.cjis.socrata.com</code></li>
-            <li>eFile Analytics, TDS candidate: <code>aoic-efiletds.insights.cjis.socrata.com</code></li>
-            <li>Courts Pretrial: <code>aoic-courts-pretrial.insights.cjis.socrata.com</code></li>
-            <li>Pretrial, original: <code>aoic-pretrial.insights.cjis.socrata.com</code></li>
-            <li>Data platform: <code>aoic.cjis.socrata.com</code></li>
-          </ul>
-          <p>Access runs through Tyler Identity Workforce single sign-on. You may need Skip Robertson's approval for client-side roles.</p>
-        </div>
-        <div>
-          <h3>Documents and Tracking</h3>
-          <ul class="plain">
-            <li><a href="https://tylertech.sharepoint.com/teams/DI/Customers/State%20and%20Local/State-State%20Agencies/State%20of%20Illinois%20-%20AOIC/Working%20Docs%20-%20Implementation%20Team/kb-docs" target="_blank" rel="noopener">AOIC knowledge base (kb-docs)</a>, the technical source of truth.</li>
-            <li><a href="https://tylertech.sharepoint.com/sites/Client/DI/AOIC" target="_blank" rel="noopener">Client SharePoint</a>, shared with the AOIC and vendors. Assume competitors can see it.</li>
-            <li><a href="https://socrata.atlassian.net/browse/CSE-21" target="_blank" rel="noopener">Jira epic CSE-21</a>, parent of nearly every AOIC ticket.</li>
-            <li><a href="https://socrata.atlassian.net/wiki/spaces/SD/pages/4601774082" target="_blank" rel="noopener">Vendor Integration Documentation hub</a> in Confluence.</li>
-            <li><a href="https://socrata.atlassian.net/wiki/spaces/~899057337/pages/4535451675/AOIC+eFile+TDS+Migration" target="_blank" rel="noopener">AOIC eFile TDS Migration</a> page.</li>
-            <li><a href="https://tylertechnologies.monday.com/boards/18420737565" target="_blank" rel="noopener">Monday.com project plan</a>, linked to Jira.</li>
-            <li><a href="https://github.com/JCBruce601/AOIC-Files" target="_blank" rel="noopener">Program file archive</a> on GitHub, which also hosts this site.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12 -->
-    <section id="glossary">
-      <div class="sec-head">
-        <span class="tab-no">Tab 12</span>
-        <h2>Glossary</h2>
-      </div>
-      <dl class="gloss">
-        <dt>AOIC</dt><dd>Administrative Office of the Illinois Courts, the client.</dd>
-        <dt>AEP</dt><dd>Alliance Exchange Pipeline, the API endpoint where vendors submit records and where every record is validated.</dd>
-        <dt>ACB</dt><dd>Alliance Community Builder, the internal admin tool for setting up vendor systems and credentials. Vendors never see it.</dd>
-        <dt>EDP</dt><dd>Enterprise Data Platform, the AOIC's data platform at aoic.cjis.socrata.com.</dd>
-        <dt>TDS</dt><dd>Tyler Data Store, the newer storage backend that eFile Analytics is moving to.</dd>
-        <dt>CMS</dt><dd>Case management system, the software courts and probation departments use to manage cases.</dd>
-        <dt>CJIS</dt><dd>Criminal Justice Information Services, the FBI security standard. All AOIC applications run in Tyler's CJIS-compliant cloud.</dd>
-        <dt>Courts Pretrial</dt><dd>The current pretrial workstream, sourced from court CMS data, with two datasets.</dd>
-        <dt>PSC</dt><dd>Problem Solving Courts, such as drug, mental health, and veterans courts.</dd>
-        <dt>OSPS</dt><dd>Office of Statewide Pretrial Services.</dd>
-        <dt>NCIC code</dt><dd>The county identifier used in pretrial and court datasets, for example IL016025J.</dd>
-        <dt>Entity contract</dt><dd>The JSON rules for one dataset: its fields, types, and allowed values.</dd>
-        <dt>Event contract</dt><dd>The JSON rules for which vendor may submit which workstream for which county.</dd>
-        <dt>Record ID</dt><dd>The key for a record within a dataset. Resending it updates the record.</dd>
-        <dt>Compass Check</dt><dd>The biweekly client meeting run by Courts &amp; Justice.</dd>
-        <dt>Kiteworks</dt><dd>The secure file transfer tool used for credentials and sensitive reports.</dd>
-        <dt>SoQL</dt><dd>Socrata Query Language, the SQL-like language behind dashboard metrics.</dd>
-        <dt>WCAG</dt><dd>Web Content Accessibility Guidelines. The contract requires version 2.1 AA.</dd>
-      </dl>
-    </section>
-
-  </main>
-</div>
-
-<footer>
-  <div class="wrap">
-    <p>Internal to Tyler Technologies. Compiled October 2, 2026 from program email, Teams, Jira, Confluence, and the AOIC knowledge base. Please don't share outside Tyler.</p>
-    <p>Corrections go to Justin Bruce or Michael Manis.</p>
+<aside class="rail" aria-label="Site navigation">
+  <div class="brand">
+    <div class="seal" aria-hidden="true">IL</div>
+    <div><b>AOIC Analytics</b><span>Program onboarding</span></div>
   </div>
-</footer>
+  <button class="search-btn" data-open-palette><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Search everything<kbd id="kbdHint">Ctrl K</kbd></button>
+  <nav><ol class="nav" id="nav"></ol></nav>
+  <div class="rail-foot">
+    <a class="ring-row" href="#first30">
+      <div class="ring small" id="railRing"><span id="railPct">0%</span></div>
+      <div><b>Your first 30 days</b><small id="railCount">0 of 12 done</small></div>
+    </a>
+    <div class="rail-meta"><span>Current as of Oct 2, 2026</span><button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme</button></div>
+  </div>
+</aside>
+
+<div class="main">
+  <main id="app" aria-live="polite"></main>
+  <footer class="site"><div class="wrap"><p>Internal to Tyler Technologies. Compiled October 2, 2026 from program email, Teams, Jira, Confluence, and the AOIC knowledge base. Please don't share outside Tyler. Corrections go to Justin Bruce or Michael Manis.</p></div></footer>
+</div>
 
 <script>
-(function () {
-  // Timeline filter
-  var buttons = document.querySelectorAll('.filters button');
-  var items = document.querySelectorAll('#timeline [data-ws]');
-  var months = document.querySelectorAll('#timeline .month');
-  buttons.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var f = btn.getAttribute('data-filter');
-      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-      items.forEach(function (li) { li.hidden = !(f === 'all' || li.getAttribute('data-ws') === f); });
-      months.forEach(function (m) { m.hidden = !m.querySelector('[data-ws]:not([hidden])'); });
-    });
-  });
+/* =========================================================================
+   DATA. Every fact below traces to program email, Teams, Jira, Confluence,
+   or the AOIC knowledge base as of October 2, 2026. Edit here to update.
+   ========================================================================= */
+const AS_OF = '2026-10-02';
+const WS_COLORS = { efile: 'var(--sky)', pretrial: 'var(--brass)', probation: 'var(--teal)', program: 'var(--slate)' };
+const STAGES = ['Requirements', 'Schema', 'Vendor data', 'Dashboard', 'AOIC review', 'Production'];
 
-  // Checklist, saved per browser
-  var KEY = 'aoic-onboarding-checklist-v1';
-  var saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
-  var boxes = document.querySelectorAll('.week input[type="checkbox"]');
-  var progress = document.getElementById('progress');
-  function update() {
-    var done = 0;
-    boxes.forEach(function (b) { if (b.checked) done++; });
-    progress.textContent = done + ' of ' + boxes.length + ' complete';
-  }
-  boxes.forEach(function (b) {
-    b.checked = !!saved[b.id];
-    b.addEventListener('change', function () {
-      saved[b.id] = b.checked;
-      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
-      update();
-    });
-  });
-  update();
+const VIEWS = [
+  { id: 'welcome', label: 'Welcome' },
+  { id: 'workstreams', label: 'Workstreams' },
+  { id: 'story', label: 'The 2026 Story' },
+  { id: 'next', label: 'Next 90 Days' },
+  { id: 'flow', label: 'How Data Flows' },
+  { id: 'people', label: 'People' },
+  { id: 'rhythm', label: 'Meeting Rhythm' },
+  { id: 'risks', label: 'Risks' },
+  { id: 'first30', label: 'First 30 Days' },
+  { id: 'library', label: 'Library' }
+];
 
-  // Highlight the current section in the index
-  var links = document.querySelectorAll('nav.index a');
-  if ('IntersectionObserver' in window) {
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          links.forEach(function (a) { a.classList.remove('active'); });
-          var a = map[en.target.id];
-          if (a) a.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    document.querySelectorAll('main section').forEach(function (s) { obs.observe(s); });
+const WORKSTREAMS = [
+  { id: 'efile', name: 'eFile Analytics', group: 'efile', entity: 'Source: eFileIL filing data', status: 'warn', statusLabel: 'Needs attention',
+    stage: 6, stageNote: 'Live in production. Moving to the Tyler Data Store (TDS).',
+    summary: 'The application is live and clerks use it daily. Tyler is moving it from its current backend to the Tyler Data Store (TDS). The TDS version is built and Tyler\'s QA largely passed, but the AOIC still sees metric differences between the live site and the TDS site.',
+    detail: 'On September 28 John Chatz paused the AOIC\'s own testing until Tyler confirms the discrepancies, including filtering, are resolved. The move to TDS started as a performance fix after the AOIC formally called the application\'s speed unacceptable in July. David Torres traced about six million extra TDS filing rows to upstream deletions that were never tracked, and rebuilt the TDS views on September 18.',
+    gate: 'Close David Torres\'s parity list, give the AOIC a written assurance with side-by-side evidence, then cut over and hand the application to support.',
+    sites: ['aoic-efileanalytics.insights.cjis.socrata.com (live)', 'aoic-efiletds.insights.cjis.socrata.com (TDS candidate)'],
+    owners: ['Abigail Carlstad', 'David Torres', 'Melissa Bridges'], tickets: ['CSE-14408', 'CSE-14813', 'CSE-15022', 'CSE-15023'] },
+  { id: 'cp', name: 'Courts Pretrial', group: 'pretrial', entity: 'di-aoic-courtspretrial-cases · -charges', status: 'warn', statusLabel: 'Needs attention',
+    stage: 4, stageNote: 'Built and in AOIC review. Production readiness expected in November.',
+    summary: 'The schema (v3.2.1, two datasets) and the dashboard are built. As of September 17, three vendors covering 50 counties had submitted 5,886 records. The AOIC has asked for evidence that every required metric is built and populated.',
+    detail: 'Patricia King is applying the AOIC\'s September 3 review feedback: a statewide-first layout, clearer captions, percentage conversions, and charge class ordering. On October 1 John Chatz asked for a working session on how data is displayed and filtered. Two metrics are still open, and one waits on a field the AOIC has not yet added.',
+    gate: 'Hold the AOIC data review the week of October 5, close the September 3 feedback, and receive the AOIC\'s user list for acceptance testing.',
+    sites: ['aoic-courts-pretrial.insights.cjis.socrata.com'],
+    owners: ['Patricia King', 'Thomas Morrison', 'Bryce Beltran'], tickets: ['CSE-15018', 'CSE-15019', 'CSE-14782', 'CSE-14777', 'CSE-14778', 'CSE-14680'] },
+  { id: 'probation', name: 'Probation', group: 'probation', entity: 'di-aoic-probation-*', status: 'info', statusLabel: 'Built, data flowing',
+    stage: 3, stageNote: 'Dashboard built and being fixed. Production readiness testing expected in December.',
+    summary: 'The application is built and more than 81,000 records have arrived from eight vendors, with coverage reaching 95 of 102 counties by midyear.',
+    detail: 'The MVP dashboard still has a join problem that inflates counts on several tiles roughly tenfold. Four metrics wait on answers from Michelle Repp and Dan Hunt. Probation tickets fell out of the sprint on September 14 while the team focused on TDS. On September 30 Justin confirmed the pipeline is ready for all probation departments, and the AOIC will announce it.',
+    gate: 'Fix the dashboard counts, resolve the blocked metrics, and prepare for production readiness testing in December.',
+    sites: [], owners: ['Abigail Carlstad', 'Michelle Repp', 'Dan Hunt'], tickets: ['CSE-14806', 'CSE-14805', 'CSE-14814', 'CSE-14807', 'CSE-14808', 'CSE-14809', 'CSE-14810'] },
+  { id: 'psc', name: 'Problem Solving Courts', group: 'probation', entity: 'di-aoic-problemsolvingcourts-*', status: 'info', statusLabel: 'Ready to receive',
+    stage: 2, stageNote: 'Pipeline ready. Vendor announcement and metrics come next.',
+    summary: 'The original Problem Solving Courts (PSC) elements were reinstated as v3.2.1, contracts are live in staging, and vendor mapping mirrors Probation. The pipeline can receive PSC data now.',
+    detail: 'Dan Hunt confirmed in August that the AOIC wants PSC version 2.2.1 as the base. The first 2,895 PSC records arrived from Goodin and ISS in July. Metrics are a few weeks of work, scheduled for an October sprint. The Second Amendment caps PSC at 29 metrics, 150 elements, and two roles.',
+    gate: 'Agree on the vendor announcement with the AOIC, which wants to send it, then build the metrics.',
+    sites: [], owners: ['Abigail Carlstad', 'Thomas Morrison', 'Michelle Repp'], tickets: ['CSE-14811', 'CSE-14056'] },
+  { id: 'public', name: 'eFile Public Reporting', group: 'efile', entity: 'Public story on aoic.cjis.socrata.com', status: 'ok', statusLabel: 'Live, accepted',
+    stage: 6, stageNote: 'Accepted by the AOIC.',
+    summary: 'Tyler delivered the public dashboard on January 14, 2026, made the copy changes the AOIC requested in February, and the AOIC accepted it.',
+    detail: 'Its datasets move to TDS along with eFile Analytics, so the public numbers must match before and after the cutover.',
+    gate: 'Swap the public story to TDS sources as part of the eFile cutover, and confirm the numbers match before and after.',
+    sites: ['aoic.cjis.socrata.com'], owners: ['Abigail Carlstad'], tickets: ['CSE-14408'] },
+  { id: 'usage', name: 'Usage Reporting', group: 'efile', entity: 'Sign-in and activity data', status: 'warn', statusLabel: 'Needs attention',
+    stage: 0, stageNote: 'One-time report delivered. A repeatable process is not yet in place.', noStages: true,
+    summary: 'AOIC leadership escalated repeatedly for user-level usage data. Tyler delivered a one-time six-month sign-in report in mid-September and shipped reporting scripts to production on September 21.',
+    detail: 'CJIS rules keep this usage data out of Tyler\'s standard analytics tools, so every pull is manual today. Eric Burnson wants a self-service option for the AOIC.',
+    gate: 'Agree on a recurring cadence and owner with Eric Burnson and Gabrielle Scott.',
+    sites: [], owners: ['Gabrielle Scott', 'Eric Burnson'], tickets: ['EN-97960'] },
+  { id: 'pretrial', name: 'Pretrial (Original)', group: 'pretrial', entity: 'di-aoic-pretrial-*', status: 'idle', statusLabel: 'Parked', parked: true,
+    stage: 3, stageNote: 'Built on the older schema. Parked until 2027.',
+    summary: 'This is the original pretrial application on the older schema. It has not changed in about a year and no new vendor direction has gone out. All active pretrial work happens in Courts Pretrial.',
+    detail: 'The AOIC confused it with Courts Pretrial on October 1, so be ready to explain the difference. Several older pretrial applications still sit on the CJIS domain.',
+    gate: 'No action expected before the first quarter of 2027. Consider retiring or clearly labeling the old applications.',
+    sites: ['aoic-pretrial.insights.cjis.socrata.com'], owners: ['Patricia King'], tickets: [] },
+  { id: 'courts', name: 'Courts', group: 'program', entity: 'di-aoic-trialcourt-* · di-aoic-reviewingcourt-*', status: 'idle', statusLabel: 'Parked', parked: true,
+    stage: 0, stageNote: 'Requirements not started. Restart expected in 2027.',
+    summary: 'The Trial Court and Reviewing Court workstreams cover 16 datasets and are the largest future body of work.',
+    detail: 'Trial Court data still flows from Goodin, with about 132,000 records in August, but no dashboard work is under way. Justin expects the schema to shrink from roughly 2,000 elements to about 120.',
+    gate: 'Requirements in the fourth quarter of 2026 and a build in the first quarter of 2027, once the AOIC restarts the workstream.',
+    sites: [], owners: ['Justin Bruce', 'Michael Manis'], tickets: [] }
+];
+
+const EVENTS = [
+  ['2026-02-05','efile','Skip Robertson escalated clerks who could see statewide metrics but not their own court. The cause was a circuit court mapping last refreshed in 2022.'],
+  ['2026-02-09','program','Steve Rego and Shashank Kundavaram were introduced to the AOIC and joined the core team standup.'],
+  ['2026-02-16','pretrial','Pretrial schema v3.1 went live in the Alliance Exchange Pipeline, with a vendor documentation package published to Confluence.'],
+  ['2026-02-17','pretrial','Tyler met with the AOIC and Justice Doherty, who was pleased with progress. Tyler released v3.1.1 change documents, a draft vendor package, and the design rationale.'],
+  ['2026-02-24','pretrial','John Chatz told pretrial CMS vendors that Phase 1 would use court CMS data only and asked them not to send pretrial data until further notice.'],
+  ['2026-03-02','pretrial','Justin proposed a two-table pretrial design with task force elements only and Tyler-generated keys. Skip agreed on March 6 and the AOIC formally accepted v3.2.', true],
+  ['2026-03-10','efile','Circuit court mapping was updated for all users. Access problems for about 25 clerks continued into April and centered on a Henry and McHenry county mix-up.'],
+  ['2026-03-12','pretrial','A v3.2 release went out before the AOIC was ready. Skip and Justice Doherty asked Tyler to hold, and the release was reverted that evening. Nothing ships to vendors without the AOIC\'s explicit go-ahead.', true],
+  ['2026-03-23','pretrial','Tyler sent the AOIC a full Courts Pretrial vendor documentation package: integration guide, data element workbook, support workbook, and JSON examples.'],
+  ['2026-03-27','program','With the new amendment adding roughly 1,500 hours of remaining court analytics delivery, Justin requested a dedicated project manager. That request led to Michael Manis\'s hire.'],
+  ['2026-04-27','efile','Abby Carlstad corrected the McHenry records, closing the most visible clerk access complaint. Work on the TDS migration started the next day.'],
+  ['2026-04-28','program','The Second Amendment was executed. It sets the analytics acceptance process, including a three-day notice to the AOIC when data arrives from a new source.', true],
+  ['2026-04-29','probation','Peoria and Kankakee completed their Tyler probation integrations. The AOIC set a target of a fourth-quarter 2026 production cutover, contingent on vendor submissions.'],
+  ['2026-05-07','pretrial','The Courts Pretrial workstream was created with two datasets, Cases and Charges, and released to the pipeline. Pipelines moved to schema version 3.2.0.', true],
+  ['2026-05-13','pretrial','John Chatz, writing on behalf of Justice Doherty, sent the vendor guide to every circuit clerk and CMS vendor and held two kickoff sessions. That started a 90-day vendor window that closed August 12.', true],
+  ['2026-05-15','probation','With Tyler Enterprise Supervision not yet able to submit, the AOIC approved Tracker as the first controlled probation submitter, starting with 16 counties.'],
+  ['2026-05-18','pretrial','John Chatz asked to add defendant date of birth and date of arrest back to the schema. That ticket remains open with a technical question unanswered.'],
+  ['2026-06-16','pretrial','The AOIC raised concerns that new submissions overwrite earlier values. Tyler explained that each record ID holds its current state and offered companion date fields as the fix.'],
+  ['2026-06-17','efile','Population, spatial, and permission datasets were replicated into TDS. A geospatial data type issue surfaced and was later solved.'],
+  ['2026-06-25','program','Eric Burnson stepped in as a program manager on the Courts & Justice side and started a biweekly compass check with the AOIC.'],
+  ['2026-06-30','probation','Probation data passed 80,000 records across 95 counties. Goodin, Tracker, ISS, and Nexus led the volume.', true],
+  ['2026-07-07','program','A Monday.com project plan linked to Jira went live as the reporting backbone for the AOIC.'],
+  ['2026-07-08','pretrial','Cook County was added as a staging submitter for Courts Pretrial. Winnebago was added on July 27. Both submit their own data.'],
+  ['2026-07-17','pretrial','The AOIC told all clerks and vendors to send the circuit clerk NCIC code in the arresting agency field, settling a recurring validation failure.'],
+  ['2026-07-22','probation','Probation reached 81,446 records from eight vendors. The first PSC records, 2,895 of them, arrived from Goodin and ISS.'],
+  ['2026-07-29','efile','John Chatz formally called eFile Analytics performance unacceptable, citing long load times and inconsistent totals. That pushed the move to TDS to the top of the list.', true],
+  ['2026-08-06','pretrial','The Courts Pretrial dashboard was shared with John Chatz and Justice Doherty. Tyler sent a metric logic reference on August 12 and walked the AOIC through it on August 13.', true],
+  ['2026-08-11','probation','PSC elements were reinstated as v3.2.1 and posted to the pipeline and vendor folders. Dan Hunt confirmed the AOIC wants PSC version 2.2.1 as the base.'],
+  ['2026-08-19','pretrial','A volume report showed DuPage had sent 7,329 messages but none had arrived. Goodin was carrying most Courts Pretrial volume.'],
+  ['2026-08-20','efile','Justin told John Chatz the TDS migration was expedited and about 80 percent built. David Torres traced about six million extra TDS filing rows to deletions upstream that were never tracked.'],
+  ['2026-09-02','pretrial','Cook County\'s first successful submissions landed after switching its request from POST to PUT. Cook now sends records nightly.'],
+  ['2026-09-03','pretrial','The AOIC reviewed Courts Pretrial and asked for a statewide-first layout, clearer captions, percentage conversions, and charge class ordering.'],
+  ['2026-09-10','program','Michael Manis started as project manager, transferring internally and reporting to Ben Varon.', true],
+  ['2026-09-14','program','Public pressure on the AOIC over pretrial data transparency raised the urgency on eFile and Courts Pretrial. About 50 of 102 counties were sharing some Courts Pretrial data.', true],
+  ['2026-09-16','efile','Tyler delivered a six-month sign-in report to John Chatz and shipped repeatable reporting scripts on September 21.'],
+  ['2026-09-18','efile','David Torres rebuilt the TDS materialized views to carry the county, circuit, and district transforms the old plugin applied.'],
+  ['2026-09-28','efile','The planned TDS cutover slipped. The AOIC paused testing until Tyler confirms the discrepancies are resolved.', true],
+  ['2026-09-28','pretrial','John Chatz, copying Justice Doherty, asked for evidence that the pretrial dashboard is built to requirements and populated with data. McHenry\'s vendor asked how the AOIC defines a pretrial case.', true],
+  ['2026-09-30','probation','Justin confirmed the pipeline is ready for PSC data and all probation departments. The AOIC will draft the announcement to CMS vendors.'],
+  ['2026-10-01','pretrial','John Chatz asked for a working session on how Courts Pretrial data is displayed and filtered, and confused the original pretrial app with Courts Pretrial.']
+].map(([d, ws, text, key], i) => ({ id: 'ev' + i, date: d, ws, text, key: !!key }));
+
+const ROADMAP = [
+  { id: 'r1', start: '2026-10-06', label: 'Courts Pretrial data session', when: 'Week of Oct 5', ws: 'pretrial', lane: 0, text: 'Hold the AOIC working session on Courts Pretrial data, display, and filtering that John Chatz requested.', owner: 'Justin, Michael, Patricia King' },
+  { id: 'r2', start: '2026-10-05', end: '2026-10-23', label: 'eFile TDS evidence and cutover', when: 'Early October', ws: 'efile', lane: 1, text: 'Close the TDS parity list, send the AOIC written evidence, and schedule the cutover.', owner: 'Abby Carlstad, David Torres' },
+  { id: 'r3', start: '2026-10-12', label: 'Sprint ends', when: 'Oct 12', ws: 'program', lane: 2, text: 'The current sprint ends. Courts Pretrial feedback, acceptance testing prep, the TDS migration, and the date of birth ticket are all in it.', owner: 'Sprint team' },
+  { id: 'r4', start: '2026-10-08', end: '2026-10-31', label: 'PSC vendor announcement and metrics', when: 'October', ws: 'probation', lane: 3, text: 'Communicate PSC elements to vendors through the AOIC and build PSC metrics.', owner: 'Michael, Bryce Beltran, Abby' },
+  { id: 'r5', start: '2026-10-21', label: 'AOIC meeting in Chicago', when: 'Oct 21', ws: 'program', lane: 4, text: 'Zephrin Allen meets the AOIC in Chicago for two hours. Analytics is on the agenda and Tyler owes content.', owner: 'Zephrin Allen, Justin, Michael' },
+  { id: 'r6', start: '2026-10-26', end: '2026-12-31', label: 'eFile moves to support', when: 'Q4 2026', ws: 'efile', lane: 5, text: 'Transition eFile Analytics to support once it runs on TDS.', owner: 'Justin, Melissa Bridges' },
+  { id: 'r7', start: '2026-11-02', end: '2026-11-30', label: 'Courts Pretrial production readiness', when: 'November', ws: 'pretrial', lane: 1, text: 'The AOIC is expected to ask for production readiness and cutover for Courts Pretrial.', owner: 'Michael' },
+  { id: 'r8', start: '2026-12-01', end: '2026-12-31', label: 'Probation readiness testing', when: 'December', ws: 'probation', lane: 0, text: 'The AOIC is expected to ask for production readiness testing and validation for Probation.', owner: 'Michael, Abby' },
+  { id: 'r9', start: '2027-01-04', end: '2027-03-31', label: 'Courts and original Pretrial restart', when: 'Q1 2027', ws: 'program', lane: 2, text: 'The original Pretrial and the Courts workstreams are likely to restart, beginning with requirements for a much smaller Courts schema.', owner: 'To be decided' }
+];
+
+const PEOPLE = [
+  // AOIC
+  { n: 'John Chatz', org: 'aoic', role: 'Chief of e-Business and Data Strategies', p: 'Your first call for anything AOIC. He runs day-to-day alignment with Tyler and coordinates vendor messaging.', t: ['contract','efile','cp','vendors','usage'] },
+  { n: 'Skip Robertson', org: 'aoic', role: 'Chief Information Officer', p: 'Final approval on security, user access, and anything external-facing. He drives eFile clerk training.', t: ['access','efile'] },
+  { n: 'Hon. Eugene Doherty', org: 'aoic', role: 'Task force lead, Appellate Court, Fourth District', p: 'Sets strategic direction for pretrial analytics and reviews dashboards closely.', t: ['cp'] },
+  { n: 'Michelle Repp', org: 'aoic', role: 'Data Manager, Probation Services', p: 'Owns probation and PSC requirements and will send the readiness notice to probation departments.', t: ['probation','psc'] },
+  { n: 'Dan Hunt', org: 'aoic', role: 'Director, Probation Services', p: 'Defines probation metric logic. Several blocked metrics wait on his answers.', t: ['probation','psc'] },
+  { n: 'Tom Cunningham', org: 'aoic', role: 'Office of Statewide Pretrial Services', p: 'Reviews pretrial query logic in detail. A working session with him gates the September feedback.', t: ['cp'] },
+  { n: 'Jacque Rogers', org: 'aoic', role: 'Interim Director, Court Services', p: 'Weighs in on pretrial case definitions alongside Justice Doherty.', t: ['cp'] },
+  { n: 'Ryan Vaughn', org: 'aoic', role: 'JMIS Applications Manager', p: 'The heaviest eFile Analytics user. His team runs the AOIC\'s side-by-side comparison of the live and TDS sites.', t: ['efile'] },
+  { n: 'Angie Kanak', org: 'aoic', role: 'AOIC communications', p: 'Runs the Thursday pretrial office hours and sends notices to clerks and vendors.', t: ['vendors','cp'] },
+  { n: 'Katie Blakeman', org: 'aoic', role: 'Senior Data and Innovation Manager, JMIS', p: 'A key analytics user. TDS access for her team is pending.', t: ['efile','access'] },
+  { n: 'Cara LeFevour Smith', org: 'aoic', role: 'Office of Statewide Pretrial Services', p: 'Copied on pretrial decisions.', t: ['cp'] },
+  // Tyler
+  { n: 'Michael Manis', org: 'tyler', role: 'Project Manager, started September 10, 2026', p: 'Taking over day-to-day management from Justin. Reports to Ben Varon.', t: ['contract'], isNew: true },
+  { n: 'Justin Bruce', org: 'tyler', role: 'Director, AI Transformation & Delivery', p: 'Program lead and owner of the AOIC relationship. Handing off to Michael through year end.', t: ['contract','cp','courts'] },
+  { n: 'Ben Varon', org: 'tyler', role: 'Manager', p: 'Michael\'s manager and Justin\'s partner on the ownership transition.', t: ['contract'] },
+  { n: 'Abigail Carlstad', org: 'tyler', role: 'Technical Consultant', p: 'Owns eFile Analytics, the TDS migration, and the Probation and PSC applications.', t: ['efile','probation','psc'] },
+  { n: 'Patricia King', org: 'tyler', role: 'Technical Consultant', p: 'Built the Courts Pretrial dashboard and owns its feedback and acceptance testing.', t: ['cp'] },
+  { n: 'David Torres', org: 'tyler', role: 'Data Engineer', p: 'Owns the pipeline storage, TDS materialized views, and the eFile parity fixes.', t: ['efile','schema'] },
+  { n: 'Thomas Morrison', org: 'tyler', role: 'Pipeline schemas and contracts, Tyler Federal', p: 'Maintains data element workbooks, contract releases, and vendor technical questions.', t: ['schema','vendors','psc'] },
+  { n: 'Eric Burnson', org: 'tyler', role: 'Client Executive, Courts & Justice', p: 'Holds the AOIC relationship on the Courts & Justice side and runs the biweekly compass check.', t: ['usage','contract'] },
+  { n: 'Zephrin Allen', org: 'tyler', role: 'Courts & Justice leadership', p: 'Meeting the AOIC in Chicago on October 21.', t: ['contract'] },
+  { n: 'Scott Blackwell', org: 'tyler', role: 'Client Executive on the contract', p: 'Named Tyler client executive in Exhibit 4A.', t: ['contract'] },
+  { n: 'Bryce Beltran', org: 'tyler', role: 'Vendor integration, Courts', p: 'Supports court CMS vendor onboarding, including Cook and DuPage.', t: ['vendors','cp'] },
+  { n: 'Shashank Kundavaram', org: 'tyler', role: 'Vendor integration support', p: 'Supports integrators through the customer portal and office hours.', t: ['vendors'] },
+  { n: 'Gabrielle Scott', org: 'tyler', role: 'Principal Program Manager', p: 'Owns the usage reporting request and the analytics launch framework.', t: ['usage'] },
+  { n: 'Ellen Reed', org: 'tyler', role: 'Data & Insights leadership', p: 'Reviewed the amendment and backs the team on escalations.', t: ['contract'] },
+  { n: 'Melissa Bridges', org: 'tyler', role: 'Client Success Manager', p: 'Takes eFile Analytics into a supported posture after the TDS cutover.', t: ['efile'] },
+  { n: 'Steve Rego', org: 'tyler', role: 'Program management, Courts & Justice', p: 'Follows the weekly check-in.', t: [] }
+];
+const TOPICS = [
+  ['efile','eFile and TDS'], ['cp','Courts Pretrial'], ['probation','Probation'], ['psc','PSC'], ['schema','Schemas and contracts'],
+  ['vendors','Vendor onboarding'], ['access','User access'], ['usage','Usage data'], ['contract','Contract and escalations'], ['courts','Courts workstream']
+];
+
+const VENDORS = [
+  ['Goodin & Associates','Probation, PSC, Courts Pretrial, Trial Court','Largest submitter. Sent 1,477 cases and 3,197 charges across 48 counties to Courts Pretrial as of September 17.'],
+  ['Integrated Software Specialists (ISS)','Probation, PSC, Courts Pretrial','Submitting for McHenry and asking how the AOIC defines a pretrial case.'],
+  ['Tracker (Solution Specialties)','Probation, Pretrial','A leading probation submitter and the AOIC\'s preferred outreach partner.'],
+  ['Nexus','Probation','Submitting at low volume.'],
+  ['Tyler Enterprise Supervision','Probation','Peoria and Kankakee completed integration in April, but Tyler\'s own software is not yet submitting to the pipeline.'],
+  ['Journal Technologies','Probation','McLean County. Worked through validation issues in April.'],
+  ['JANO Technologies','Courts Pretrial','Court CMS vendor for Champaign, DeKalb, Kendall, LaSalle, Madison, Sangamon, St. Clair, Vermilion, and Will. Asking how to correct a flag sent in error and how to code local ordinances.'],
+  ['Cfive','Pretrial, Probation','Cook County\'s pretrial vendor. Earlier submissions were schema-valid but sparsely filled.'],
+  ['Cook County Circuit Court','Courts Pretrial','Self-submitting in staging. Its first successful submissions landed September 2, and records now arrive nightly.'],
+  ['Winnebago County','Courts Pretrial','Self-submitting since late July and waiting on the version 3.2.1 vendor package.'],
+  ['DuPage County','Courts Pretrial','DuPage reports sending 7,329 messages since August, but none have arrived. Bryce is investigating.']
+];
+
+const MEETINGS = [
+  { name: 'All Things AOIC', cad: 'Weekly, internal', who: 'Justin, Michael, and the Tyler delivery team', why: 'The single internal sync. It replaced the AOIC Analytics Check-in at the end of September. Justin posts written updates in the meeting chat when attendance is thin.' },
+  { name: 'Compass Check', cad: 'Biweekly, with the AOIC', who: 'Courts & Justice, the AOIC, and Tyler', why: 'Client-facing direction and status, started July 8. At John Chatz\'s request, analytics topics stay off this call.' },
+  { name: 'Executive Sync', cad: 'Biweekly', who: 'Eric Burnson and John Chatz', why: 'Relationship-level escalations, started August 25. Ask Eric for the takeaways.' },
+  { name: 'Pretrial Detention Data Office Hours', cad: 'Thursdays, 11:00 CT', who: 'Angie Kanak hosts. Clerks, CMS vendors, and Tyler attend.', why: 'Live help for Courts Pretrial submitters. The AOIC runs it, and Tyler answers the technical questions.' },
+  { name: 'Task force briefings', cad: 'As needed', who: 'Justin, AOIC leadership, and Justice Doherty', why: 'Strategic direction on pretrial.' },
+  { name: 'Analytics Steering Committee', cad: 'Biweekly on paper', who: 'Tyler and AOIC leadership', why: 'Frequently canceled in 2026. Confirm with Justin whether to formally retire it.' }
+];
+
+const RISKS = [
+  { lvl: 'high', name: 'eFile TDS parity', ws: 'efile', owner: 'Abby, David', text: 'The AOIC paused testing after finding live and TDS metrics still disagree. Record counts in TDS have drifted above the live source more than once because of upstream deletions.' },
+  { lvl: 'high', name: 'Proof for Courts Pretrial', ws: 'pretrial', owner: 'Patricia, Michael', text: 'The AOIC wants evidence that every required metric is built and populated. Two metrics are open, one of them blocked on a field that does not exist yet.' },
+  { lvl: 'medium', name: 'What counts as a pretrial case', ws: 'pretrial', owner: 'Michael, Thomas', text: 'Justice Doherty and Jacque Rogers said vendors should send all criminal cases except petty, minor traffic, and business offenses. ISS had built for jailed defendants only. The vendor guide should state the rule plainly.' },
+  { lvl: 'medium', name: 'Correcting a flag sent in error', ws: 'pretrial', owner: 'Thomas', text: 'JANO asked how to turn off a "Y" flag. Pipeline testing shows an explicit null clears a stored value and an omitted field leaves it unchanged. Confirm with Thomas before replying.' },
+  { lvl: 'medium', name: 'Tyler counties not submitting', ws: 'program', owner: 'Justin, Eric Burnson', text: 'Tyler\'s own court and supervision software is not yet sending Courts Pretrial or Probation data. Under public pressure, the AOIC may point to those counties as the gap.' },
+  { lvl: 'medium', name: 'Version 3.2.1 vendor package', ws: 'pretrial', owner: 'Thomas, Bryce', text: 'Pipelines run on 3.2.1, but the updated Courts Pretrial vendor package was not yet published as of mid-September. Vendors also found errors in the JSON examples. Winnebago is waiting on it.' },
+  { lvl: 'medium', name: 'Usage data', ws: 'efile', owner: 'Gabrielle, Eric', text: 'Leadership wants recurring user-level usage. Today it is a manual pull.' },
+  { lvl: 'medium', name: 'Probation dashboard counts', ws: 'probation', owner: 'Abby', text: 'A join inflates several tiles roughly tenfold. Probation tickets fell out of the sprint on September 14 while the team focused on TDS.' },
+  { lvl: 'medium', name: 'Date of birth and arrest date', ws: 'pretrial', owner: 'Thomas, Justin', text: 'Requested by John Chatz on May 18 and carried through eleven sprints with a technical question unanswered.' },
+  { lvl: 'medium', name: 'Ownership after Justin', ws: 'program', owner: 'Ben Varon, Justin', text: 'Michael is taking over. Courts & Justice has signaled interest in a larger role, and eFile support needs a long-term home.' },
+  { lvl: 'low', name: 'Old applications', ws: 'pretrial', owner: 'Patricia, Abby', text: 'Several older pretrial applications still exist on the CJIS domain and confuse the AOIC.' }
+];
+
+const PIPE = [
+  { n: 'County and vendor', short: 'A clerk\'s CMS vendor, or a county submitting for itself, exports records.', points: ['County clerks are responsible for submitting. Most rely on a third-party CMS vendor, and a county can use a different vendor for each workstream.', 'Tyler does not see inside those systems. Vendors decide how to export the data.', 'The vendor mapping workbook decides which vendor may submit which workstream for which county.'] },
+  { n: 'Alliance Exchange Pipeline', short: 'The vendor authenticates and sends a JSON envelope to an API endpoint.', points: ['The vendor gets a one-hour token, then sends each envelope with a PUT request. POST is rejected.', 'Every record is checked against two contracts: the entity contract for fields and values, and the event contract for vendor and county authorization.', 'One invalid record rejects the whole envelope. Vendors should always turn synchronous validation on so errors come back immediately.'] },
+  { n: 'Storage', short: 'Accepted records are backed up and merged into one row per record ID.', points: ['Each dataset has its own table with one row per record ID, so the table always holds the current state, not history.', 'An update is another new-record event with the same record ID. Omitted fields keep their value, and an explicit null clears a field.', 'A raw copy of every accepted message is kept as a backup.'] },
+  { n: 'Data platform', short: 'A scheduled job publishes the tables to the AOIC Enterprise Data Platform.', points: ['Submission is near-instant, but data appears on the platform only after the scheduled publish runs.', 'Production enforces fewer rules than staging by design, so quality gets proven in staging.', 'eFile is moving its storage to the Tyler Data Store (TDS) to fix performance.'] },
+  { n: 'Applications', short: 'Analytics applications on the CJIS cloud read the datasets.', points: ['Access is set by role and jurisdiction through Tyler Identity single sign-on.', 'Vendors never get the applications. On request, they get a filtered story page of their own records.', 'Staging copies of every application stay up permanently for AOIC review and future changes.'] }
+];
+
+const SYMPTOMS = [
+  { s: 'Token request fails with invalid_client', says: '400 {"error":"invalid_client"}', cause: 'The credentials are wrong or revoked, or the vendor is calling the wrong environment\'s sign-in endpoint.', fix: 'Confirm which environment the vendor targets. Remember that generating new credentials revokes the old ones in that environment.' },
+  { s: 'Every request returns 401 Unauthorized', says: '401 Unauthorized', cause: 'The token is missing, malformed, expired, or from another environment. Tokens last one hour and cannot be refreshed.', fix: 'Have the vendor request a fresh token from the same environment it submits to.' },
+  { s: 'A 403 error mentions the Authorization header', says: '403 Invalid key=value pair in Authorization header', cause: 'The vendor used POST instead of PUT. Cook County hit exactly this before its first successful load.', fix: 'Switch the request method to PUT. The same verb is used for new records and deletes.' },
+  { s: 'Error says matched 0 out of 2', says: '400 [instance failed to match exactly one schema (matched 0 out of 2)]', cause: 'The envelope is missing EntityId, EntityType, or EntityData, or the Events list is empty.', fix: 'Check the envelope shape against the vendor guide examples.' },
+  { s: 'Error says Event schema not found', says: '400 {"Message": "Event schema not found..."}', cause: 'The event type is misspelled or invented. Only new-record and delete-record events exist.', fix: 'Use di-aoic-new-record-event or di-aoic-delete-record-event exactly.' },
+  { s: 'Errors are grouped by vendor in County Association', says: '400 with one error group per vendor under System_County_Association', cause: 'The vendor is not mapped to that county and workstream, or the county field is wrong. The record itself may be perfectly valid.', fix: 'Look for the error group without a Source error. That group belongs to the vendor. Fix the vendor mapping workbook and republish contracts if the mapping is missing.' },
+  { s: 'Contract Schema Failed Validation', says: '400 "Contract Schema Failed Validation."', cause: 'A field-level problem: an extra field, a value outside the allowed list, a pattern mismatch, a missing required field, or a wrong type. Values are case-sensitive.', fix: 'Read the keyword and path in the error. "Dupage" fails where the contract says "DuPage."' },
+  { s: 'Vendor got SUCCESS but no data appears', says: '200 {"status":"SUCCESS"}', cause: 'Validation was turned off for an invalid record, the vendor exchange was never set up in the admin tool, or the scheduled publish has not run yet. DuPage is in this state today.', fix: 'Have the vendor resend with synchronous validation on, share the envelope ID, and confirm exchanges in the admin tool.' },
+  { s: 'Vendor needs to clear a field sent by mistake', says: 'How do I turn off a "Y" flag?', cause: 'There is no update event. Records merge field by field on the record ID.', fix: 'Resend the record with the same record ID and the field set explicitly to null. Leaving the field out keeps the old value. Confirm with Thomas before replying.' },
+  { s: 'Vendor needs to delete a record', says: 'How do I remove a record?', cause: 'Deletes need the vendor field, the county field, and the record ID together.', fix: 'Send a di-aoic-delete-record-event with those three fields. A record ID alone is rejected, and deleting twice still returns success.' }
+];
+
+const WS_TABLE = [
+  ['Courts Pretrial','courtspretrial','Cases, Charges','name','county'],
+  ['Probation','probation','Individual Background, Intake, Ancillary Assessment, Programming and Treatment, Supervision and Sentencing, Drug Testing, Offenses, Violations and Sanctions, Termination','name','sentencingcountyname or supervisingcountyname'],
+  ['Problem Solving Courts','problemsolvingcourts','Individual Background, Drug Testing, Offenses, Violations and Sanctions, Termination, Screening, Assessments, Redeploy','name','supervisingcountyname'],
+  ['Pretrial (original)','pretrial','Jail, Individual Background, Intake and Assessment, Courts and Charges, Drug Screening, Court Appearance and Judicial Decisions, Violations, Disposition and Release','name','prosecutingcountyncic'],
+  ['Trial Court','trialcourt','ADR, Pretrial, Hearings, Financial, Documents, Case Status, Party Hearing, JA, Party','vendorname','circuitcourtncicnumber'],
+  ['Reviewing Court','reviewingcourt','Hearings, Financial, Party Hearing, Party, Reviewing Courts, Administration, Case Status','vendorname','circuitcourtncicnumber']
+];
+
+const CHECKLIST = [
+  { week: 'Week 1', title: 'Get in the room', items: [
+    ['c1','Get added to All Things AOIC, the compass check, and Thursday office hours.'],
+    ['c2','Request access to the four CJIS applications, the AOIC SharePoint sites, Jira epic CSE-21, and the Monday.com board.'],
+    ['c3','Read Exhibit 4A and the Second Amendment, with special attention to acceptance language.'],
+    ['c4','Read the knowledge base pages on the pipeline overview, submissions, and release process.'] ] },
+  { week: 'Week 2', title: 'Meet the client', items: [
+    ['c5','Have Justin introduce you to John Chatz and Skip Robertson.'],
+    ['c6','Sit in on the Courts Pretrial data review with the AOIC.'],
+    ['c7','Walk the eFile TDS parity list with Abby and David, and agree on the evidence the AOIC will see.'],
+    ['c8','Take over the weekly written status post in the All Things AOIC chat.'] ] },
+  { week: 'Weeks 3 and 4', title: 'Take the wheel', items: [
+    ['c9','Build the October 21 Chicago content with Zephrin Allen and Justin.'],
+    ['c10','Agree on the PSC vendor announcement with the AOIC and Bryce Beltran.'],
+    ['c11','Schedule the blocked probation metric answers with Michelle Repp and Dan Hunt.'],
+    ['c12','Own sprint planning for AOIC tickets and clear the stale ones.'] ] }
+];
+
+const ERAS = [
+  ['2021 to 2023','David Fadette','The contract took effect on August 1, 2021. The first data elements were defined and vendors went through their first connection testing in spring 2023.'],
+  ['2023 to 2024','Gabrielle Scott','The data platform went into production on the CJIS cloud and early pretrial data loaded from the Office of Statewide Pretrial Services.'],
+  ['2024 to 2025','Parker Belvis and Chris De Sisto','eFile Analytics passed production readiness on October 4, 2024. The version 3.0 schemas shipped on October 14, 2024.'],
+  ['2025','Chelsea Nichols','The contract was amended on June 4, 2025, and Chelsea bridged the program from Parker to Justin.'],
+  ['2026','Justin Bruce, then Michael Manis','Pretrial was rebuilt as Courts Pretrial, Probation and PSC began receiving data, and eFile started its move to TDS.']
+];
+
+const LINKS = [
+  ['AOIC knowledge base','The technical source of truth for the pipeline, workbooks, and vendor mapping.','https://tylertech.sharepoint.com/teams/DI/Customers/State%20and%20Local/State-State%20Agencies/State%20of%20Illinois%20-%20AOIC/Working%20Docs%20-%20Implementation%20Team/kb-docs','SharePoint'],
+  ['Client SharePoint','Shared with the AOIC and vendors. Assume competitors can see it.','https://tylertech.sharepoint.com/sites/Client/DI/AOIC','SharePoint'],
+  ['Jira epic CSE-21','The parent of nearly every AOIC ticket.','https://socrata.atlassian.net/browse/CSE-21','Jira'],
+  ['Vendor Integration Documentation','The Confluence hub for submission, validation, and vendor onboarding.','https://socrata.atlassian.net/wiki/spaces/SD/pages/4601774082','Confluence'],
+  ['AOIC eFile TDS Migration','The mapping of plugin datasets to TDS views and the app swap checklist.','https://socrata.atlassian.net/wiki/spaces/~899057337/pages/4535451675/AOIC+eFile+TDS+Migration','Confluence'],
+  ['Monday.com project plan','The client-facing plan, linked to Jira.','https://tylertechnologies.monday.com/boards/18420737565','Monday.com'],
+  ['Program file archive','Historical program documents, and the source for this site.','https://github.com/JCBruce601/AOIC-Files','GitHub']
+];
+const APPS = [
+  ['eFile Analytics','aoic-efileanalytics.insights.cjis.socrata.com','Live'],
+  ['eFile Analytics on TDS','aoic-efiletds.insights.cjis.socrata.com','Candidate'],
+  ['Courts Pretrial','aoic-courts-pretrial.insights.cjis.socrata.com','In review'],
+  ['Pretrial (original)','aoic-pretrial.insights.cjis.socrata.com','Parked'],
+  ['Data platform','aoic.cjis.socrata.com','Live']
+];
+
+const GLOSSARY = [
+  ['AOIC','Administrative Office of the Illinois Courts, the client.'],
+  ['AEP','Alliance Exchange Pipeline, the API endpoint where vendors submit records and where every record is validated.'],
+  ['ACB','Alliance Community Builder, the internal admin tool for setting up vendor systems and credentials. Vendors never see it.'],
+  ['EDP','Enterprise Data Platform, the AOIC\'s data platform at aoic.cjis.socrata.com.'],
+  ['TDS','Tyler Data Store, the newer storage backend that eFile Analytics is moving to.'],
+  ['CMS','Case management system, the software courts and probation departments use to manage cases.'],
+  ['CJIS','Criminal Justice Information Services, the FBI security standard. All AOIC applications run in Tyler\'s CJIS-compliant cloud.'],
+  ['Courts Pretrial','The current pretrial workstream, sourced from court CMS data, with two datasets.'],
+  ['PSC','Problem Solving Courts, such as drug, mental health, and veterans courts.'],
+  ['OSPS','Office of Statewide Pretrial Services.'],
+  ['NCIC code','The county identifier used in pretrial and court datasets, for example IL016025J.'],
+  ['Entity contract','The JSON rules for one dataset: its fields, types, and allowed values.'],
+  ['Event contract','The JSON rules for which vendor may submit which workstream for which county.'],
+  ['Record ID','The key for a record within a dataset. Resending it updates the record.'],
+  ['Synchronous validation','An envelope setting that returns validation errors immediately. Vendors should always turn it on.'],
+  ['Compass Check','The biweekly client meeting run by Courts & Justice.'],
+  ['Kiteworks','The secure file transfer tool used for credentials and sensitive reports.'],
+  ['SoQL','Socrata Query Language, the SQL-like language behind dashboard metrics.'],
+  ['WCAG','Web Content Accessibility Guidelines. The contract requires version 2.1 AA.']
+];
+
+/* =========================================================================
+   HELPERS
+   ========================================================================= */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const fmtDate = iso => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+const initials = n => n.replace('Hon. ', '').split(' ').map(w => w[0]).slice(0, 2).join('');
+const wsName = { efile: 'eFile', pretrial: 'Pretrial', probation: 'Probation and PSC', program: 'Program' };
+const icon = {
+  search: '<svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  close: '<svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+const daysBetween = (a, b) => Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 86400000);
+const todayISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+
+/* =========================================================================
+   VIEWS
+   ========================================================================= */
+function tourFooter(id) {
+  const i = VIEWS.findIndex(v => v.id === id);
+  const prev = VIEWS[i - 1], next = VIEWS[i + 1];
+  return `<nav class="tour" aria-label="Walkthrough">
+    ${prev ? `<a class="panel" href="#${prev.id}"><small>Back</small><b>${esc(prev.label)}</b></a>` : '<span></span>'}
+    ${next ? `<a class="panel next" href="#${next.id}"><small>Step ${i + 2} of ${VIEWS.length}</small><b>${esc(next.label)}</b></a>` : ''}
+  </nav>`;
+}
+function head(kicker, title, lede) {
+  return `<header class="view-head"><p class="kicker">${kicker}</p><h1>${title}</h1>${lede ? `<p class="lede">${lede}</p>` : ''}</header>`;
+}
+
+const render = {
+  welcome() {
+    const today = todayISO();
+    const toChicago = daysBetween(today, '2026-10-21');
+    const michaelDay = daysBetween('2026-09-10', today) + 1;
+    const chicagoKpi = toChicago > 0 ? `<b>${toChicago}</b><span>days until the AOIC meeting in Chicago on October 21</span>` : toChicago === 0 ? `<b>Today</b><span>The AOIC meeting in Chicago is today.</span>` : `<b>Oct 21</b><span>The AOIC meeting in Chicago has passed. Capture its outcomes here.</span>`;
+    return `
+    <section class="hero"><div class="wrap">
+      <div>
+        <p class="kicker">Tyler Technologies · Data &amp; Insights · Illinois</p>
+        <h1>The core dashboards are built. <em>Now the AOIC wants proof.</em></h1>
+        <p class="lede">Tyler runs a statewide court analytics program for the Administrative Office of the Illinois Courts. This guide walks a new project manager through where every workstream stands, what changed in 2026, who matters, and what to do in the first thirty days.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#workstreams">Start the walkthrough</a>
+          <button class="btn btn-ghost" type="button" data-open-palette>${icon.search} Search the program</button>
+        </div>
+      </div>
+      <div class="counties" aria-label="Counties sharing data">
+        <div class="counties-top"><b id="cntNum">50</b><span id="cntLabel">of 102 counties sharing Courts Pretrial data</span></div>
+        <div class="seg" role="group" aria-label="Choose workstream">
+          <button type="button" aria-pressed="true" data-cnt="cp">Courts Pretrial</button>
+          <button type="button" aria-pressed="false" data-cnt="prob">Probation</button>
+          <button type="button" aria-pressed="false" data-cnt="all">All counties</button>
+        </div>
+        <div class="dots" id="dots">${Array.from({ length: 102 }, () => '<i class="dot"></i>').join('')}</div>
+        <p id="cntNote">Each dot is one Illinois county. Dots show the share, not specific counties. Courts Pretrial as of September 14.</p>
+      </div>
+    </div></section>
+    <div class="wrap">
+      <div class="kpis">
+        <div class="panel kpi accent">${chicagoKpi}</div>
+        <div class="panel kpi"><b>1.32M</b><span>records on the platform across five program areas</span><i>August 2026</i></div>
+        <div class="panel kpi"><b>81,446</b><span>probation records from eight vendors</span><i>July 2026</i></div>
+        <div class="panel kpi"><b>${michaelDay > 0 ? 'Day ' + michaelDay : 'Sep 10'}</b><span>${michaelDay > 0 ? 'of Michael Manis on the program' : 'Michael Manis starts'}</span><i>Started September 10</i></div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div><h2>Three things to know this week</h2><p>If you read nothing else, read these.</p></div></div>
+        <div class="three">
+          <a class="panel note" href="#workstreams" data-ws-open="efile" style="text-decoration:none;color:inherit"><h3>eFile's move to TDS is stuck on proof</h3><p>The new backend is built, but the AOIC paused testing on September 28 until Tyler shows the live and TDS numbers match. Evidence, not assurance, unlocks the cutover.</p></a>
+          <a class="panel note brass" href="#workstreams" data-ws-open="cp" style="text-decoration:none;color:inherit"><h3>Courts Pretrial is under the microscope</h3><p>John Chatz, copying Justice Doherty, wants evidence that every required metric is built and populated. A working session on display and filtering is next.</p></a>
+          <a class="panel note teal" href="#people" style="text-decoration:none;color:inherit"><h3>Ownership is moving to Michael</h3><p>Michael Manis started September 10 and is taking over day-to-day management from Justin through year end. Introductions to John Chatz and Skip Robertson come first.</p></a>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-head"><div><h2>How decisions get made</h2></div></div>
+        <div class="three">
+          <div class="panel note"><h3>The task force sets direction</h3><p>A Supreme Court task force led by Justice Eugene Doherty of the Illinois Appellate Court, Fourth District, sets strategy for pretrial analytics.</p></div>
+          <div class="panel note"><h3>The AOIC runs the program</h3><p>John Chatz and Skip Robertson run it day to day. Direction flows from the task force to the AOIC, and from the AOIC to Tyler.</p></div>
+          <div class="panel note"><h3>The contract sets the rules</h3><p>Exhibit 4A to Agreement 22SPF11 and the Second Amendment, executed April 28, 2026, govern acceptance. Tyler must tell the AOIC within three days when data first arrives from a new source.</p></div>
+        </div>
+      </div>
+      ${tourFooter('welcome')}
+    </div>`;
+  },
+
+  workstreams() {
+    return `<div class="wrap">${head('Step 2 · Workstreams', 'Eight workstreams, one story', 'Every card shows where the work sits on its path from requirements to production. Select a card for the full picture: what is happening, who owns it, the open tickets, and every 2026 milestone.')}
+      <div class="block">
+        <div class="toolbar">
+          <div class="pills" role="group" aria-label="Filter by status">
+            <button class="pill" type="button" data-wsf="all" aria-pressed="true">All</button>
+            <button class="pill" type="button" data-wsf="warn" aria-pressed="false"><i style="background:var(--warn)"></i>Needs attention</button>
+            <button class="pill" type="button" data-wsf="info" aria-pressed="false"><i style="background:var(--sky)"></i>In progress</button>
+            <button class="pill" type="button" data-wsf="ok" aria-pressed="false"><i style="background:var(--ok)"></i>Live</button>
+            <button class="pill" type="button" data-wsf="idle" aria-pressed="false"><i style="background:var(--idle)"></i>Parked</button>
+          </div>
+        </div>
+        <div class="stage-key">${STAGES.map((s, i) => `<span>${i + 1}. ${s}</span>`).join('')}</div>
+        <div class="board" id="board">${WORKSTREAMS.map(wsCard).join('')}</div>
+      </div>
+      <div class="block">
+        <div class="block-head"><div><h2>Vendors and submitters</h2><p>Older vendor and county lists disagree with one another. The vendor mapping workbook that generates the pipeline contracts is the authoritative source.</p></div></div>
+        <div class="panel table-wrap"><table><thead><tr><th>Submitter</th><th>Workstreams</th><th>Where things stand</th></tr></thead><tbody>
+          ${VENDORS.map(v => `<tr><td><b>${esc(v[0])}</b></td><td>${esc(v[1])}</td><td>${esc(v[2])}</td></tr>`).join('')}
+        </tbody></table></div>
+      </div>
+      ${tourFooter('workstreams')}</div>`;
+  },
+
+  story() {
+    return `<div class="wrap">${head('Step 3 · The 2026 story', 'What changed since February', 'Forty milestones in order. Filter by workstream, search for a name or a word, or switch to key moments only.')}
+      <div class="block">
+        <div class="toolbar">
+          <div class="pills" role="group" aria-label="Filter by workstream">
+            <button class="pill" type="button" data-evf="all" aria-pressed="true">All</button>
+            ${Object.keys(wsName).map(k => `<button class="pill" type="button" data-evf="${k}" aria-pressed="false"><i style="background:${WS_COLORS[k]}"></i>${wsName[k]}</button>`).join('')}
+            <button class="pill" type="button" id="keyOnly" aria-pressed="false">Key moments</button>
+          </div>
+          <label class="field">${icon.search}<span class="sr-only">Search the timeline</span><input id="evSearch" type="search" placeholder="Search the timeline"></label>
+        </div>
+        <div class="story" id="story"></div>
+      </div>
+      ${tourFooter('story')}</div>`;
+  },
+
+  next() {
+    return `<div class="wrap">${head('Step 4 · The next 90 days', 'What is coming, and when', 'The outlook Justin shared with the team on September 22, plus the dates already on the calendar. The red line marks today. Select any item for details.')}
+      <div class="block">
+        <div class="panel road" id="road"></div>
+        <ul class="road-list" id="roadList">${ROADMAP.map(r => `<li class="panel" style="--c:${WS_COLORS[r.ws]}"><small>${esc(r.when)}</small><b>${esc(r.label)}</b><span>${esc(r.text)}</span><small>Owner: ${esc(r.owner)}</small></li>`).join('')}</ul>
+        <div class="panel road-detail" id="roadDetail" style="--c:${WS_COLORS[ROADMAP[0].ws]}"></div>
+      </div>
+      ${tourFooter('next')}</div>`;
+  },
+
+  flow() {
+    return `<div class="wrap">${head('Step 5 · How data flows', 'From a county clerk to a judge\'s dashboard', 'Every workstream except eFile follows the same five steps. eFile Analytics draws from Tyler\'s own eFileIL filing data instead of vendor submissions. Select a step to see how it works.')}
+      <div class="block panel pipe">
+        <div class="pipe-track" id="pipeTrack">
+          <span class="packet" aria-hidden="true"></span>
+          ${PIPE.map((p, i) => `<button class="node" type="button" data-node="${i}" aria-pressed="${i === 1}"><span class="n">Step ${i + 1}</span><b>${esc(p.n)}</b><small>${esc(p.short)}</small></button>`).join('')}
+        </div>
+        <div class="pipe-detail" id="pipeDetail"></div>
+      </div>
+      <div class="block">
+        <div class="block-head"><div><h2>Vendor troubleshooter</h2><p>When a vendor writes in with a problem, start here. Pick what they are seeing to get the likely cause and the fix.</p></div></div>
+        <div class="trouble">
+          <div class="panel symptoms" id="symptoms" role="group" aria-label="Symptoms">${SYMPTOMS.map((s, i) => `<button class="symptom" type="button" data-sym="${i}" aria-pressed="${i === 0}"><i>${String(i + 1).padStart(2, '0')}</i><span>${esc(s.s)}</span></button>`).join('')}</div>
+          <div class="panel answer" id="answer"></div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-head"><div><h2>Workstream reference</h2><p>All six data element workbooks share version 3.2.1. Dataset contracts follow the pattern <code>di-aoic-&lt;workstream&gt;-&lt;dataset&gt;</code>, and the geography field decides which counties a vendor may submit for.</p></div></div>
+        <div class="panel table-wrap"><table><thead><tr><th>Workstream</th><th>Datasets</th><th>Vendor field</th><th>Geography field</th></tr></thead><tbody>
+          ${WS_TABLE.map(r => `<tr><td><b>${esc(r[0])}</b><br><span class="mono" style="color:var(--muted)">${esc(r[1])}</span></td><td>${esc(r[2])}</td><td class="mono">${esc(r[3])}</td><td class="mono">${esc(r[4])}</td></tr>`).join('')}
+        </tbody></table></div>
+      </div>
+      ${tourFooter('flow')}</div>`;
+  },
+
+  people() {
+    return `<div class="wrap">${head('Step 6 · People', 'Who matters, and what they own', 'Search by name or role, or pick a topic to light up the people to ask about it.')}
+      <div class="block">
+        <div class="panel ask">
+          <h3>Who do I ask about...</h3>
+          <div class="ask-row" role="group" aria-label="Topics">${TOPICS.map(t => `<button class="pill" type="button" data-topic="${t[0]}" aria-pressed="false">${esc(t[1])}</button>`).join('')}</div>
+        </div>
+        <div class="toolbar">
+          <div class="pills" role="group" aria-label="Filter by organization">
+            <button class="pill" type="button" data-org="all" aria-pressed="true">Everyone</button>
+            <button class="pill" type="button" data-org="aoic" aria-pressed="false"><i style="background:var(--brass)"></i>AOIC</button>
+            <button class="pill" type="button" data-org="tyler" aria-pressed="false"><i style="background:var(--sky)"></i>Tyler</button>
+          </div>
+          <label class="field">${icon.search}<span class="sr-only">Search people</span><input id="pplSearch" type="search" placeholder="Search people"></label>
+        </div>
+        <div id="peopleWrap"></div>
+      </div>
+      ${tourFooter('people')}</div>`;
+  },
+
+  rhythm() {
+    return `<div class="wrap">${head('Step 7 · Meeting rhythm', 'Where the work gets talked about', 'The recurring meetings that keep the program moving, and why each one matters.')}
+      <div class="block meetings">${MEETINGS.map(m => `<article class="panel meeting"><span class="cad">${esc(m.cad)}</span><h3>${esc(m.name)}</h3><span class="who">${esc(m.who)}</span><p>${esc(m.why)}</p></article>`).join('')}</div>
+      ${tourFooter('rhythm')}</div>`;
+  },
+
+  risks() {
+    const cols = [['high', 'High', 'risk'], ['medium', 'Medium', 'warn'], ['low', 'Low', 'idle']];
+    return `<div class="wrap">${head('Step 8 · Risks', 'What could go wrong, and who is on it', 'Eleven open risks and questions, sorted by severity. Select one to read what we know and who owns it.')}
+      <div class="block">
+        <div class="toolbar"><div class="pills" role="group" aria-label="Filter risks by workstream">
+          <button class="pill" type="button" data-rkf="all" aria-pressed="true">All</button>
+          ${Object.keys(wsName).map(k => `<button class="pill" type="button" data-rkf="${k}" aria-pressed="false"><i style="background:${WS_COLORS[k]}"></i>${wsName[k]}</button>`).join('')}
+        </div></div>
+        <div class="risk-grid">${cols.map(([lvl, label, chip]) => {
+          const list = RISKS.filter(r => r.lvl === lvl);
+          return `<div class="risk-col"><h3><span class="chip ${chip}">${label}</span><span class="count">${list.length}</span></h3>
+            ${list.map(r => `<details class="panel risk ${lvl}" data-rws="${r.ws}"><summary><b>${esc(r.name)}</b><small>${wsName[r.ws]} · Owner: ${esc(r.owner)}</small></summary><div class="body"><p>${esc(r.text)}</p></div></details>`).join('')}</div>`;
+        }).join('')}</div>
+      </div>
+      ${tourFooter('risks')}</div>`;
+  },
+
+  first30() {
+    return `<div class="wrap">${head('Step 9 · Your first 30 days', 'A working checklist for the new project manager', 'Check items off as you go. Your progress is saved in this browser and shows in the sidebar.')}
+      <div class="block">
+        <div class="panel prog"><div class="ring" id="bigRing"><span id="bigPct">0%</span></div><div><h3 id="progTitle">Let's get started</h3><p id="progText">Twelve items across four weeks.</p></div></div>
+        <div class="weeks">${CHECKLIST.map(w => `<div class="panel week"><h3>${esc(w.title)}</h3><span class="when">${esc(w.week)}</span><ul>${w.items.map(([id, t]) => `<li><label class="check"><input type="checkbox" id="${id}"><span>${esc(t)}</span></label></li>`).join('')}</ul></div>`).join('')}</div>
+        <div class="panel habits"><h3>Four habits that keep you out of trouble</h3><ol>
+          <li>Never release anything to vendors without the AOIC's explicit written go-ahead. The March 12 revert is the reason.</li>
+          <li>Answer AOIC concerns with evidence: side-by-side numbers, screenshots, and record counts.</li>
+          <li>Let the AOIC send vendor communications. Tyler drafts, and the AOIC delivers.</li>
+          <li>Tell the AOIC within three days when data first arrives from a new source. The Second Amendment requires it.</li>
+        </ol></div>
+      </div>
+      ${tourFooter('first30')}</div>`;
+  },
+
+  library() {
+    return `<div class="wrap">${head('Step 10 · Library', 'History, links, and the words you will hear', 'The eras that shaped the program, where every system lives, and a searchable glossary.')}
+      <div class="block">
+        <div class="block-head"><div><h2>How we got here</h2><p>The program is five years old and has passed through several project managers. Knowing the eras helps when the AOIC references a decision you were not there for.</p></div></div>
+        <div class="panel eras">${ERAS.map(e => `<div class="era"><span class="yr">${esc(e[0])}</span><b>${esc(e[1])}</b><p>${esc(e[2])}</p></div>`).join('')}</div>
+      </div>
+      <div class="block">
+        <div class="block-head"><div><h2>Applications</h2><p>Access runs through Tyler Identity single sign-on. You may need Skip Robertson's approval for client-side roles.</p></div></div>
+        <div class="panel table-wrap"><table><thead><tr><th>Application</th><th>Address</th><th>State</th></tr></thead><tbody>${APPS.map(a => `<tr><td><b>${esc(a[0])}</b></td><td class="mono">${esc(a[1])}</td><td>${esc(a[2])}</td></tr>`).join('')}</tbody></table></div>
+      </div>
+      <div class="block">
+        <div class="block-head"><div><h2>Documents and tracking</h2></div></div>
+        <div class="links">${LINKS.map(l => `<a class="panel link-card" href="${l[2]}" target="_blank" rel="noopener"><code>${esc(l[3])}</code><b>${esc(l[0])}</b><span>${esc(l[1])}</span></a>`).join('')}</div>
+      </div>
+      <div class="block" id="glossaryBlock">
+        <div class="block-head"><div><h2>Glossary</h2></div><label class="field">${icon.search}<span class="sr-only">Search the glossary</span><input id="glSearch" type="search" placeholder="Search terms"></label></div>
+        <div class="gloss" id="gloss"></div>
+      </div>
+      ${tourFooter('library')}</div>`;
   }
-})();
+};
+
+function wsCard(w) {
+  const steps = STAGES.map((s, i) => {
+    let cls = '';
+    if (w.noStages) cls = '';
+    else if (w.parked && i === w.stage) cls = 'parked';
+    else if (i < w.stage) cls = 'done';
+    else if (i === w.stage && w.stage < STAGES.length) cls = 'now';
+    return `<li class="${cls}" title="${s}"></li>`;
+  }).join('');
+  const where = w.noStages ? 'Outside the delivery path' : w.stage >= STAGES.length ? 'In production' : (w.parked ? 'Parked at ' : 'Now: ') + STAGES[w.stage];
+  return `<button class="ws" type="button" data-ws="${w.id}" data-status="${w.status}" style="--c:${WS_COLORS[w.group]}">
+    <div class="ws-top"><div><h3>${esc(w.name)}</h3><small>${esc(w.entity)}</small></div><span class="chip ${w.status}">${esc(w.statusLabel)}</span></div>
+    ${w.noStages ? '' : `<ol class="stepper" aria-label="Delivery stage">${steps}</ol>`}
+    <div class="stage-label"><b>${esc(where)}</b></div>
+    <p>${esc(w.summary)}</p>
+    <span class="more">Open details</span>
+  </button>`;
+}
+
+/* =========================================================================
+   VIEW BEHAVIOR
+   ========================================================================= */
+const after = {
+  welcome() {
+    const sets = { cp: [50, 'of 102 counties sharing Courts Pretrial data', 'Courts Pretrial as of September 14.'], prob: [95, 'of 102 counties covered by probation data', 'Probation as of June 30.'], all: [102, 'Illinois counties in scope', 'Every county submits through a clerk or a vendor.'] };
+    const dots = $$('#dots .dot');
+    const apply = k => {
+      const [n, l, note] = sets[k];
+      dots.forEach((d, i) => d.classList.toggle('on', i < n));
+      $('#cntNum').textContent = n; $('#cntLabel').textContent = l;
+      $('#cntNote').textContent = 'Each dot is one Illinois county. Dots show the share, not specific counties. ' + note;
+      $$('[data-cnt]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cnt === k)));
+    };
+    $$('[data-cnt]').forEach(b => b.addEventListener('click', () => apply(b.dataset.cnt)));
+    apply('cp');
+    $$('[data-ws-open]').forEach(a => a.addEventListener('click', () => { pendingDrawer = a.dataset.wsOpen; }));
+  },
+  workstreams() {
+    $$('[data-ws]').forEach(b => b.addEventListener('click', () => openDrawer(b.dataset.ws, b)));
+    $$('[data-wsf]').forEach(b => b.addEventListener('click', () => {
+      const f = b.dataset.wsf;
+      $$('[data-wsf]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      $$('#board .ws').forEach(c => { c.hidden = !(f === 'all' || c.dataset.status === f); });
+    }));
+    if (pendingDrawer) { const id = pendingDrawer; pendingDrawer = null; openDrawer(id); }
+  },
+  story() {
+    let f = 'all', key = false, q = '';
+    const draw = () => {
+      const list = EVENTS.filter(e => (f === 'all' || e.ws === f) && (!key || e.key) && (!q || e.text.toLowerCase().includes(q)));
+      if (!list.length) { $('#story').innerHTML = '<div class="panel empty">No milestones match. Try another word or filter.</div>'; return; }
+      const months = {};
+      list.forEach(e => { const m = e.date.slice(0, 7); (months[m] = months[m] || []).push(e); });
+      $('#story').innerHTML = Object.keys(months).sort().map(m => {
+        const d = new Date(m + '-15T12:00:00');
+        return `<div class="month"><div class="month-label"><b>${d.toLocaleDateString('en-US', { month: 'short' })}</b><span>${d.getFullYear()} · ${months[m].length} event${months[m].length > 1 ? 's' : ''}</span></div>
+          <ol class="events">${months[m].map(e => `<li class="ev${e.key ? ' key' : ''}" id="${e.id}" style="--c:${WS_COLORS[e.ws]}"><div class="ev-top"><time datetime="${e.date}">${fmtDate(e.date)}</time><span class="ws-tag">${wsName[e.ws]}</span>${e.key ? '<span class="chip info" style="padding:1px 7px">Key</span>' : ''}</div><p>${esc(e.text)}</p></li>`).join('')}</ol></div>`;
+      }).join('');
+    };
+    $$('[data-evf]').forEach(b => b.addEventListener('click', () => { f = b.dataset.evf; $$('[data-evf]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); draw(); }));
+    $('#keyOnly').addEventListener('click', e => { key = !key; e.currentTarget.setAttribute('aria-pressed', String(key)); draw(); });
+    $('#evSearch').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); draw(); });
+    draw();
+    if (pendingFocus) { const id = pendingFocus; pendingFocus = null; flashEl($('#' + id)); }
+  },
+  next() {
+    const start = new Date('2026-10-01T00:00:00'), end = new Date('2027-04-01T00:00:00'), span = end - start;
+    const pct = iso => Math.max(0, Math.min(100, (new Date(iso + 'T12:00:00') - start) / span * 100));
+    const months = ['Oct 2026', 'Nov', 'Dec', 'Jan 2027', 'Feb', 'Mar'];
+    const laneH = 58, top0 = 12, lanes = 6;
+    const t = todayISO();
+    const todayPct = pct(t);
+    const showToday = new Date(t) >= start && new Date(t) < end;
+    $('#road').innerHTML = `<div class="road-inner"><div class="road-months">${months.map(m => `<div>${m}</div>`).join('')}</div>
+      <div class="lanes" style="height:${top0 + lanes * laneH + 30}px">${[0, 1, 2, 3, 4, 5].map(l => `<div class="lane-line" style="top:${top0 + l * laneH + 23}px"></div>`).join('')}
+      ${showToday ? `<div class="today" style="left:${todayPct}%"><span>Today</span></div>` : ''}
+      ${ROADMAP.map(r => {
+        const l = pct(r.start), w = r.end ? Math.max(pct(r.end) - l, 16) : 0;
+        const width = r.end ? `width:${w}%` : 'width:auto;min-width:150px;max-width:210px';
+        return `<button class="ritem${r.end ? ' span' : ''}" type="button" title="${esc(r.label)}" data-r="${r.id}" style="--c:${WS_COLORS[r.ws]};left:${Math.min(l, 82)}%;top:${top0 + r.lane * laneH}px;${width}"><b>${esc(r.label)}</b><small>${esc(r.when)}</small></button>`;
+      }).join('')}</div></div>`;
+    const show = id => {
+      const r = ROADMAP.find(x => x.id === id);
+      const d = $('#roadDetail');
+      d.style.setProperty('--c', WS_COLORS[r.ws]);
+      d.innerHTML = `<span class="kicker" style="color:var(--muted)">${esc(r.when)} · ${wsName[r.ws]}</span><h3>${esc(r.label)}</h3><p>${esc(r.text)}</p><p style="color:var(--muted);font-size:14px">Owner: ${esc(r.owner)}</p>`;
+      $$('.ritem').forEach(b => b.style.outline = b.dataset.r === id ? '2px solid var(--c)' : '');
+    };
+    $$('.ritem').forEach(b => b.addEventListener('click', () => show(b.dataset.r)));
+    const upcoming = ROADMAP.filter(r => (r.end || r.start) >= t).sort((a, b) => a.start.localeCompare(b.start))[0] || ROADMAP[0];
+    show(upcoming.id);
+  },
+  flow() {
+    const showNode = i => {
+      const p = PIPE[i];
+      $$('[data-node]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.node === i)));
+      $('#pipeDetail').innerHTML = `<span class="kicker">Step ${i + 1} of 5</span><h3>${esc(p.n)}</h3><ul>${p.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+    };
+    $$('[data-node]').forEach(b => b.addEventListener('click', () => showNode(+b.dataset.node)));
+    showNode(1);
+    const showSym = i => {
+      const s = SYMPTOMS[i];
+      $$('[data-sym]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.sym === i)));
+      $('#answer').innerHTML = `<h3>${esc(s.s)}</h3><div class="says">${esc(s.says)}</div><dl><div><dt>Likely cause</dt><dd>${esc(s.cause)}</dd></div><div><dt>What to tell the vendor</dt><dd>${esc(s.fix)}</dd></div></dl><p style="color:var(--muted);font-size:13.5px;margin:0">The full error reference lives in the AOIC knowledge base.</p>`;
+    };
+    $$('[data-sym]').forEach(b => b.addEventListener('click', () => showSym(+b.dataset.sym)));
+    showSym(0);
+  },
+  people() {
+    let org = 'all', q = '', topic = null;
+    const orgColor = { aoic: 'var(--brass)', tyler: 'var(--sky)' };
+    const draw = () => {
+      const groups = [['aoic', 'AOIC'], ['tyler', 'Tyler']].filter(g => org === 'all' || org === g[0]);
+      $('#peopleWrap').innerHTML = groups.map(([g, label]) => {
+        const list = PEOPLE.filter(p => p.org === g && (!q || (p.n + ' ' + p.role + ' ' + p.p).toLowerCase().includes(q)));
+        if (!list.length) return '';
+        return `<div class="group-title"><h2>${label}</h2><span>${list.length} ${list.length === 1 ? 'person' : 'people'}</span></div>
+          <div class="people">${list.map(p => {
+            const cls = topic ? (p.t.includes(topic) ? ' hit' : ' dim') : '';
+            return `<article class="panel person${cls}" id="p-${p.n.replace(/[^a-z]/gi, '')}" style="--c:${orgColor[g]}"><div class="avatar">${esc(initials(p.n))}</div><div><b>${esc(p.n)}</b><span class="role">${esc(p.role)}</span><p>${esc(p.p)}</p>${p.isNew ? '<span class="badge">New to the program</span>' : ''}</div></article>`;
+          }).join('')}</div>`;
+      }).join('') || '<div class="panel empty">No one matches that search.</div>';
+    };
+    $$('[data-org]').forEach(b => b.addEventListener('click', () => { org = b.dataset.org; $$('[data-org]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); draw(); }));
+    $$('[data-topic]').forEach(b => b.addEventListener('click', () => {
+      topic = topic === b.dataset.topic ? null : b.dataset.topic;
+      $$('[data-topic]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.topic === topic)));
+      draw();
+    }));
+    $('#pplSearch').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); draw(); });
+    draw();
+    if (pendingFocus) { const id = pendingFocus; pendingFocus = null; flashEl($('#' + id)); }
+  },
+  rhythm() {},
+  risks() {
+    $$('[data-rkf]').forEach(b => b.addEventListener('click', () => {
+      const f = b.dataset.rkf;
+      $$('[data-rkf]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      $$('.risk').forEach(r => { r.hidden = !(f === 'all' || r.dataset.rws === f); });
+    }));
+  },
+  first30() {
+    const saved = store.get('aoic-checklist-v2', {});
+    $$('.check input').forEach(b => {
+      b.checked = !!saved[b.id];
+      b.addEventListener('change', () => { const s = store.get('aoic-checklist-v2', {}); s[b.id] = b.checked; store.set('aoic-checklist-v2', s); updateProgress(); });
+    });
+    updateProgress();
+  },
+  library() {
+    const draw = q => {
+      const list = GLOSSARY.filter(g => !q || (g[0] + ' ' + g[1]).toLowerCase().includes(q));
+      $('#gloss').innerHTML = list.map(g => `<div class="panel term" id="g-${g[0].replace(/[^a-z]/gi, '')}"><b>${esc(g[0])}</b><p>${esc(g[1])}</p></div>`).join('') || '<div class="panel empty">No terms match.</div>';
+    };
+    $('#glSearch').addEventListener('input', e => draw(e.target.value.trim().toLowerCase()));
+    draw('');
+    if (pendingFocus) { const id = pendingFocus; pendingFocus = null; flashEl($('#' + id)); }
+  }
+};
+
+function updateProgress() {
+  const saved = store.get('aoic-checklist-v2', {});
+  const total = CHECKLIST.reduce((n, w) => n + w.items.length, 0);
+  const done = CHECKLIST.reduce((n, w) => n + w.items.filter(([id]) => saved[id]).length, 0);
+  const p = Math.round(done / total * 100);
+  $('#railRing').style.setProperty('--p', p); $('#railPct').textContent = p + '%'; $('#railCount').textContent = `${done} of ${total} done`;
+  const big = $('#bigRing');
+  if (big) {
+    big.style.setProperty('--p', p); $('#bigPct').textContent = p + '%';
+    $('#progTitle').textContent = done === 0 ? 'Let\'s get started' : done === total ? 'All twelve done. You have the wheel.' : `${done} down, ${total - done} to go`;
+    $('#progText').textContent = done === total ? 'Share what you learned with Justin and update this guide where it is out of date.' : 'Twelve items across four weeks. Your progress is saved in this browser.';
+  }
+}
+
+/* =========================================================================
+   DRAWER
+   ========================================================================= */
+let pendingDrawer = null, pendingFocus = null, lastFocus = null;
+function openDrawer(id, from) {
+  const w = WORKSTREAMS.find(x => x.id === id); if (!w) return;
+  lastFocus = from || document.activeElement;
+  const events = EVENTS.filter(e => {
+    if (id === 'efile' || id === 'public' || id === 'usage') return e.ws === 'efile';
+    if (id === 'cp' || id === 'pretrial') return e.ws === 'pretrial';
+    if (id === 'probation' || id === 'psc') return e.ws === 'probation';
+    return e.ws === 'program';
+  }).slice(-6).reverse();
+  const people = w.owners.map(n => PEOPLE.find(p => p.n === n)).filter(Boolean);
+  const stages = w.noStages ? '' : `<section><h4>Delivery path</h4><ol class="stage-list">${STAGES.map((s, i) => {
+    const cls = i < w.stage ? 'done' : i === w.stage ? 'now' : 'todo';
+    return `<li class="${cls}"><span class="mark"></span><span>${s}${i === w.stage && w.stage < STAGES.length ? ' <span class="chip ' + w.status + '" style="margin-left:6px">' + (w.parked ? 'Parked' : 'Current') + '</span>' : ''}</span></li>`;
+  }).join('')}</ol></section>`;
+  const scrim = document.createElement('div'); scrim.className = 'drawer-scrim'; scrim.id = 'drawerScrim';
+  const d = document.createElement('aside'); d.className = 'drawer'; d.id = 'drawer'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', w.name);
+  d.style.setProperty('--c', WS_COLORS[w.group]);
+  d.innerHTML = `<button class="drawer-close" type="button" aria-label="Close">${icon.close}</button>
+    <span class="chip ${w.status}">${esc(w.statusLabel)}</span>
+    <h2 style="margin-top:10px">${esc(w.name)}</h2>
+    <p class="mono" style="color:var(--muted);margin-top:4px">${esc(w.entity)}</p>
+    <p style="font-weight:600">${esc(w.stageNote)}</p>
+    <p>${esc(w.summary)}</p><p>${esc(w.detail)}</p>
+    <section><h4>Next gate</h4><div class="gate">${esc(w.gate)}</div></section>
+    ${stages}
+    ${w.sites.length ? `<section><h4>Where it lives</h4><div class="tag-list">${w.sites.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></section>` : ''}
+    ${people.length ? `<section><h4>People</h4><div class="people" style="grid-template-columns:1fr">${people.map(p => `<div class="person" style="--c:${p.org === 'aoic' ? 'var(--brass)' : 'var(--sky)'};padding:0"><div class="avatar">${esc(initials(p.n))}</div><div><b>${esc(p.n)}</b><span class="role">${esc(p.role)}</span></div></div>`).join('')}</div></section>` : ''}
+    ${w.tickets.length ? `<section><h4>Open and recent tickets</h4><div class="tag-list">${w.tickets.map(t => `<a class="tag" href="https://socrata.atlassian.net/browse/${t}" target="_blank" rel="noopener">${t}</a>`).join('')}</div></section>` : ''}
+    ${events.length ? `<section><h4>Latest milestones</h4><ul class="mini-events">${events.map(e => `<li><time>${fmtDate(e.date)}</time><span>${esc(e.text)}</span></li>`).join('')}</ul></section>` : ''}`;
+  document.body.append(scrim, d);
+  document.body.style.overflow = 'hidden';
+  const close = () => { scrim.remove(); d.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); if (lastFocus && lastFocus.focus) lastFocus.focus(); };
+  const onKey = e => { if (e.key === 'Escape') close(); };
+  scrim.addEventListener('click', close); $('.drawer-close', d).addEventListener('click', close);
+  document.addEventListener('keydown', onKey);
+  $('.drawer-close', d).focus();
+}
+
+/* =========================================================================
+   COMMAND PALETTE
+   ========================================================================= */
+function paletteIndex() {
+  const items = [];
+  VIEWS.forEach((v, i) => items.push({ t: v.label, s: 'Step ' + (i + 1) + ' of the walkthrough', k: 'Section', go: () => route(v.id) }));
+  WORKSTREAMS.forEach(w => items.push({ t: w.name, s: w.statusLabel + '. ' + w.stageNote, k: 'Workstream', go: () => { pendingDrawer = w.id; route('workstreams'); } }));
+  PEOPLE.forEach(p => items.push({ t: p.n, s: p.role, k: p.org === 'aoic' ? 'AOIC' : 'Tyler', go: () => { pendingFocus = 'p-' + p.n.replace(/[^a-z]/gi, ''); route('people'); } }));
+  GLOSSARY.forEach(g => items.push({ t: g[0], s: g[1], k: 'Term', go: () => { pendingFocus = 'g-' + g[0].replace(/[^a-z]/gi, ''); route('library'); } }));
+  RISKS.forEach(r => items.push({ t: r.name, s: r.text, k: 'Risk', go: () => route('risks') }));
+  EVENTS.forEach(e => items.push({ t: fmtDate(e.date) + ': ' + e.text.slice(0, 70) + (e.text.length > 70 ? '...' : ''), s: e.text, k: 'Milestone', go: () => { pendingFocus = e.id; route('story'); } }));
+  SYMPTOMS.forEach((s, i) => items.push({ t: s.s, s: s.cause, k: 'Troubleshoot', go: () => route('flow') }));
+  return items;
+}
+function openPalette() {
+  if ($('#pal')) return;
+  const items = paletteIndex();
+  const scrim = document.createElement('div'); scrim.className = 'pal-scrim'; scrim.id = 'pal';
+  scrim.innerHTML = `<div class="pal" role="dialog" aria-modal="true" aria-label="Search"><input id="palInput" type="text" placeholder="Search people, workstreams, terms, milestones" autocomplete="off" aria-controls="palList"><ul id="palList" role="listbox"></ul><div class="pal-foot">Up and down to move · Enter to open · Esc to close</div></div>`;
+  document.body.append(scrim);
+  const input = $('#palInput'), list = $('#palList');
+  let sel = 0, shown = [];
+  const draw = () => {
+    const q = input.value.trim().toLowerCase();
+    shown = (q ? items.filter(it => (it.t + ' ' + it.s + ' ' + it.k).toLowerCase().includes(q)) : items.filter(it => it.k === 'Section' || it.k === 'Workstream')).slice(0, 40);
+    if (sel >= shown.length) sel = 0;
+    list.innerHTML = shown.length ? shown.map((it, i) => `<li role="option" aria-selected="${i === sel}" data-i="${i}"><div><b>${esc(it.t)}</b><span>${esc(it.s)}</span></div><em>${esc(it.k)}</em></li>`).join('') : '<li aria-disabled="true"><div><b>No matches</b><span>Try a name, a workstream, or a term.</span></div></li>';
+    const cur = list.querySelector('[aria-selected="true"]'); if (cur) cur.scrollIntoView({ block: 'nearest' });
+  };
+  const close = () => { scrim.remove(); };
+  const pick = i => { const it = shown[i]; close(); if (it) it.go(); };
+  input.addEventListener('input', () => { sel = 0; draw(); });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { sel = Math.min(sel + 1, shown.length - 1); draw(); e.preventDefault(); }
+    else if (e.key === 'ArrowUp') { sel = Math.max(sel - 1, 0); draw(); e.preventDefault(); }
+    else if (e.key === 'Enter') { pick(sel); e.preventDefault(); }
+    else if (e.key === 'Escape') { close(); }
+  });
+  list.addEventListener('click', e => { const li = e.target.closest('[data-i]'); if (li) pick(+li.dataset.i); });
+  scrim.addEventListener('click', e => { if (e.target === scrim) close(); });
+  draw(); input.focus();
+}
+
+/* =========================================================================
+   ROUTER, NAV, THEME
+   ========================================================================= */
+function flashEl(el) { if (!el) return; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+function route(id) {
+  if (location.hash.slice(1) !== id) location.hash = id; else show(id);
+}
+function show(id) {
+  if (!render[id]) id = 'welcome';
+  const hadFocus = !!pendingFocus;
+  const app = $('#app');
+  app.innerHTML = `<section class="view" data-view="${id}">${render[id]()}</section>`;
+  after[id] && after[id]();
+  $$('#nav a').forEach(a => { const on = a.getAttribute('href') === '#' + id; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  const seen = store.get('aoic-seen', {}); seen[id] = 1; store.set('aoic-seen', seen);
+  $$('#nav a').forEach(a => a.classList.toggle('visited', !!seen[a.getAttribute('href').slice(1)]));
+  document.title = (id === 'welcome' ? '' : VIEWS.find(v => v.id === id).label + ' · ') + 'AOIC Analytics Onboarding';
+  if (!hadFocus) window.scrollTo({ top: 0 });
+  document.body.classList.remove('nav-open'); $('#scrim').hidden = true;
+  updateProgress();
+}
+
+$('#nav').innerHTML = VIEWS.map(v => `<li><a href="#${v.id}"><span>${esc(v.label)}</span><span class="seen" aria-hidden="true"></span></a></li>`).join('');
+window.addEventListener('hashchange', () => show(location.hash.slice(1) || 'welcome'));
+$$('[data-open-palette]').forEach(b => b.addEventListener('click', openPalette));
+document.addEventListener('click', e => { const b = e.target.closest('[data-open-palette]'); if (b && !b.closest('.rail') && !b.closest('.topbar')) openPalette(); });
+document.addEventListener('keydown', e => {
+  const typing = /input|textarea/i.test(document.activeElement.tagName);
+  if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && !typing)) { e.preventDefault(); openPalette(); }
+});
+if (/Mac|iPhone|iPad/.test(navigator.platform || '')) $('#kbdHint').textContent = '⌘ K';
+
+$('#menuBtn').addEventListener('click', () => { document.body.classList.add('nav-open'); $('#scrim').hidden = false; });
+$('#scrim').addEventListener('click', () => { document.body.classList.remove('nav-open'); $('#scrim').hidden = true; });
+
+const applyTheme = t => { if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); };
+applyTheme(store.get('aoic-theme', null));
+$('#themeBtn').addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const nextT = cur === 'dark' ? 'light' : 'dark'; applyTheme(nextT); store.set('aoic-theme', nextT);
+});
+
+show(location.hash.slice(1) || 'welcome');
 </script>
 </body>
 </html>
