@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>AOIC Analytics Onboarding</title>
-<meta name="description" content="Interactive onboarding guide for the Tyler Technologies and Illinois AOIC statewide court analytics program.">
+<title>AOIC Analytics</title>
+<meta name="description" content="Command center and onboarding guide for the Tyler Technologies and Illinois AOIC statewide court analytics program.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: an operations console. A fixed navy rail on the left, a guided walkthrough of ten views on the right, drawers and a command palette on top. */
+/* Layout: an operations console. A fixed navy rail on the left switches between the live Command Center and a guided ten-view onboarding walkthrough. Drawers, forms, and a command palette sit on top. */
 :root {
   --navy: #0b1f3a;
   --navy-2: #12305a;
@@ -458,13 +458,131 @@ td.mono { font-size: 12.5px; }
 
 footer.site { border-top: 1px solid var(--line); padding-block: 22px; font-size: 13px; color: var(--muted); }
 footer.site p { margin: 0; }
+
+/* ---------- Command center ---------- */
+.mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: rgba(0,0,0,.28); border-radius: 10px; padding: 3px; margin-top: 16px; }
+.mode-switch button { background: transparent; border: 0; color: var(--on-navy-muted); padding: 8px 4px; border-radius: 8px; cursor: pointer; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.mode-switch button:hover { color: #fff; }
+.mode-switch button[aria-pressed="true"] { background: #fff; color: #0b1f3a; }
+.nav.plain a { grid-template-columns: 1fr auto; }
+.nav.plain a::before { content: none; }
+.nav .badge { font-family: var(--font-mono); font-size: 11px; padding: 1px 8px; border-radius: 999px; background: rgba(255,255,255,.1); color: var(--on-navy); }
+.nav .badge.hot { background: #c4372e; color: #fff; }
+.rail-pulse { text-decoration: none; display: grid; gap: 6px; padding: 12px; background: rgba(255,255,255,.05); border-radius: 10px; font-size: 12.5px; color: var(--on-navy-muted); }
+.rail-pulse b { color: var(--on-navy); font-size: 13.5px; }
+
+.btn-solid { background: var(--ink); color: var(--paper); }
+.btn.danger { color: var(--risk); }
+.dash-head { grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 14px 28px; }
+@media (max-width: 820px) { .dash-head { grid-template-columns: minmax(0, 1fr); } }
+.dash-tools { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.sync { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-family: var(--font-mono); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; background: var(--sheet); white-space: nowrap; }
+.sync i { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+.sync.live i { background: var(--ok); animation: beat 2.2s infinite; }
+@keyframes beat { 0% { box-shadow: 0 0 0 0 rgba(29,122,73,.5); } 70% { box-shadow: 0 0 0 7px rgba(29,122,73,0); } 100% { box-shadow: 0 0 0 0 rgba(29,122,73,0); } }
+.viewer { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.viewer select, .viewer input, .st-sel { border: 1px solid var(--line); background: var(--sheet); color: var(--ink); border-radius: 8px; padding: 7px 10px; font: inherit; font-size: 14px; }
+.dash-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.dash-kpis { margin-top: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); }
+.kpi.tile { text-align: left; cursor: pointer; font: inherit; color: inherit; text-decoration: none; transition: transform .12s, border-color .15s; }
+.kpi.tile:hover { transform: translateY(-2px); border-color: var(--sky); }
+.kpi.alarm { box-shadow: inset 0 3px 0 var(--risk), var(--shadow); }
+.kpi.alarm b { color: var(--risk); }
+.kpi.good b { color: var(--ok); }
+.dash-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 16px; margin-top: 20px; }
+@media (max-width: 900px) { .dash-grid { grid-template-columns: minmax(0, 1fr); } }
+.dash-card { padding: 18px 18px 14px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.card-head h2 { font-size: 1.25rem; }
+.count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-weight: 400; }
+.linkish { background: none; border: 0; padding: 0; color: var(--sky); cursor: pointer; font-size: 13.5px; font-weight: 600; text-decoration: none; }
+.linkish:hover { text-decoration: underline; }
+.act-list { display: grid; gap: 8px; }
+.act { background: var(--sheet-2); border: 1px solid var(--line); border-left: 3px solid var(--c, var(--sky)); border-radius: 8px; padding: 10px 12px; display: grid; gap: 6px; min-width: 0; }
+.act.is-done { opacity: .6; }
+.act.is-done .act-title, tr.is-done .act-title { text-decoration: line-through; }
+.act-top { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; }
+.tick { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--muted); background: var(--sheet); cursor: pointer; margin-top: 2px; display: grid; place-items: center; padding: 0; transition: background .15s, border-color .15s; }
+.tick:hover { border-color: var(--ok); }
+.tick[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); }
+.tick[aria-pressed="true"]::after { content: ""; width: 10px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+.act-title { display: block; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; font-weight: 600; font-size: 14.5px; line-height: 1.4; color: var(--ink); overflow-wrap: anywhere; }
+.act-title:hover { color: var(--sky); }
+.act-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--muted); padding-left: 32px; }
+.act-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; padding-left: 32px; font-size: 12.5px; }
+.act-links { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+.ws-tag { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; font-weight: 600; }
+.due.late { color: var(--risk); font-weight: 700; }
+.due.soon { color: var(--warn); font-weight: 600; }
+.prio { color: var(--risk); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: .05em; padding-top: 1px; }
+.wait { color: var(--brass); font-size: 12.5px; }
+.agenda { list-style: none; margin: 0; padding: 0; display: grid; }
+.agenda li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; padding: 9px 2px; border-bottom: 1px solid var(--line); }
+.agenda li:last-child { border-bottom: 0; }
+.agenda time { font-family: var(--font-mono); font-size: 12px; color: var(--c, var(--muted)); font-weight: 600; padding-top: 2px; }
+.agenda li.is-today time { color: var(--risk); }
+.agenda b { display: block; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.agenda span { font-size: 12.5px; color: var(--muted); }
+.pulse { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.pulse-card { padding: 16px; display: grid; gap: 8px; align-content: start; border-top: 3px solid var(--c); }
+.pulse-top { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+.pulse-top h3 { font-size: 1.02rem; }
+.pulse-card p { margin: 0; font-size: 14px; color: var(--muted); }
+.pulse-foot { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin-top: 2px; }
+.stamp { font-size: 11.5px; color: var(--muted); font-family: var(--font-mono); }
+.dec-list { display: grid; gap: 8px; }
+.dec-row { text-align: left; background: var(--sheet-2); border: 1px solid var(--line); border-left: 3px solid var(--c); border-radius: 8px; padding: 10px 12px; cursor: pointer; display: grid; gap: 3px; color: var(--ink); }
+.dec-row:hover { border-color: var(--sky); }
+.dec-row b { font-weight: 600; font-size: 14px; line-height: 1.4; }
+.dec-row span { font-size: 12.5px; color: var(--muted); }
+.dec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 14px; margin-top: 20px; }
+.decision { padding: 18px; display: grid; gap: 10px; align-content: start; border-top: 3px solid var(--c); }
+.decision p { margin: 0; font-size: 14.5px; color: var(--muted); }
+.decision .outcome { color: var(--ink); background: var(--ok-wash); padding: 10px 12px; border-radius: 8px; }
+.dec-top, .dec-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--muted); }
+.composer { padding: 18px; display: grid; gap: 12px; margin-top: 18px; }
+.composer-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.feed { display: grid; gap: 10px; }
+.upd { padding: 14px 16px; border-left: 3px solid var(--c); }
+.upd-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+.upd-top b { color: var(--ink); }
+.upd p { margin: 0; font-size: 15px; }
+.kanban { display: grid; grid-template-columns: repeat(var(--cols), minmax(260px, 1fr)); gap: 14px; overflow-x: auto; padding-bottom: 8px; }
+.col { background: var(--slate-wash); border-radius: var(--r); padding: 12px; display: grid; gap: 10px; align-content: start; min-height: 180px; transition: background .15s, box-shadow .15s; }
+.col h3 { font-size: .95rem; display: flex; justify-content: space-between; align-items: baseline; }
+.col.over { box-shadow: inset 0 0 0 2px var(--sky); background: var(--sky-wash); }
+.col-body { display: grid; gap: 8px; }
+.col .act { background: var(--sheet); cursor: grab; }
+.act.dragging { opacity: .4; }
+.empty.small { padding: 14px; font-size: 13px; }
+.act-table td { vertical-align: top; }
+.act-table .act-title { font-size: 14px; }
+.mini-acts { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 8px; }
+.mini-acts li { display: grid; gap: 2px; font-size: 14.5px; padding-left: 10px; border-left: 2px solid var(--c, var(--sky)); }
+.mini-acts span { font-size: 12.5px; color: var(--muted); }
+
+.pal-scrim:has(.form) { padding-top: 5vh; }
+.pal.form { width: min(680px, 100%); max-height: 90vh; overflow-y: auto; }
+.form-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; padding: 16px 18px; }
+@media (max-width: 560px) { .form-grid { grid-template-columns: minmax(0, 1fr); } }
+.ff { display: grid; gap: 5px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.ff.wide { grid-column: 1 / -1; }
+.pal.form .ff input, .ff input, .ff select, .ff textarea { border: 1px solid var(--line); background: var(--sheet-2); color: var(--ink); border-radius: 8px; padding: 9px 11px; font: inherit; font-size: 15px; font-weight: 400; width: 100%; }
+.ff textarea { resize: vertical; }
+.form-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 18px; border-top: 1px solid var(--line); flex-wrap: wrap; position: sticky; bottom: 0; background: var(--sheet); }
+.weekly { display: block; width: calc(100% - 36px); margin: 12px 18px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.55; border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--sheet-2); color: var(--ink); resize: vertical; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 80; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 10px; font-size: 14px; box-shadow: var(--shadow); animation: fade .2s ease both; max-width: calc(100% - 32px); }
+.toast.bad { background: var(--risk); color: #fff; }
+.hero-cc { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 14px; color: #c5d3e6; }
+.hero-cc a { color: #f0c674; font-weight: 600; }
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <button class="icon-btn" id="menuBtn" aria-label="Open navigation"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-  <b>AOIC Analytics Onboarding</b>
+  <b>AOIC Analytics</b>
   <button class="icon-btn" data-open-palette aria-label="Search"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 </header>
 <div class="scrim" id="scrim" hidden></div>
@@ -472,30 +590,35 @@ footer.site p { margin: 0; }
 <aside class="rail" aria-label="Site navigation">
   <div class="brand">
     <div class="seal" aria-hidden="true">IL</div>
-    <div><b>AOIC Analytics</b><span>Program onboarding</span></div>
+    <div><b>AOIC Analytics</b><span id="brandSub">Program command center</span></div>
+  </div>
+  <div class="mode-switch" role="group" aria-label="Choose a section">
+    <button type="button" data-mode="dash">Command Center</button>
+    <button type="button" data-mode="guide">Onboarding</button>
   </div>
   <button class="search-btn" data-open-palette><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Search everything<kbd id="kbdHint">Ctrl K</kbd></button>
   <nav><ol class="nav" id="nav"></ol></nav>
   <div class="rail-foot">
-    <a class="ring-row" href="#first30">
+    <a class="rail-pulse" href="#actions" id="railPulse" hidden></a>
+    <a class="ring-row" href="#first30" id="railRingRow">
       <div class="ring small" id="railRing"><span id="railPct">0%</span></div>
       <div><b>Your first 30 days</b><small id="railCount">0 of 12 done</small></div>
     </a>
-    <div class="rail-meta"><span>Current as of Oct 2, 2026</span><button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme</button></div>
+    <div class="rail-meta"><span>Current as of Oct 7, 2026</span><button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme</button></div>
   </div>
 </aside>
 
 <div class="main">
   <main id="app" aria-live="polite"></main>
-  <footer class="site"><div class="wrap"><p>Internal to Tyler Technologies. Compiled October 2, 2026 from program email, Teams, Jira, Confluence, and the AOIC knowledge base. Please don't share outside Tyler. Corrections go to Justin Bruce or Michael Manis.</p></div></footer>
+  <footer class="site"><div class="wrap"><p>Internal to Tyler Technologies. Compiled October 7, 2026 from program email, Teams, Jira, Confluence, and the AOIC knowledge base. Please don't share outside Tyler. Corrections go to Justin Bruce or Michael Manis.</p></div></footer>
 </div>
 
 <script>
 /* =========================================================================
    DATA. Every fact below traces to program email, Teams, Jira, Confluence,
-   or the AOIC knowledge base as of October 2, 2026. Edit here to update.
+   or the AOIC knowledge base as of October 7, 2026. Edit here to update.
    ========================================================================= */
-const AS_OF = '2026-10-02';
+const AS_OF = '2026-10-07';
 const WS_COLORS = { efile: 'var(--sky)', pretrial: 'var(--brass)', probation: 'var(--teal)', program: 'var(--slate)' };
 const STAGES = ['Requirements', 'Schema', 'Vendor data', 'Dashboard', 'AOIC review', 'Production'];
 
@@ -516,22 +639,22 @@ const WORKSTREAMS = [
   { id: 'efile', name: 'eFile Analytics', group: 'efile', entity: 'Source: eFileIL filing data', status: 'warn', statusLabel: 'Needs attention',
     stage: 6, stageNote: 'Live in production. Moving to the Tyler Data Store (TDS).',
     summary: 'The application is live and clerks use it daily. Tyler is moving it from its current backend to the Tyler Data Store (TDS). The TDS version is built and Tyler\'s QA largely passed, but the AOIC still sees metric differences between the live site and the TDS site.',
-    detail: 'On September 28 John Chatz paused the AOIC\'s own testing until Tyler confirms the discrepancies, including filtering, are resolved. The move to TDS started as a performance fix after the AOIC formally called the application\'s speed unacceptable in July. David Torres traced about six million extra TDS filing rows to upstream deletions that were never tracked, and rebuilt the TDS views on September 18.',
+    detail: 'On September 28 John Chatz paused the AOIC\'s own testing until Tyler confirms the discrepancies, including filtering, are resolved. The move to TDS started as a performance fix after the AOIC formally called the application\'s speed unacceptable in July. David Torres traced about six million extra TDS filing rows to upstream deletions that were never tracked, and rebuilt the TDS views on September 18. On October 2 he found a likely cause of the remaining gaps: the TDS job copies a different source dataset than the one the comparison used.',
     gate: 'Close David Torres\'s parity list, give the AOIC a written assurance with side-by-side evidence, then cut over and hand the application to support.',
     sites: ['aoic-efileanalytics.insights.cjis.socrata.com (live)', 'aoic-efiletds.insights.cjis.socrata.com (TDS candidate)'],
     owners: ['Abigail Carlstad', 'David Torres', 'Melissa Bridges'], tickets: ['CSE-14408', 'CSE-14813', 'CSE-15022', 'CSE-15023'] },
   { id: 'cp', name: 'Courts Pretrial', group: 'pretrial', entity: 'di-aoic-courtspretrial-cases · -charges', status: 'warn', statusLabel: 'Needs attention',
     stage: 4, stageNote: 'Built and in AOIC review. Production readiness expected in November.',
     summary: 'The schema (v3.2.1, two datasets) and the dashboard are built. As of September 17, three vendors covering 50 counties had submitted 5,886 records. The AOIC has asked for evidence that every required metric is built and populated.',
-    detail: 'Patricia King is applying the AOIC\'s September 3 review feedback: a statewide-first layout, clearer captions, percentage conversions, and charge class ordering. On October 1 John Chatz asked for a working session on how data is displayed and filtered. Two metrics are still open, and one waits on a field the AOIC has not yet added.',
-    gate: 'Hold the AOIC data review the week of October 5, close the September 3 feedback, and receive the AOIC\'s user list for acceptance testing.',
+    detail: 'Patricia King is applying the AOIC\'s September 3 review feedback: a statewide-first layout, clearer captions, percentage conversions, and charge class ordering. On October 1 John Chatz asked for a working session on how data is displayed and filtered, and it was set for October 7. JANO started onboarding in October and needs staging credentials and a county mapping fix. Two metrics are still open, and one waits on a field the AOIC has not yet added.',
+    gate: 'Hold the AOIC feedback session on October 7, close the September 3 feedback, and receive the AOIC\'s user list for acceptance testing.',
     sites: ['aoic-courts-pretrial.insights.cjis.socrata.com'],
     owners: ['Patricia King', 'Thomas Morrison', 'Bryce Beltran'], tickets: ['CSE-15018', 'CSE-15019', 'CSE-14782', 'CSE-14777', 'CSE-14778', 'CSE-14680'] },
   { id: 'probation', name: 'Probation', group: 'probation', entity: 'di-aoic-probation-*', status: 'info', statusLabel: 'Built, data flowing',
     stage: 3, stageNote: 'Dashboard built and being fixed. Production readiness testing expected in December.',
     summary: 'The application is built and more than 81,000 records have arrived from eight vendors, with coverage reaching 95 of 102 counties by midyear.',
-    detail: 'The MVP dashboard still has a join problem that inflates counts on several tiles roughly tenfold. Four metrics wait on answers from Michelle Repp and Dan Hunt. Probation tickets fell out of the sprint on September 14 while the team focused on TDS. On September 30 Justin confirmed the pipeline is ready for all probation departments, and the AOIC will announce it.',
-    gate: 'Fix the dashboard counts, resolve the blocked metrics, and prepare for production readiness testing in December.',
+    detail: 'The MVP dashboard still has a join problem that inflates counts on several tiles roughly tenfold. Four metrics wait on answers from Michelle Repp and Dan Hunt. Probation tickets fell out of the sprint on September 14 while the team focused on TDS. On September 30 Justin confirmed the pipeline is ready for all probation departments. Michelle Repp regained access on October 2, and the AOIC will host a kickoff with county managers and vendors on October 26.',
+    gate: 'Confirm the pipeline can absorb the influx, demo the dashboards at the October 26 kickoff, fix the dashboard counts, and resolve the blocked metrics before December testing.',
     sites: [], owners: ['Abigail Carlstad', 'Michelle Repp', 'Dan Hunt'], tickets: ['CSE-14806', 'CSE-14805', 'CSE-14814', 'CSE-14807', 'CSE-14808', 'CSE-14809', 'CSE-14810'] },
   { id: 'psc', name: 'Problem Solving Courts', group: 'probation', entity: 'di-aoic-problemsolvingcourts-*', status: 'info', statusLabel: 'Ready to receive',
     stage: 2, stageNote: 'Pipeline ready. Vendor announcement and metrics come next.',
@@ -605,11 +728,16 @@ const EVENTS = [
   ['2026-09-28','efile','The planned TDS cutover slipped. The AOIC paused testing until Tyler confirms the discrepancies are resolved.', true],
   ['2026-09-28','pretrial','John Chatz, copying Justice Doherty, asked for evidence that the pretrial dashboard is built to requirements and populated with data. McHenry\'s vendor asked how the AOIC defines a pretrial case.', true],
   ['2026-09-30','probation','Justin confirmed the pipeline is ready for PSC data and all probation departments. The AOIC will draft the announcement to CMS vendors.'],
-  ['2026-10-01','pretrial','John Chatz asked for a working session on how Courts Pretrial data is displayed and filtered, and confused the original pretrial app with Courts Pretrial.']
+  ['2026-10-01','pretrial','John Chatz asked for a working session on how Courts Pretrial data is displayed and filtered, and confused the original pretrial app with Courts Pretrial.'],
+  ['2026-10-01','efile','The AOIC postponed the eFile annual configuration code update from October 1 to February 1, 2027, and lifted the code freeze.'],
+  ['2026-10-02','efile','David Torres found that the TDS job copies a different source dataset than the one used for the comparison. That mismatch may explain the differences the AOIC saw.', true],
+  ['2026-10-05','probation','Justin approved the AOIC\'s readiness announcement to probation departments. Michelle Repp set a kickoff with county managers and vendors for October 26, where Tyler demos the dashboards.', true],
+  ['2026-10-06','pretrial','JANO\'s first Courts Pretrial test returned Unauthorized. Thomas Morrison is sending staging credentials, adding Will County, and dropping Lee, which is moving to Enterprise Justice.'],
+  ['2026-10-07','pretrial','Tyler and the AOIC meet at 3:30 CT for the Courts Pretrial feedback session on data, display, and filtering.']
 ].map(([d, ws, text, key], i) => ({ id: 'ev' + i, date: d, ws, text, key: !!key }));
 
 const ROADMAP = [
-  { id: 'r1', start: '2026-10-06', label: 'Courts Pretrial data session', when: 'Week of Oct 5', ws: 'pretrial', lane: 0, text: 'Hold the AOIC working session on Courts Pretrial data, display, and filtering that John Chatz requested.', owner: 'Justin, Michael, Patricia King' },
+  { id: 'r1', start: '2026-10-07', label: 'Courts Pretrial feedback session', when: 'Oct 7', ws: 'pretrial', lane: 0, text: 'Hold the AOIC working session on Courts Pretrial data, display, and filtering that John Chatz requested.', owner: 'Justin, Michael, Patricia King' },
   { id: 'r2', start: '2026-10-05', end: '2026-10-23', label: 'eFile TDS evidence and cutover', when: 'Early October', ws: 'efile', lane: 1, text: 'Close the TDS parity list, send the AOIC written evidence, and schedule the cutover.', owner: 'Abby Carlstad, David Torres' },
   { id: 'r3', start: '2026-10-12', label: 'Sprint ends', when: 'Oct 12', ws: 'program', lane: 2, text: 'The current sprint ends. Courts Pretrial feedback, acceptance testing prep, the TDS migration, and the date of birth ticket are all in it.', owner: 'Sprint team' },
   { id: 'r4', start: '2026-10-08', end: '2026-10-31', label: 'PSC vendor announcement and metrics', when: 'October', ws: 'probation', lane: 3, text: 'Communicate PSC elements to vendors through the AOIC and build PSC metrics.', owner: 'Michael, Bryce Beltran, Abby' },
@@ -617,6 +745,7 @@ const ROADMAP = [
   { id: 'r6', start: '2026-10-26', end: '2026-12-31', label: 'eFile moves to support', when: 'Q4 2026', ws: 'efile', lane: 5, text: 'Transition eFile Analytics to support once it runs on TDS.', owner: 'Justin, Melissa Bridges' },
   { id: 'r7', start: '2026-11-02', end: '2026-11-30', label: 'Courts Pretrial production readiness', when: 'November', ws: 'pretrial', lane: 1, text: 'The AOIC is expected to ask for production readiness and cutover for Courts Pretrial.', owner: 'Michael' },
   { id: 'r8', start: '2026-12-01', end: '2026-12-31', label: 'Probation readiness testing', when: 'December', ws: 'probation', lane: 0, text: 'The AOIC is expected to ask for production readiness testing and validation for Probation.', owner: 'Michael, Abby' },
+  { id: 'r10', start: '2026-10-26', label: 'Probation kickoff', when: 'Oct 26', ws: 'probation', lane: 0, text: 'The AOIC hosts county managers and vendors on Zoom at 10:00 CT. Tyler demos the dashboards and shows where their data goes.', owner: 'Justin, Abby, Michelle Repp' },
   { id: 'r9', start: '2027-01-04', end: '2027-03-31', label: 'Courts and original Pretrial restart', when: 'Q1 2027', ws: 'program', lane: 2, text: 'The original Pretrial and the Courts workstreams are likely to restart, beginning with requirements for a much smaller Courts schema.', owner: 'To be decided' }
 ];
 
@@ -839,6 +968,7 @@ const render = {
           <a class="btn btn-primary" href="#workstreams">Start the walkthrough</a>
           <button class="btn btn-ghost" type="button" data-open-palette>${icon.search} Search the program</button>
         </div>
+        <p class="hero-cc">Already oriented? <a href="#dash">Open the Command Center</a> for this week's actions and decisions.</p>
       </div>
       <div class="counties" aria-label="Counties sharing data">
         <div class="counties-top"><b id="cntNum">50</b><span id="cntLabel">of 102 counties sharing Courts Pretrial data</span></div>
@@ -1210,6 +1340,604 @@ function updateProgress() {
 }
 
 /* =========================================================================
+   COMMAND CENTER. The seed below is the starting picture; edits made on the
+   live site are shared through /api/board and override the seed by id.
+   ========================================================================= */
+const DASH_AS_OF = '2026-10-07';
+const DASH_VIEWS = [
+  { id: 'dash', label: 'Command Center' },
+  { id: 'actions', label: 'Action Items' },
+  { id: 'decisions', label: 'Decisions' },
+  { id: 'updates', label: 'Status Updates' }
+];
+const WS_META = {
+  efile: ['eFile Analytics', 'efile'], public: ['eFile Public', 'efile'], usage: ['Usage Reporting', 'efile'],
+  cp: ['Courts Pretrial', 'pretrial'], pretrial: ['Pretrial (original)', 'pretrial'],
+  probation: ['Probation', 'probation'], psc: ['Problem Solving Courts', 'probation'],
+  courts: ['Courts', 'program'], program: ['Program', 'program']
+};
+const wsLabel = id => (WS_META[id] || ['Program'])[0];
+const wsColor = id => WS_COLORS[(WS_META[id] || [0, 'program'])[1]];
+const STATUS = { todo: 'To do', doing: 'In progress', waiting: 'Waiting', done: 'Done' };
+const PRIORITY = { high: 'High', med: 'Medium', low: 'Low' };
+const RAG = { green: 'On track', amber: 'At risk', red: 'Off track', grey: 'Parked' };
+const RAG_CHIP = { green: 'ok', amber: 'warn', red: 'risk', grey: 'idle' };
+
+const DASH_SEED = {
+  status: [
+    { id: 'efile', rag: 'amber', headline: 'The TDS cutover has not happened. The AOIC paused testing on Sep 28. On Oct 2 David Torres found a likely cause, a source dataset mismatch, and Tyler still owes the AOIC written assurance.' },
+    { id: 'cp', rag: 'amber', headline: 'The AOIC feedback session is Oct 7. JANO is onboarding and waits on staging credentials. DuPage has sent data daily since Sep 29.' },
+    { id: 'probation', rag: 'amber', headline: 'The pipeline is live and Michelle Repp has access again. The AOIC announces readiness to county managers, with a vendor kickoff on Oct 26. Build tickets have not moved since Sep 14.' },
+    { id: 'psc', rag: 'green', headline: 'The pipeline is ready for PSC data. The metrics need a slot in an October sprint.' },
+    { id: 'public', rag: 'green', headline: 'Accepted by the AOIC. It moves to TDS with eFile Analytics.' },
+    { id: 'usage', rag: 'amber', headline: 'The one-time sign-in report went to the AOIC on Sep 17. There is no repeatable process or owner yet.' },
+    { id: 'pretrial', rag: 'grey', headline: 'Frozen on the old schema until the AOIC decides its direction. AOIC staff keep opening it by mistake.' },
+    { id: 'courts', rag: 'grey', headline: 'Parked. No activity since October 2025.' }
+  ],
+  actions: [
+    // eFile Analytics and TDS
+    { id: 'a01', title: 'Give the AOIC written assurance that the metric and filtering discrepancies are fixed, and ask them to resume TDS testing', owner: 'Justin Bruce', ws: 'efile', status: 'todo', due: '2026-10-09', priority: 'high', source: 'Email: RE: eFile Analytics, John Chatz, Sep 28', link: 'https://socrata.atlassian.net/browse/CSE-14408' },
+    { id: 'a02', title: 'Switch the live eFile app to the TDS datasets once the AOIC signs off, and name a backup for issues after the switch', owner: 'Abigail Carlstad', ws: 'efile', status: 'waiting', waitingOn: 'AOIC sign-off (John Chatz)', priority: 'high', source: 'Jira and Teams: Core Team chat, Sep 28', link: 'https://socrata.atlassian.net/browse/CSE-14408', notes: 'The due date on CSE-14408 was cleared on Oct 5.' },
+    { id: 'a03', title: 'Send Eric Burnson a current eFile Analytics status summary', owner: 'Justin Bruce', ws: 'efile', status: 'todo', due: '2026-10-02', priority: 'high', source: 'Email: Re: eFile Analytics, Eric Burnson, Oct 2', notes: 'He asked before his AOIC meeting that morning. No reply was found in mail.' },
+    { id: 'a31', title: 'Align the TDS source: Airflow copies th4c-d3ky (2019 onward) but the comparison used 497m-dd4y (2020 onward)', owner: 'David Torres', ws: 'efile', status: 'doing', priority: 'high', source: 'Teams: Core Team chat, David Torres, Oct 2', notes: 'This mismatch may explain the differences the AOIC saw.' },
+    { id: 'a32', title: 'Get the date range the AOIC used for its live versus TDS comparison so David can rerun the side-by-side', owner: 'Justin Bruce', ws: 'efile', status: 'todo', due: '2026-10-09', priority: 'med', source: 'Teams: Core Team chat, David Torres, Oct 2' },
+    { id: 'a33', title: 'Resolve the last known discrepancy, Rejection Rate for SRLs', owner: 'Abigail Carlstad', ws: 'efile', status: 'doing', priority: 'med', source: 'Teams: Core Team chat, Abby Carlstad, Sep 30' },
+    { id: 'a25', title: 'Grant TDS site access to Katie Blakeman, Sarah Song, and Cortney Redman', owner: 'Abigail Carlstad', ws: 'efile', status: 'todo', priority: 'med', source: 'Email: John Chatz, Sep 9 and Sep 14' },
+    { id: 'a26', title: 'Move eFile Analytics to a supported posture after the TDS cutover', owner: 'Abigail Carlstad', ws: 'efile', status: 'todo', priority: 'low', source: 'Jira', link: 'https://socrata.atlassian.net/browse/CSE-14813', notes: 'The ticket was due Aug 30. Melissa Bridges is the receiving Client Success Manager.' },
+
+    // Courts Pretrial
+    { id: 'a04', title: 'Hold the Courts Pretrial feedback session with the AOIC on data, display, and filtering', owner: 'Justin Bruce', ws: 'cp', status: 'doing', due: '2026-10-07', priority: 'high', source: 'Email: Feedback Session: Pretrial Data Dashboard, Oct 6', notes: '3:30 to 4:00 CT. Accepted: Tom Cunningham, Jacque Rogers. Tentative: Justice Doherty. Thomas Morrison declined.' },
+    { id: 'a34', title: 'Turn the Oct 7 session feedback into tickets and reply to the AOIC with next steps', owner: 'Michael Manis', ws: 'cp', status: 'todo', due: '2026-10-09', priority: 'high', source: 'Follow-up to the Oct 7 feedback session' },
+    { id: 'a05', title: 'Show the AOIC evidence that every required Courts Pretrial metric is built and populated', owner: 'Patricia King', ws: 'cp', status: 'doing', due: '2026-10-07', priority: 'high', source: 'Email: Pretrial Data Dashboard, John Chatz, Sep 28', link: 'https://socrata.atlassian.net/browse/CSE-15018' },
+    { id: 'a06', title: 'Finish the open items from the AOIC\'s Sep 3 review: statewide-first layout, percentages, granted and denied tile, charge class order, and "No Value" handling', owner: 'Patricia King', ws: 'cp', status: 'doing', priority: 'high', source: 'Jira', link: 'https://socrata.atlassian.net/browse/CSE-15018', notes: 'Items 2 and 3 are done. Items 6 and 7 need an AOIC call.' },
+    { id: 'a35', title: 'Send JANO staging credentials to Mark Chastant and Kent Manfred through Kiteworks', owner: 'Thomas Morrison', ws: 'cp', status: 'doing', due: '2026-10-08', priority: 'high', source: 'Email: Re: Pre-Trial transmissions, Oct 7', notes: 'The credentials JANO tried were for dev, not staging. JANO retests once these arrive.' },
+    { id: 'a36', title: 'Update the JANO county mapping: add Will, remove Lee, and ship it in this week\'s release', owner: 'Thomas Morrison', ws: 'cp', status: 'doing', due: '2026-10-08', priority: 'high', source: 'Email: Re: Pre-Trial transmissions, Oct 7', notes: 'Lee County is moving to Enterprise Justice.' },
+    { id: 'a37', title: 'Get the AOIC to confirm the full JANO county list', owner: 'Michael Manis', ws: 'cp', status: 'waiting', waitingOn: 'AOIC (John Chatz, Angie Kanak)', due: '2026-10-08', priority: 'med', source: 'Teams: Core Team chat, Thomas Morrison, Oct 6' },
+    { id: 'a38', title: 'Tell Patricia King where her two open Pretrial tickets stand', owner: 'Justin Bruce', ws: 'cp', status: 'todo', priority: 'med', source: 'Teams: Justin and Patricia King, Oct 2' },
+    { id: 'a07', title: 'Get the user list for Courts Pretrial acceptance testing', owner: 'Michael Manis', ws: 'cp', status: 'waiting', waitingOn: 'AOIC (John Chatz)', priority: 'med', source: 'Jira, waiting since Aug 28', link: 'https://socrata.atlassian.net/browse/CSE-14782' },
+    { id: 'a08', title: 'Hold the query working session with Tom Cunningham: values over 100%, zero-percent and missing counties, warrants, charge class order', owner: 'Patricia King', ws: 'cp', status: 'todo', priority: 'med', source: 'Jira', link: 'https://socrata.atlassian.net/browse/CSE-15019' },
+    { id: 'a09', title: 'Settle the scope for adding date of birth and arrest date back to the Pretrial schema', owner: 'Justin Bruce', ws: 'cp', status: 'todo', priority: 'med', source: 'Jira, stalled since May 18', link: 'https://socrata.atlassian.net/browse/CSE-14680' },
+    { id: 'a11', title: 'Get the AOIC\'s ruling on local ordinance codes and relay it to JANO', owner: 'Michael Manis', ws: 'cp', status: 'waiting', waitingOn: 'AOIC (John Chatz)', priority: 'med', source: 'Email: Clarification on local ordinance inquiry, Kent Manfred, Sep 25' },
+    { id: 'a12', title: 'Answer ISS for McHenry: the pretrial case definition, how to resend corrected records, and the statute format', owner: 'Thomas Morrison', ws: 'cp', status: 'waiting', waitingOn: 'AOIC (Jacque Rogers)', priority: 'med', source: 'Email: Pretrial Pipeline Questions and Followup - McHenry, Sep 28' },
+    { id: 'a14', title: 'Check DuPage\'s daily pretrial submissions and report findings back to DuPage', owner: 'Thomas Morrison', ws: 'cp', status: 'waiting', waitingOn: 'AOIC (John Chatz)', priority: 'med', source: 'Email: RE: DuPage pretrial data, Oct 1', notes: 'DuPage sent 126 cases and 290 charges on Sep 29, then daily from 9:00 to 9:30 pm.' },
+    { id: 'a13', title: 'Publish the version 3.2.1 Courts Pretrial vendor package and fix the JSON examples', owner: 'Thomas Morrison', ws: 'cp', status: 'todo', priority: 'med', source: 'Email: Winnebago and JANO threads, August', notes: 'Winnebago is waiting on this package.' },
+    { id: 'a15', title: 'Get the AOIC\'s decision on the field behind Metric 10', owner: 'Michael Manis', ws: 'cp', status: 'waiting', waitingOn: 'AOIC', priority: 'low', source: 'Jira', link: 'https://socrata.atlassian.net/browse/CSE-14778' },
+    { id: 'a10', title: 'Tell JANO how to clear a pretrial flag sent in error', owner: 'Thomas Morrison', ws: 'cp', status: 'done', priority: 'med', source: 'Email: Re: Pre-Trial question from our counties, Oct 2', notes: 'Send the field as null. Leaving it out keeps the old value.', updatedAt: '2026-10-02T20:20:00.000Z', updatedBy: 'Thomas Morrison' },
+
+    // Probation and PSC
+    { id: 'a39', title: 'Confirm the Probation pipeline can absorb a large influx before the AOIC announcement goes out', owner: 'Justin Bruce', ws: 'probation', status: 'todo', due: '2026-10-12', priority: 'high', source: 'Email: RE: App Access, Michelle Repp, Sep 30', notes: 'Goodin has sent about 58,000 rows so far. Michelle\'s question is still unanswered.' },
+    { id: 'a40', title: 'Prepare the dashboard demo for the Oct 26 Probation kickoff with county managers and vendors', owner: 'Abigail Carlstad', ws: 'probation', status: 'todo', due: '2026-10-23', priority: 'high', source: 'Email: RE: Draft Email, Michelle Repp, Oct 5', notes: 'Zoom, 10:00 CT, hosted by the AOIC. Justin and Abby present.' },
+    { id: 'a41', title: 'Get the Oct 26 kickoff invite from Michelle Repp onto the team\'s calendars', owner: 'Michael Manis', ws: 'probation', status: 'waiting', waitingOn: 'AOIC (Michelle Repp)', due: '2026-10-16', priority: 'med', source: 'Email: RE: Draft Email, Oct 5' },
+    { id: 'a16', title: 'Restart the stalled Probation build tickets, starting with the dashboard join that inflates tile counts', owner: 'Abigail Carlstad', ws: 'probation', status: 'todo', priority: 'high', source: 'Jira: CSE-14806 and seven related tickets', link: 'https://socrata.atlassian.net/browse/CSE-14806', notes: 'Untouched since Sep 14, with due dates in August.' },
+    { id: 'a17', title: 'Get answers on the four blocked Probation metrics from Michelle Repp and Dan Hunt', owner: 'Michael Manis', ws: 'probation', status: 'waiting', waitingOn: 'AOIC (Michelle Repp, Dan Hunt)', priority: 'med', source: 'Jira: CSE-14807 to CSE-14810', link: 'https://socrata.atlassian.net/browse/CSE-14807' },
+    { id: 'a19', title: 'Review the AOIC\'s readiness announcement to probation departments', owner: 'Justin Bruce', ws: 'probation', status: 'done', priority: 'med', source: 'Email: RE: Draft Email, Oct 5', updatedAt: '2026-10-05T16:00:00.000Z', updatedBy: 'Justin Bruce' },
+    { id: 'a18', title: 'Restore Michelle Repp\'s access to the Probation application', owner: 'Abigail Carlstad', ws: 'probation', status: 'done', priority: 'med', source: 'Email: Draft Email, Michelle Repp, Oct 2', updatedAt: '2026-10-02T19:31:00.000Z', updatedBy: 'Justin Bruce' },
+    { id: 'a20', title: 'Slot the PSC metrics into an October sprint and build them', owner: 'Abigail Carlstad', ws: 'psc', status: 'todo', due: '2026-10-30', priority: 'med', source: 'Email: RE: App Access, Justin Bruce, Sep 30', link: 'https://socrata.atlassian.net/browse/CSE-14811', notes: 'CSE-14811 still says it is blocked on the PSC schema. That label is likely stale.' },
+    { id: 'a21', title: 'Agree on the PSC vendor announcement with the AOIC', owner: 'Michael Manis', ws: 'psc', status: 'todo', due: '2026-10-23', priority: 'med', source: 'Teams: AOIC Analytics Check-in, Sep 22' },
+
+    // Program
+    { id: 'a22', title: 'Prepare analytics content for the Oct 21 AOIC meeting in Chicago', owner: 'Justin Bruce', ws: 'program', status: 'todo', due: '2026-10-14', priority: 'high', source: 'Teams: Zephrin Allen, Sep 28', notes: 'Zephrin Allen leads the two-hour meeting. No update since Sep 28 and nothing on the calendar.' },
+    { id: 'a23', title: 'Introduce Michael to John Chatz and Skip Robertson', owner: 'Justin Bruce', ws: 'program', status: 'todo', due: '2026-10-09', priority: 'high', source: 'Onboarding plan' },
+    { id: 'a42', title: 'Walk through this site with Michael at the weekly sync', owner: 'Justin Bruce', ws: 'program', status: 'doing', due: '2026-10-07', priority: 'med', source: 'Teams: Justin, Michael, Ben, and Sabrina, Oct 5' },
+    { id: 'a43', title: 'Get Michael a ChatGPT license', owner: 'Justin Bruce', ws: 'program', status: 'waiting', waitingOn: 'Ben Varon', priority: 'low', source: 'Email: TIS-174278, Oct 6', notes: 'The first request was denied.' },
+    { id: 'a24', title: 'Set a recurring cadence and owner for AOIC usage reporting', owner: 'Gabrielle Scott', ws: 'usage', status: 'todo', priority: 'med', source: 'Teams: Eric Burnson, Sep 15' },
+    { id: 'a27', title: 'Retire or clearly label the old pretrial applications so the AOIC stops opening them', owner: 'Patricia King', ws: 'pretrial', status: 'todo', priority: 'med', source: 'Teams: Justin and Patricia King, Oct 1' },
+    { id: 'a28', title: 'Rotate the vendor pipeline credentials that were exposed in the public file archive', owner: 'Thomas Morrison', ws: 'program', status: 'todo', priority: 'high', source: 'Archive security review, Oct 5' },
+    { id: 'a29', title: 'Make the AOIC-Files GitHub repository private', owner: 'Justin Bruce', ws: 'program', status: 'todo', priority: 'high', source: 'Archive security review, Oct 5' },
+    { id: 'a30', title: 'Link the aoic-onboarding Netlify project to the repository and unlink act-coach-pilot', owner: 'Justin Bruce', ws: 'program', status: 'todo', priority: 'high', source: 'Netlify deploy review, Oct 5', notes: 'The shared dashboard needs the Netlify Function, which only deploys from the linked repository.' }
+  ],
+  decisions: [
+    { id: 'd01', question: 'Is the TDS version of eFile Analytics ready to replace the live site?', decider: 'AOIC (John Chatz)', needBy: '2026-10-16', ws: 'efile', status: 'open', options: 'Resume testing once Tyler confirms the fixes, then cut over. Or keep the live site running while discrepancies are worked.' },
+    { id: 'd08', question: 'Which counties does JANO report for? Add Will and drop Lee?', decider: 'AOIC (John Chatz, Angie Kanak)', needBy: '2026-10-08', ws: 'cp', status: 'open', options: 'Lee County is moving to Enterprise Justice. Will County needs a contract update.' },
+    { id: 'd02', question: 'Should vendors send the local ordinance code, or replace it with the statewide code the way ADR does?', decider: 'AOIC (John Chatz)', ws: 'cp', status: 'open', options: 'Send the local code, or substitute the statewide code.' },
+    { id: 'd10', question: 'How should Courts Pretrial tiles order charge classes and show "No Value"?', decider: 'AOIC (Justice Doherty, John Chatz)', ws: 'cp', status: 'open', options: 'A seriousness order of M, X, 1, 2, 3, 4, A, B, C. Hide, label, or count nulls.' },
+    { id: 'd03', question: 'Which field powers Metric 10?', decider: 'AOIC', ws: 'cp', status: 'open', options: 'Add a petition for sanction filed field, or redefine the metric as jail sanctions imposed.' },
+    { id: 'd09', question: 'Does Justin attend the Oct 21 Chicago meeting in person?', decider: 'Zephrin Allen and Justin Bruce', needBy: '2026-10-14', ws: 'program', status: 'open', options: 'Justin is at the TSIA conference in Las Vegas Oct 19 to 21. Attend remotely, fly in, or send content only.' },
+    { id: 'd11', question: 'What happens to the original Pretrial app and its old-schema data?', decider: 'AOIC, with Justin Bruce', ws: 'pretrial', status: 'open', options: 'Retire it, relabel it, or move it to the current schema.' },
+    { id: 'd04', question: 'Who owns the AOIC program long term after Justin steps back?', decider: 'Ben Varon', ws: 'program', status: 'open', options: 'Michael Manis, Courts & Justice, or a split model.' },
+    { id: 'd05', question: 'Where does eFile Analytics support live after the TDS cutover?', decider: 'Ben Varon and Evan Acosta', ws: 'efile', status: 'open' },
+    { id: 'd06', question: 'Should the Analytics Steering Committee be formally retired?', decider: 'Justin Bruce', ws: 'program', status: 'open', options: 'Retire it in favor of the compass check, or restart it with a new cadence.' },
+    { id: 'd07', question: 'How does the AOIC define a pretrial case for vendor submissions?', decider: 'Justice Doherty and Jacque Rogers', ws: 'cp', status: 'decided', outcome: 'All criminal cases, excluding only petty, minor traffic, and business offenses. Agreed Sep 28. ISS has not been told yet.' }
+  ],
+  updates: [
+    { id: 'u-1007', date: '2026-10-07', author: 'Program brief', ws: 'program', text: 'Week of Oct 5. The eFile TDS cutover is still on hold. David traced a likely cause to a source dataset mismatch, and the AOIC is waiting on our written assurance. The Courts Pretrial feedback session is today at 3:30 CT. JANO hit an Unauthorized error on its first test and is getting staging credentials, with the Will and Lee mapping change due Oct 8. Michelle Repp has access again, and the Probation kickoff with county managers is set for Oct 26 at 10:00 CT. The eFile annual code update moved to Feb 1, 2027.' },
+    { id: 'u-0929', date: '2026-09-29', author: 'Justin Bruce', ws: 'program', text: 'Abby is out this week, so route her questions to me. Michelle Repp cannot access the Probation application and I am working it. The AOIC has Courts Pretrial questions that will likely lead to a meeting. The AOIC is concerned the TDS eFile application does not match the live one.' },
+    { id: 'u-0922', date: '2026-09-22', author: 'Justin Bruce', ws: 'program', text: 'TDS needs to go live by Monday, and I have bought us as much time as I can. Courts Pretrial updates went to the AOIC for feedback. Usage analytics went out as a stop gap while the team makes it repeatable. Probation data keeps flowing, and the PSC elements are in the vendor documentation.' }
+  ]
+};
+
+/* Fixed dates from the program calendar. They feed "Coming up" next to milestones, decisions, and due dates. */
+const DASH_DATES = [
+  { date: '2026-10-07', label: 'Courts Pretrial feedback session with the AOIC, 3:30 CT', ws: 'cp' },
+  { date: '2026-10-08', label: 'JANO county mapping update ships', ws: 'cp' },
+  { date: '2026-10-13', label: 'AOIC Analytics check-in, 1:00 CT', ws: 'program' },
+  { date: '2026-10-14', label: 'Bi-weekly compass check with the AOIC, 10:00 CT', ws: 'program' },
+  { date: '2026-10-15', label: 'AOIC pretrial detention office hours, 11:00 CT', ws: 'cp' },
+  { date: '2026-10-19', label: 'Justin at the TSIA conference in Las Vegas through Oct 21', ws: 'program' },
+  { date: '2026-10-21', label: 'Zephrin Allen meets the AOIC in Chicago', ws: 'program' },
+  { date: '2026-10-26', label: 'Probation kickoff with county managers and vendors, 10:00 CT', ws: 'probation' },
+  { date: '2026-10-28', label: 'Bi-weekly compass check with the AOIC, 10:00 CT', ws: 'program' },
+  { date: '2026-10-29', label: 'AOIC pretrial detention office hours, 11:00 CT', ws: 'cp' },
+  { date: '2026-11-11', label: 'Bi-weekly compass check with the AOIC, 10:00 CT', ws: 'program' },
+  { date: '2027-02-01', label: 'eFile annual configuration code update (moved from Oct 1)', ws: 'efile' }
+];
+
+/* ---------- Shared data client ---------- */
+const Board = {
+  mode: 'loading', data: { actions: {}, decisions: {}, updates: {}, status: {} }, lastSync: null, error: null,
+  async load() {
+    try {
+      const r = await fetch('/api/board', { cache: 'no-store', headers: { accept: 'application/json' } });
+      const ct = r.headers.get('content-type') || '';
+      if (!r.ok || !ct.includes('json')) throw new Error('No shared service');
+      const d = await r.json();
+      if (!d.ok) throw new Error(d.error || 'Load failed');
+      const next = { actions: {}, decisions: {}, updates: {}, status: {} };
+      for (const k of Object.keys(next)) (d[k] || []).forEach(rec => { next[k][rec.id] = rec; });
+      this.data = next; this.mode = 'live'; this.error = null;
+    } catch (e) {
+      this.mode = 'local';
+      this.data = store.get('aoic-board-local', { actions: {}, decisions: {}, updates: {}, status: {} });
+    }
+    this.lastSync = Date.now();
+  },
+  list(kind) {
+    const seed = DASH_SEED[kind] || [];
+    const byId = {};
+    seed.forEach(s => { byId[s.id] = { ...s }; });
+    Object.values(this.data[kind] || {}).forEach(r => { byId[r.id] = { ...(byId[r.id] || {}), ...r }; });
+    return Object.values(byId).filter(r => !r.deleted);
+  },
+  get(kind, id) { return this.list(kind).find(r => r.id === id); },
+  async save(kind, id, changes) {
+    const current = this.get(kind, id) || {};
+    const record = { ...current, ...changes };
+    delete record.id; delete record.updatedAt; delete record.updatedBy;
+    const optimistic = { ...record, id, updatedAt: new Date().toISOString(), updatedBy: editorName() };
+    const before = this.data[kind][id];
+    this.data[kind][id] = optimistic;
+    if (this.mode !== 'live') { store.set('aoic-board-local', this.data); return true; }
+    try {
+      const r = await fetch(`/api/board/${kind}/${id}`, { method: 'PUT', headers: { 'content-type': 'application/json', 'x-editor': editorName() }, body: JSON.stringify(record) });
+      const d = await r.json();
+      if (!r.ok || !d.ok) throw new Error(d.error || 'Save failed');
+      this.data[kind][id] = d.record;
+      return true;
+    } catch (e) {
+      if (before) this.data[kind][id] = before; else delete this.data[kind][id];
+      toast('That change did not save. ' + (e.message || ''), true);
+      return false;
+    }
+  }
+};
+const newId = p => p + '-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const me = () => store.get('aoic-me', 'all');
+const editorName = () => ({ justin: 'Justin Bruce', michael: 'Michael Manis' }[me()] || 'Team');
+const firstName = n => (n || '').replace('Hon. ', '').split(' ')[0].toLowerCase();
+const isMine = a => me() === 'all' || firstName(a.owner) === me();
+const today = () => todayISO();
+const dueInfo = due => {
+  if (!due) return { cls: '', label: 'No date', days: Infinity };
+  const d = daysBetween(today(), due);
+  if (d < 0) return { cls: 'late', label: `${-d} day${d === -1 ? '' : 's'} late`, days: d };
+  if (d === 0) return { cls: 'soon', label: 'Due today', days: 0 };
+  if (d <= 7) return { cls: 'soon', label: `Due in ${d} day${d === 1 ? '' : 's'}`, days: d };
+  return { cls: '', label: 'Due ' + fmtDate(due), days: d };
+};
+const openActions = () => Board.list('actions').filter(a => a.status !== 'done');
+const prioRank = { high: 0, med: 1, low: 2 };
+const sortActions = list => list.slice().sort((a, b) => dueInfo(a.due).days - dueInfo(b.due).days || (prioRank[a.priority] ?? 1) - (prioRank[b.priority] ?? 1));
+const ago = iso => {
+  if (!iso) return '';
+  const s = Math.round((Date.now() - new Date(iso).getTime()) / 1000);
+  if (s < 60) return 'just now'; if (s < 3600) return Math.round(s / 60) + ' min ago';
+  if (s < 86400) return Math.round(s / 3600) + ' hr ago'; return fmtDate(iso.slice(0, 10));
+};
+
+function toast(msg, bad) {
+  let t = $('#toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.setAttribute('role', 'status'); document.body.append(t); }
+  t.className = 'toast' + (bad ? ' bad' : ''); t.textContent = msg; t.hidden = false;
+  clearTimeout(t._h); t._h = setTimeout(() => { t.hidden = true; }, 3200);
+}
+
+/* ---------- Form modal ---------- */
+function openForm({ title, fields, values = {}, onSave, onDelete, saveLabel = 'Save' }) {
+  const scrim = document.createElement('div'); scrim.className = 'pal-scrim'; scrim.id = 'formModal';
+  const field = f => {
+    const v = values[f.name] ?? f.default ?? '';
+    const id = 'f-' + f.name;
+    let input;
+    if (f.type === 'textarea') input = `<textarea id="${id}" name="${f.name}" rows="${f.rows || 3}">${esc(v)}</textarea>`;
+    else if (f.type === 'select') input = `<select id="${id}" name="${f.name}">${f.options.map(([k, l]) => `<option value="${esc(k)}"${k === v ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select>`;
+    else input = `<input id="${id}" name="${f.name}" type="${f.type || 'text'}" value="${esc(v)}"${f.list ? ` list="${f.list}"` : ''}${f.required ? ' required' : ''}>`;
+    return `<label class="ff${f.wide ? ' wide' : ''}" for="${id}"><span>${esc(f.label)}</span>${input}</label>`;
+  };
+  scrim.innerHTML = `<form class="pal form" role="dialog" aria-modal="true" aria-label="${esc(title)}" novalidate>
+    <div class="form-head"><h3>${esc(title)}</h3><button type="button" class="drawer-close" data-x aria-label="Close" style="position:static">${icon.close}</button></div>
+    <div class="form-grid">${fields.map(field).join('')}</div>
+    <datalist id="peopleList">${PEOPLE.map(p => `<option value="${esc(p.n)}">`).join('')}</datalist>
+    <div class="form-foot">${onDelete ? '<button type="button" class="btn btn-plain danger" data-del>Delete</button>' : '<span></span>'}<div><button type="button" class="btn btn-plain" data-x>Cancel</button> <button type="submit" class="btn btn-solid">${esc(saveLabel)}</button></div></div>
+  </form>`;
+  document.body.append(scrim);
+  const form = $('form', scrim);
+  const close = () => { scrim.remove(); document.removeEventListener('keydown', onKey); };
+  const onKey = e => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', onKey);
+  $$('[data-x]', scrim).forEach(b => b.addEventListener('click', close));
+  scrim.addEventListener('click', e => { if (e.target === scrim) close(); });
+  if (onDelete) $('[data-del]', scrim).addEventListener('click', async () => { close(); await onDelete(); });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {};
+    fields.forEach(f => { data[f.name] = form.elements[f.name].value.trim(); });
+    const missing = fields.find(f => f.required && !data[f.name]);
+    if (missing) { form.elements[missing.name].focus(); toast(`Add ${missing.label.toLowerCase()} before saving.`, true); return; }
+    close(); await onSave(data);
+  });
+  const first = $('input, textarea, select', form); if (first) first.focus();
+}
+const WS_OPTIONS = Object.keys(WS_META).map(k => [k, WS_META[k][0]]);
+const ACTION_FIELDS = [
+  { name: 'title', label: 'What needs to happen', type: 'textarea', rows: 2, wide: true, required: true },
+  { name: 'owner', label: 'Owner', list: 'peopleList', required: true },
+  { name: 'ws', label: 'Workstream', type: 'select', options: WS_OPTIONS, default: 'program' },
+  { name: 'status', label: 'Status', type: 'select', options: Object.entries(STATUS), default: 'todo' },
+  { name: 'priority', label: 'Priority', type: 'select', options: Object.entries(PRIORITY), default: 'med' },
+  { name: 'due', label: 'Due date', type: 'date' },
+  { name: 'waitingOn', label: 'Waiting on', list: 'peopleList' },
+  { name: 'source', label: 'Source (email, chat, or ticket)', wide: true },
+  { name: 'link', label: 'Link', type: 'url', wide: true },
+  { name: 'notes', label: 'Notes', type: 'textarea', wide: true }
+];
+function editAction(id) {
+  const a = id ? Board.get('actions', id) : { owner: { justin: 'Justin Bruce', michael: 'Michael Manis' }[me()] || '', ws: actFilter.ws !== 'all' ? actFilter.ws : 'program' };
+  openForm({
+    title: id ? 'Edit action item' : 'New action item', fields: ACTION_FIELDS, values: a,
+    onSave: async d => { if (await Board.save('actions', id || newId('a'), d)) { toast(id ? 'Action updated.' : 'Action added.'); rerender(); } },
+    onDelete: id ? async () => { if (await Board.save('actions', id, { deleted: true })) { toast('Action removed.'); rerender(); } } : null
+  });
+}
+async function setActionStatus(id, status) { if (await Board.save('actions', id, { status })) { toast(status === 'done' ? 'Nice. Marked done.' : 'Moved to ' + STATUS[status] + '.'); rerender(); } }
+function editDecision(id, recording) {
+  const d = id ? Board.get('decisions', id) : { status: 'open', ws: 'program' };
+  const fields = recording
+    ? [{ name: 'outcome', label: 'What was decided', type: 'textarea', wide: true, required: true }, { name: 'decider', label: 'Decided by', list: 'peopleList' }]
+    : [{ name: 'question', label: 'Question to decide', type: 'textarea', rows: 2, wide: true, required: true }, { name: 'decider', label: 'Who decides', list: 'peopleList' }, { name: 'needBy', label: 'Needed by', type: 'date' }, { name: 'ws', label: 'Workstream', type: 'select', options: WS_OPTIONS }, { name: 'status', label: 'Status', type: 'select', options: [['open', 'Open'], ['decided', 'Decided']] }, { name: 'options', label: 'Options on the table', type: 'textarea', wide: true }, { name: 'outcome', label: 'Outcome', type: 'textarea', wide: true }];
+  openForm({
+    title: recording ? 'Record the decision' : id ? 'Edit decision' : 'New decision', fields, values: d, saveLabel: recording ? 'Record decision' : 'Save',
+    onSave: async v => { if (recording) v.status = 'decided'; if (await Board.save('decisions', id || newId('d'), v)) { toast(recording ? 'Decision recorded.' : 'Decision saved.'); rerender(); } },
+    onDelete: id && !recording ? async () => { if (await Board.save('decisions', id, { deleted: true })) { toast('Decision removed.'); rerender(); } } : null
+  });
+}
+function editStatus(ws) {
+  const s = Board.get('status', ws) || { rag: 'green', headline: '' };
+  openForm({
+    title: 'Update status: ' + wsLabel(ws), values: s, saveLabel: 'Update status',
+    fields: [{ name: 'rag', label: 'Health', type: 'select', options: Object.entries(RAG) }, { name: 'headline', label: 'Headline', type: 'textarea', wide: true, required: true }],
+    onSave: async v => { if (await Board.save('status', ws, v)) { toast('Status updated.'); rerender(); } }
+  });
+}
+function rerender() { const id = location.hash.slice(1) || 'dash'; if (render[id]) { const y = window.scrollY; show(id, true); window.scrollTo({ top: y }); } }
+
+/* ---------- Weekly status text ---------- */
+function weeklyStatus() {
+  const t = today();
+  const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
+  const acts = Board.list('actions');
+  const line = a => `- ${a.title} (${a.owner || 'unassigned'}${a.due ? ', due ' + fmtDate(a.due) : ''})`;
+  const monday = new Date(); monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+  const out = [];
+  out.push(`AOIC Analytics weekly status, week of ${monday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`, '');
+  out.push('Where things stand');
+  Board.list('status').forEach(s => out.push(`- ${wsLabel(s.id)}: ${RAG[s.rag] || s.rag}. ${s.headline}`));
+  const done = acts.filter(a => a.status === 'done' && (a.updatedAt || '') >= weekAgo);
+  out.push('', 'Done this week'); out.push(...(done.length ? done.map(line) : ['- Nothing marked done yet this week.']));
+  const late = sortActions(acts.filter(a => a.status !== 'done' && a.due && a.due < t));
+  if (late.length) { out.push('', 'Past due'); out.push(...late.map(line)); }
+  const doing = sortActions(acts.filter(a => a.status === 'doing'));
+  out.push('', 'In progress'); out.push(...(doing.length ? doing.map(line) : ['- None.']));
+  const waiting = acts.filter(a => a.status === 'waiting');
+  if (waiting.length) { out.push('', 'Waiting on others'); out.push(...waiting.map(a => `- ${a.title} (waiting on ${a.waitingOn || 'others'})`)); }
+  const dec = Board.list('decisions').filter(d => d.status !== 'decided');
+  if (dec.length) { out.push('', 'Decisions we need'); out.push(...dec.map(d => `- ${d.question} (${d.decider || 'owner to confirm'}${d.needBy ? ', by ' + fmtDate(d.needBy) : ''})`)); }
+  const soon = upcoming(21);
+  if (soon.length) { out.push('', 'Coming up'); out.push(...soon.map(u => `- ${fmtDate(u.date)}: ${u.label}`)); }
+  return out.join('\n');
+}
+function showWeekly() {
+  const text = weeklyStatus();
+  const scrim = document.createElement('div'); scrim.className = 'pal-scrim';
+  scrim.innerHTML = `<div class="pal form" role="dialog" aria-modal="true" aria-label="Weekly status"><div class="form-head"><h3>Weekly status, ready to post</h3><button type="button" class="drawer-close" data-x aria-label="Close" style="position:static">${icon.close}</button></div>
+    <p style="margin:0 18px;color:var(--muted);font-size:14px">Built from the live board. Paste it into the All Things AOIC chat, then edit as needed.</p>
+    <textarea id="weeklyText" class="weekly" rows="18" readonly>${esc(text)}</textarea>
+    <div class="form-foot"><span></span><div><button type="button" class="btn btn-plain" data-x>Close</button> <button type="button" class="btn btn-solid" id="copyWeekly">Copy to clipboard</button></div></div></div>`;
+  document.body.append(scrim);
+  const close = () => scrim.remove();
+  $$('[data-x]', scrim).forEach(b => b.addEventListener('click', close));
+  scrim.addEventListener('click', e => { if (e.target === scrim) close(); });
+  $('#copyWeekly').addEventListener('click', () => {
+    const ta = $('#weeklyText');
+    navigator.clipboard.writeText(ta.value).then(() => toast('Copied. Paste it into the chat.'), () => { ta.select(); toast('Press Ctrl+C to copy the selected text.'); });
+  });
+}
+
+function upcoming(days) {
+  const t = today(), limit = new Date(Date.now() + days * 864e5).toISOString().slice(0, 10);
+  const items = [];
+  ROADMAP.forEach(r => { if (r.start >= t && r.start <= limit && !DASH_DATES.some(m => m.date === r.start)) items.push({ date: r.start, label: r.label, ws: r.ws === 'pretrial' ? 'cp' : r.ws, kind: 'Milestone' }); });
+  DASH_DATES.forEach(m => { if (m.date >= t && m.date <= limit) items.push({ date: m.date, label: m.label, ws: m.ws, kind: 'Calendar' }); });
+  Board.list('decisions').filter(d => d.status !== 'decided' && d.needBy && d.needBy >= t && d.needBy <= limit).forEach(d => items.push({ date: d.needBy, label: 'Decision needed: ' + d.question, ws: d.ws, kind: 'Decision' }));
+  return items.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+/* ---------- Command center views ---------- */
+let actFilter = { who: 'mine', ws: 'all', status: 'open', q: '', view: 'board', preset: '' };
+function dashHead(kicker, title, lede) {
+  const live = Board.mode === 'live';
+  return `<header class="view-head dash-head">
+    <div><p class="kicker">${kicker}</p><h1>${title}</h1>${lede ? `<p class="lede">${lede}</p>` : ''}</div>
+    <div class="dash-tools">
+      <span class="sync ${live ? 'live' : 'local'}" title="${live ? 'Shared with everyone who opens this site.' : 'Edits are saved in this browser only.'}"><i></i>${live ? 'Live, synced ' + ago(new Date(Board.lastSync).toISOString()) : 'This device only'}</span>
+      <label class="viewer"><span>Viewing as</span><select id="viewerSel"><option value="all">Everyone</option><option value="justin">Justin</option><option value="michael">Michael</option></select></label>
+    </div>
+  </header>`;
+}
+function actionCard(a, compact) {
+  const due = dueInfo(a.due);
+  return `<article class="act ${a.status === 'done' ? 'is-done' : ''}" data-act="${a.id}" draggable="true" style="--c:${wsColor(a.ws)}">
+    <div class="act-top">
+      <button class="tick" type="button" data-done="${a.id}" aria-label="${a.status === 'done' ? 'Reopen' : 'Mark done'}" aria-pressed="${a.status === 'done'}"></button>
+      <span class="act-title" role="button" tabindex="0" data-edit="${a.id}">${esc(a.title)}</span>
+    </div>
+    <div class="act-meta">
+      <span class="who">${esc(a.owner || 'Unassigned')}</span>
+      <span class="due ${due.cls}">${due.label}</span>
+      ${a.priority === 'high' ? '<span class="prio">High</span>' : ''}
+      ${a.status === 'waiting' && a.waitingOn ? `<span class="wait">Waiting on ${esc(a.waitingOn)}</span>` : ''}
+    </div>
+    ${compact ? '' : `<div class="act-foot"><span class="ws-tag" style="color:var(--c)">${esc(wsLabel(a.ws))}</span>
+      <span class="act-links">${WORKSTREAMS.some(w => w.id === a.ws) ? `<button type="button" class="linkish" data-ctx="${a.ws}">Context</button>` : ''}${a.link ? `<a class="linkish" href="${esc(a.link)}" target="_blank" rel="noopener">Source</a>` : ''}</span></div>`}
+  </article>`;
+}
+
+Object.assign(render, {
+  dash() {
+    const acts = openActions();
+    const mine = acts.filter(isMine);
+    const t = today();
+    const late = mine.filter(a => a.due && a.due < t);
+    const week = mine.filter(a => a.due && a.due >= t && daysBetween(t, a.due) <= 7);
+    const waiting = acts.filter(a => a.status === 'waiting');
+    const dec = Board.list('decisions').filter(d => d.status !== 'decided');
+    const doneWeek = Board.list('actions').filter(a => a.status === 'done' && (a.updatedAt || '') >= new Date(Date.now() - 7 * 864e5).toISOString());
+    const next = sortActions(mine.filter(a => a.status !== 'waiting')).slice(0, 7);
+    const soon = upcoming(30).slice(0, 9);
+    const statuses = Board.list('status');
+    const updates = Board.list('updates').sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.updatedAt || '').localeCompare(a.updatedAt || '')).slice(0, 3);
+    const who = me() === 'all' ? 'the team' : me() === 'justin' ? 'Justin' : 'Michael';
+    return `<div class="wrap">${dashHead('Command Center', 'What needs us this week', `Live action items, decisions, and status for the AOIC program, shown for ${who}. Select anything to edit it, or jump to its context in the onboarding guide.`)}
+      <div class="dash-actions">
+        <button class="btn btn-solid" type="button" data-new-action>New action item</button>
+        <button class="btn btn-plain" type="button" data-new-update>Post an update</button>
+        <button class="btn btn-plain" type="button" data-weekly>Copy weekly status</button>
+      </div>
+      <div class="kpis dash-kpis">
+        <button class="panel kpi tile ${late.length ? 'alarm' : ''}" type="button" data-preset="late"><b>${late.length}</b><span>past due${me() === 'all' ? '' : ' for ' + who}</span></button>
+        <button class="panel kpi tile" type="button" data-preset="week"><b>${week.length}</b><span>due in the next 7 days</span></button>
+        <button class="panel kpi tile" type="button" data-preset="waiting"><b>${waiting.length}</b><span>waiting on others, mostly the AOIC</span></button>
+        <a class="panel kpi tile" href="#decisions"><b>${dec.length}</b><span>open decisions</span></a>
+        <button class="panel kpi tile good" type="button" data-preset="done"><b>${doneWeek.length}</b><span>done in the last 7 days</span></button>
+      </div>
+      <div class="dash-grid">
+        <section class="panel dash-card">
+          <div class="card-head"><h2>Do next</h2><a href="#actions" class="linkish">All action items</a></div>
+          <div class="act-list">${next.length ? next.map(a => actionCard(a, false)).join('') : '<p class="empty">Nothing open for this view. Add an action item to get started.</p>'}</div>
+        </section>
+        <section class="panel dash-card">
+          <div class="card-head"><h2>Coming up</h2><a href="#next" class="linkish">Roadmap</a></div>
+          <ol class="agenda">${soon.length ? soon.map(u => `<li class="${u.date === t ? 'is-today' : ''}" style="--c:${wsColor(u.ws)}"><time>${fmtDate(u.date)}</time><div><b>${esc(u.label)}</b><span>${u.kind} · ${esc(wsLabel(u.ws))}${u.date === t ? ' · today' : ''}</span></div></li>`).join('') : '<li><div><b>No dates in the next 30 days.</b></div></li>'}</ol>
+        </section>
+      </div>
+      <section class="block">
+        <div class="block-head"><div><h2>Workstream pulse</h2><p>Health and headline for each workstream. Select "Update" to change either one for everyone.</p></div></div>
+        <div class="pulse">${statuses.map(s => {
+          const n = acts.filter(a => a.ws === s.id).length;
+          return `<article class="panel pulse-card" style="--c:${wsColor(s.id)}">
+            <div class="pulse-top"><h3>${esc(wsLabel(s.id))}</h3><span class="chip ${RAG_CHIP[s.rag] || 'idle'}">${esc(RAG[s.rag] || s.rag)}</span></div>
+            <p>${esc(s.headline)}</p>
+            <div class="pulse-foot"><button type="button" class="linkish" data-ws-actions="${s.id}">${n} open action${n === 1 ? '' : 's'}</button>${WORKSTREAMS.some(w => w.id === s.id) ? `<button type="button" class="linkish" data-ctx="${s.id}">Context</button>` : ''}<button type="button" class="linkish" data-status-edit="${s.id}">Update</button>${s.updatedAt ? `<span class="stamp">${esc(s.updatedBy || '')} · ${ago(s.updatedAt)}</span>` : ''}</div>
+          </article>`;
+        }).join('')}</div>
+      </section>
+      <div class="dash-grid">
+        <section class="panel dash-card">
+          <div class="card-head"><h2>Waiting on others</h2><span class="count">${waiting.length}</span></div>
+          <div class="act-list">${waiting.length ? waiting.map(a => actionCard(a, true)).join('') : '<p class="empty">Nothing is waiting on anyone else.</p>'}</div>
+        </section>
+        <section class="panel dash-card">
+          <div class="card-head"><h2>Decisions we need</h2><a href="#decisions" class="linkish">All decisions</a></div>
+          <div class="dec-list">${dec.slice(0, 5).map(d => `<button type="button" class="dec-row" data-dec="${d.id}" style="--c:${wsColor(d.ws)}"><b>${esc(d.question)}</b><span>${esc(d.decider || 'Decider to confirm')}${d.needBy ? ' · by ' + fmtDate(d.needBy) : ''}</span></button>`).join('') || '<p class="empty">No open decisions.</p>'}</div>
+        </section>
+      </div>
+      <section class="block">
+        <div class="block-head"><div><h2>Latest updates</h2></div><a href="#updates" class="linkish">All updates</a></div>
+        <div class="feed">${updates.map(updateItem).join('')}</div>
+      </section>
+    </div>`;
+  },
+
+  actions() {
+    return `<div class="wrap">${dashHead('Command Center · Action items', 'Every open commitment, in one place', 'Drag cards between columns or use the checkbox to finish them. Filters remember your choice for this visit.')}
+      <div class="toolbar">
+        <div class="pills" role="group" aria-label="Whose actions">
+          <button class="pill" type="button" data-af-who="mine">Mine</button>
+          <button class="pill" type="button" data-af-who="all">Everyone</button>
+        </div>
+        <label class="viewer"><span class="sr-only">Workstream</span><select id="afWs"><option value="all">All workstreams</option>${WS_OPTIONS.map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
+        <div class="pills" role="group" aria-label="Status">
+          <button class="pill" type="button" data-af-status="open">Open</button>
+          <button class="pill" type="button" data-af-status="late">Past due</button>
+          <button class="pill" type="button" data-af-status="waiting">Waiting</button>
+          <button class="pill" type="button" data-af-status="all">All</button>
+        </div>
+        <label class="field">${icon.search}<span class="sr-only">Search action items</span><input id="afQ" type="search" placeholder="Search actions"></label>
+        <div class="pills" role="group" aria-label="Layout">
+          <button class="pill" type="button" data-af-view="board">Board</button>
+          <button class="pill" type="button" data-af-view="list">List</button>
+        </div>
+        <button class="btn btn-solid" type="button" data-new-action style="margin-left:auto">New action item</button>
+      </div>
+      <div id="actWrap"></div>
+    </div>`;
+  },
+
+  decisions() {
+    const all = Board.list('decisions');
+    const open = all.filter(d => d.status !== 'decided').sort((a, b) => (a.needBy || '9999').localeCompare(b.needBy || '9999'));
+    const done = all.filter(d => d.status === 'decided');
+    const card = d => `<article class="panel decision" style="--c:${wsColor(d.ws)}">
+      <div class="dec-top"><span class="ws-tag" style="color:var(--c)">${esc(wsLabel(d.ws))}</span>${d.needBy ? `<span class="due ${dueInfo(d.needBy).cls}">Needed ${fmtDate(d.needBy)}</span>` : ''}</div>
+      <h3>${esc(d.question)}</h3>
+      ${d.options ? `<p><b>Options.</b> ${esc(d.options)}</p>` : ''}
+      ${d.outcome ? `<p class="outcome"><b>Decided.</b> ${esc(d.outcome)}</p>` : ''}
+      <div class="dec-foot"><span>Decides: <b>${esc(d.decider || 'to confirm')}</b></span><span class="act-links">${d.status !== 'decided' ? `<button type="button" class="linkish" data-record="${d.id}">Record decision</button>` : ''}<button type="button" class="linkish" data-dec="${d.id}">Edit</button>${WORKSTREAMS.some(w => w.id === d.ws) ? `<button type="button" class="linkish" data-ctx="${d.ws}">Context</button>` : ''}</span></div>
+    </article>`;
+    return `<div class="wrap">${dashHead('Command Center · Decisions', 'Questions only someone else can answer', 'Open decisions block real work. Record the answer here the moment it lands so the team acts on it.')}
+      <div class="dash-actions"><button class="btn btn-solid" type="button" data-new-decision>New decision</button></div>
+      <div class="dec-grid">${open.map(card).join('') || '<div class="panel empty">No open decisions.</div>'}</div>
+      ${done.length ? `<section class="block"><div class="block-head"><div><h2>Decided</h2></div></div><div class="dec-grid">${done.map(card).join('')}</div></section>` : ''}
+    </div>`;
+  },
+
+  updates() {
+    const ups = Board.list('updates').sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.updatedAt || '').localeCompare(a.updatedAt || ''));
+    return `<div class="wrap">${dashHead('Command Center · Status updates', 'The running record', 'Post what changed, in a sentence or two. The weekly status pulls from here and from the action board.')}
+      <form class="panel composer" id="composer">
+        <label class="ff wide" for="upText"><span>What changed?</span><textarea id="upText" rows="3" placeholder="For example: John confirmed the Courts Pretrial session for Wednesday at 10:00 CT."></textarea></label>
+        <div class="composer-row">
+          <label class="viewer"><span>Workstream</span><select id="upWs">${WS_OPTIONS.map(([k, l]) => `<option value="${k}">${esc(l)}</option>`).join('')}</select></label>
+          <label class="viewer"><span>Date</span><input id="upDate" type="date" value="${today()}"></label>
+          <button class="btn btn-solid" type="submit">Post update</button>
+          <button class="btn btn-plain" type="button" data-weekly>Copy weekly status</button>
+        </div>
+      </form>
+      <div class="feed" style="margin-top:20px">${ups.map(updateItem).join('') || '<div class="panel empty">No updates yet.</div>'}</div>
+    </div>`;
+  }
+});
+function updateItem(u) {
+  return `<article class="panel upd" style="--c:${wsColor(u.ws)}"><div class="upd-top"><b>${esc(u.author || u.updatedBy || 'Team')}</b><span>${u.date ? fmtDate(u.date) : ''} · <span style="color:var(--c)">${esc(wsLabel(u.ws))}</span></span></div><p>${esc(u.text)}</p></article>`;
+}
+
+function wireDashCommon() {
+  const sel = $('#viewerSel'); if (sel) { sel.value = me(); sel.addEventListener('change', () => { store.set('aoic-me', sel.value); rerender(); }); }
+  $$('[data-new-action]').forEach(b => b.addEventListener('click', () => editAction(null)));
+  $$('[data-weekly]').forEach(b => b.addEventListener('click', showWeekly));
+  $$('[data-new-update]').forEach(b => b.addEventListener('click', () => route('updates')));
+  $$('[data-new-decision]').forEach(b => b.addEventListener('click', () => editDecision(null)));
+  $$('[data-edit]').forEach(b => b.addEventListener('click', () => editAction(b.dataset.edit)));
+  $$('[data-done]').forEach(b => b.addEventListener('click', () => { const a = Board.get('actions', b.dataset.done); setActionStatus(a.id, a.status === 'done' ? 'todo' : 'done'); }));
+  $$('[data-ctx]').forEach(b => b.addEventListener('click', () => { pendingDrawer = b.dataset.ctx; route('workstreams'); }));
+  $$('[data-dec]').forEach(b => b.addEventListener('click', () => editDecision(b.dataset.dec)));
+  $$('[data-record]').forEach(b => b.addEventListener('click', () => editDecision(b.dataset.record, true)));
+  $$('[data-status-edit]').forEach(b => b.addEventListener('click', () => editStatus(b.dataset.statusEdit)));
+  $$('[data-ws-actions]').forEach(b => b.addEventListener('click', () => { actFilter = { ...actFilter, ws: b.dataset.wsActions, who: 'all', status: 'open' }; route('actions'); }));
+  $$('[data-preset]').forEach(b => b.addEventListener('click', () => {
+    const p = b.dataset.preset;
+    actFilter = { ...actFilter, ws: 'all', who: p === 'waiting' ? 'all' : (me() === 'all' ? 'all' : 'mine'), status: p === 'late' ? 'late' : p === 'waiting' ? 'waiting' : p === 'done' ? 'all' : 'open', preset: p };
+    route('actions');
+  }));
+}
+
+Object.assign(after, {
+  dash() { wireDashCommon(); },
+  decisions() { wireDashCommon(); },
+  updates() {
+    wireDashCommon();
+    $('#composer').addEventListener('submit', async e => {
+      e.preventDefault();
+      const text = $('#upText').value.trim();
+      if (!text) { toast('Write the update first.', true); $('#upText').focus(); return; }
+      if (await Board.save('updates', newId('u'), { text, ws: $('#upWs').value, date: $('#upDate').value || today(), author: editorName() })) { toast('Update posted.'); rerender(); }
+    });
+  },
+  actions() {
+    wireDashCommon();
+    if (me() === 'all' && actFilter.who === 'mine') actFilter.who = 'all';
+    const sync = () => {
+      $$('[data-af-who]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.afWho === actFilter.who)));
+      $$('[data-af-status]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.afStatus === actFilter.status)));
+      $$('[data-af-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.afView === actFilter.view)));
+      $('#afWs').value = actFilter.ws; $('#afQ').value = actFilter.q;
+    };
+    const draw = () => {
+      const t = today();
+      let list = Board.list('actions');
+      if (actFilter.who === 'mine') list = list.filter(isMine);
+      if (actFilter.ws !== 'all') list = list.filter(a => a.ws === actFilter.ws);
+      if (actFilter.status === 'open') list = list.filter(a => a.status !== 'done');
+      if (actFilter.status === 'late') list = list.filter(a => a.status !== 'done' && a.due && a.due < t);
+      if (actFilter.status === 'waiting') list = list.filter(a => a.status === 'waiting');
+      if (actFilter.preset === 'week') list = list.filter(a => a.due && a.due >= t && daysBetween(t, a.due) <= 7);
+      if (actFilter.preset === 'done') list = list.filter(a => a.status === 'done');
+      if (actFilter.q) list = list.filter(a => (a.title + ' ' + a.owner + ' ' + (a.notes || '') + ' ' + (a.source || '')).toLowerCase().includes(actFilter.q));
+      list = sortActions(list);
+      const wrap = $('#actWrap');
+      if (actFilter.view === 'list') {
+        wrap.innerHTML = `<div class="panel table-wrap"><table class="act-table"><thead><tr><th></th><th>Action</th><th>Owner</th><th>Workstream</th><th>Status</th><th>Due</th></tr></thead><tbody>${list.map(a => {
+          const due = dueInfo(a.due);
+          return `<tr class="${a.status === 'done' ? 'is-done' : ''}"><td><button class="tick" type="button" data-done="${a.id}" aria-label="${a.status === 'done' ? 'Reopen' : 'Mark done'}" aria-pressed="${a.status === 'done'}"></button></td><td><button class="act-title" type="button" data-edit="${a.id}">${esc(a.title)}</button>${a.waitingOn && a.status === 'waiting' ? `<div class="wait">Waiting on ${esc(a.waitingOn)}</div>` : ''}</td><td>${esc(a.owner || '')}</td><td><span class="ws-tag" style="color:${wsColor(a.ws)}">${esc(wsLabel(a.ws))}</span></td><td><select class="st-sel" data-st="${a.id}" aria-label="Status">${Object.entries(STATUS).map(([k, l]) => `<option value="${k}"${k === a.status ? ' selected' : ''}>${l}</option>`).join('')}</select></td><td class="num"><span class="due ${due.cls}">${due.label}</span></td></tr>`;
+        }).join('') || '<tr><td colspan="6" class="empty">No action items match these filters.</td></tr>'}</tbody></table></div>`;
+      } else {
+        const cols = actFilter.status === 'open' ? ['todo', 'doing', 'waiting'] : ['todo', 'doing', 'waiting', 'done'];
+        wrap.innerHTML = `<div class="kanban" style="--cols:${cols.length}">${cols.map(c => {
+          const items = list.filter(a => (a.status || 'todo') === c);
+          return `<section class="col" data-col="${c}"><h3>${STATUS[c]} <span class="count">${items.length}</span></h3><div class="col-body">${items.map(a => actionCard(a, false)).join('') || '<p class="empty small">Drop a card here.</p>'}</div></section>`;
+        }).join('')}</div>`;
+        let dragId = null;
+        $$('.kanban .act').forEach(card => {
+          card.addEventListener('dragstart', e => { dragId = card.dataset.act; card.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; });
+          card.addEventListener('dragend', () => card.classList.remove('dragging'));
+        });
+        $$('.kanban .col').forEach(col => {
+          col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('over'); });
+          col.addEventListener('dragleave', () => col.classList.remove('over'));
+          col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('over'); if (dragId) setActionStatus(dragId, col.dataset.col); });
+        });
+      }
+      $$('#actWrap [data-edit]').forEach(b => b.addEventListener('click', () => editAction(b.dataset.edit)));
+      $$('#actWrap [data-done]').forEach(b => b.addEventListener('click', () => { const a = Board.get('actions', b.dataset.done); setActionStatus(a.id, a.status === 'done' ? 'todo' : 'done'); }));
+      $$('#actWrap [data-ctx]').forEach(b => b.addEventListener('click', () => { pendingDrawer = b.dataset.ctx; route('workstreams'); }));
+      $$('#actWrap [data-st]').forEach(s => s.addEventListener('change', () => setActionStatus(s.dataset.st, s.value)));
+    };
+    $$('[data-af-who]').forEach(b => b.addEventListener('click', () => { if (b.dataset.afWho === 'mine' && me() === 'all') { toast('Pick Justin or Michael under "Viewing as" first.', true); return; } actFilter.who = b.dataset.afWho; actFilter.preset = ''; sync(); draw(); }));
+    $$('[data-af-status]').forEach(b => b.addEventListener('click', () => { actFilter.status = b.dataset.afStatus; actFilter.preset = ''; sync(); draw(); }));
+    $$('[data-af-view]').forEach(b => b.addEventListener('click', () => { actFilter.view = b.dataset.afView; sync(); draw(); }));
+    $('#afWs').addEventListener('change', e => { actFilter.ws = e.target.value; draw(); });
+    $('#afQ').addEventListener('input', e => { actFilter.q = e.target.value.trim().toLowerCase(); draw(); });
+    sync(); draw();
+  }
+});
+
+/* Card titles are spans so the whole card stays draggable. Give them button keys. */
+document.addEventListener('keydown', e => { const t = e.target.closest && e.target.closest('span[data-edit]'); if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); t.click(); } });
+
+/* Keep the board fresh: poll while the tab is visible and nothing is being edited. */
+setInterval(async () => {
+  if (document.hidden || Board.mode !== 'live' || $('#formModal') || $('#pal') || $('#drawer')) return;
+  if (document.activeElement && /input|textarea|select/i.test(document.activeElement.tagName)) return;
+  const before = JSON.stringify(Board.data);
+  await Board.load();
+  const id = location.hash.slice(1) || 'dash';
+  if (DASH_VIEWS.some(v => v.id === id) && JSON.stringify(Board.data) !== before) rerender();
+  else { const s = $('.sync.live'); if (s) s.lastChild.textContent = 'Live, synced just now'; }
+}, 30000);
+document.addEventListener('visibilitychange', async () => {
+  if (!document.hidden && Board.mode === 'live' && !$('#formModal')) { await Board.load(); const id = location.hash.slice(1) || 'dash'; if (DASH_VIEWS.some(v => v.id === id)) rerender(); }
+});
+
+/* =========================================================================
    DRAWER
    ========================================================================= */
 let pendingDrawer = null, pendingFocus = null, lastFocus = null;
@@ -1223,6 +1951,7 @@ function openDrawer(id, from) {
     return e.ws === 'program';
   }).slice(-6).reverse();
   const people = w.owners.map(n => PEOPLE.find(p => p.n === n)).filter(Boolean);
+  const acts = sortActions(openActions().filter(a => a.ws === id));
   const stages = w.noStages ? '' : `<section><h4>Delivery path</h4><ol class="stage-list">${STAGES.map((s, i) => {
     const cls = i < w.stage ? 'done' : i === w.stage ? 'now' : 'todo';
     return `<li class="${cls}"><span class="mark"></span><span>${s}${i === w.stage && w.stage < STAGES.length ? ' <span class="chip ' + w.status + '" style="margin-left:6px">' + (w.parked ? 'Parked' : 'Current') + '</span>' : ''}</span></li>`;
@@ -1237,6 +1966,7 @@ function openDrawer(id, from) {
     <p style="font-weight:600">${esc(w.stageNote)}</p>
     <p>${esc(w.summary)}</p><p>${esc(w.detail)}</p>
     <section><h4>Next gate</h4><div class="gate">${esc(w.gate)}</div></section>
+    <section><h4>Open action items</h4>${acts.length ? `<ul class="mini-acts">${acts.slice(0, 5).map(a => `<li><b>${esc(a.title)}</b><span>${esc(a.owner || 'Unassigned')} · <span class="due ${dueInfo(a.due).cls}">${dueInfo(a.due).label}</span>${a.status === 'waiting' ? ' · waiting on ' + esc(a.waitingOn || 'others') : ''}</span></li>`).join('')}</ul>` : '<p style="color:var(--muted)">Nothing open right now.</p>'}<button type="button" class="linkish" data-drawer-acts>${acts.length > 5 ? 'See all ' + acts.length + ' in the Command Center' : 'Open in the Command Center'}</button></section>
     ${stages}
     ${w.sites.length ? `<section><h4>Where it lives</h4><div class="tag-list">${w.sites.map(s => `<span class="tag">${esc(s)}</span>`).join('')}</div></section>` : ''}
     ${people.length ? `<section><h4>People</h4><div class="people" style="grid-template-columns:1fr">${people.map(p => `<div class="person" style="--c:${p.org === 'aoic' ? 'var(--brass)' : 'var(--sky)'};padding:0"><div class="avatar">${esc(initials(p.n))}</div><div><b>${esc(p.n)}</b><span class="role">${esc(p.role)}</span></div></div>`).join('')}</div></section>` : ''}
@@ -1247,6 +1977,7 @@ function openDrawer(id, from) {
   const close = () => { scrim.remove(); d.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); if (lastFocus && lastFocus.focus) lastFocus.focus(); };
   const onKey = e => { if (e.key === 'Escape') close(); };
   scrim.addEventListener('click', close); $('.drawer-close', d).addEventListener('click', close);
+  $('[data-drawer-acts]', d).addEventListener('click', () => { close(); actFilter = { ...actFilter, ws: id, who: 'all', status: 'open', preset: '' }; route('actions'); });
   document.addEventListener('keydown', onKey);
   $('.drawer-close', d).focus();
 }
@@ -1256,7 +1987,10 @@ function openDrawer(id, from) {
    ========================================================================= */
 function paletteIndex() {
   const items = [];
-  VIEWS.forEach((v, i) => items.push({ t: v.label, s: 'Step ' + (i + 1) + ' of the walkthrough', k: 'Section', go: () => route(v.id) }));
+  DASH_VIEWS.forEach(v => items.push({ t: v.label, s: 'Command Center', k: 'Section', go: () => route(v.id) }));
+  VIEWS.forEach((v, i) => items.push({ t: v.label, s: 'Step ' + (i + 1) + ' of the onboarding walkthrough', k: 'Section', go: () => route(v.id) }));
+  sortActions(openActions()).forEach(a => items.push({ t: a.title, s: (a.owner || 'Unassigned') + ' · ' + dueInfo(a.due).label + ' · ' + wsLabel(a.ws), k: 'Action', go: () => editAction(a.id) }));
+  Board.list('decisions').filter(d => d.status !== 'decided').forEach(d => items.push({ t: d.question, s: 'Decides: ' + (d.decider || 'to confirm'), k: 'Decision', go: () => editDecision(d.id) }));
   WORKSTREAMS.forEach(w => items.push({ t: w.name, s: w.statusLabel + '. ' + w.stageNote, k: 'Workstream', go: () => { pendingDrawer = w.id; route('workstreams'); } }));
   PEOPLE.forEach(p => items.push({ t: p.n, s: p.role, k: p.org === 'aoic' ? 'AOIC' : 'Tyler', go: () => { pendingFocus = 'p-' + p.n.replace(/[^a-z]/gi, ''); route('people'); } }));
   GLOSSARY.forEach(g => items.push({ t: g[0], s: g[1], k: 'Term', go: () => { pendingFocus = 'g-' + g[0].replace(/[^a-z]/gi, ''); route('library'); } }));
@@ -1269,7 +2003,7 @@ function openPalette() {
   if ($('#pal')) return;
   const items = paletteIndex();
   const scrim = document.createElement('div'); scrim.className = 'pal-scrim'; scrim.id = 'pal';
-  scrim.innerHTML = `<div class="pal" role="dialog" aria-modal="true" aria-label="Search"><input id="palInput" type="text" placeholder="Search people, workstreams, terms, milestones" autocomplete="off" aria-controls="palList"><ul id="palList" role="listbox"></ul><div class="pal-foot">Up and down to move · Enter to open · Esc to close</div></div>`;
+  scrim.innerHTML = `<div class="pal" role="dialog" aria-modal="true" aria-label="Search"><input id="palInput" type="text" placeholder="Search actions, decisions, people, workstreams, terms" autocomplete="off" aria-controls="palList"><ul id="palList" role="listbox"></ul><div class="pal-foot">Up and down to move · Enter to open · Esc to close</div></div>`;
   document.body.append(scrim);
   const input = $('#palInput'), list = $('#palList');
   let sel = 0, shown = [];
@@ -1301,23 +2035,48 @@ function flashEl(el) { if (!el) return; el.scrollIntoView({ behavior: 'smooth', 
 function route(id) {
   if (location.hash.slice(1) !== id) location.hash = id; else show(id);
 }
+const isDashView = id => DASH_VIEWS.some(v => v.id === id);
+let navMode = null;
+function buildNav(mode) {
+  navMode = mode;
+  const nav = $('#nav');
+  nav.classList.toggle('plain', mode === 'dash');
+  nav.innerHTML = (mode === 'dash' ? DASH_VIEWS : VIEWS).map(v => `<li><a href="#${v.id}"><span>${esc(v.label)}</span>${mode === 'dash' ? `<span class="badge" data-badge="${v.id}"></span>` : '<span class="seen" aria-hidden="true"></span>'}</a></li>`).join('');
+  $$('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+  $('#brandSub').textContent = mode === 'dash' ? 'Program command center' : 'Program onboarding';
+  $('#railPulse').hidden = mode !== 'dash'; $('#railRingRow').hidden = mode === 'dash';
+}
+function updateBadges() {
+  if (navMode !== 'dash') return;
+  const t = today(), open = openActions();
+  const late = open.filter(a => a.due && a.due < t).length;
+  const dec = Board.list('decisions').filter(d => d.status !== 'decided').length;
+  const set = (id, txt, hot) => { const b = $(`[data-badge="${id}"]`); if (b) { b.textContent = txt; b.classList.toggle('hot', !!hot); b.hidden = !txt; } };
+  set('dash', late ? late + ' late' : '', late); set('actions', open.length); set('decisions', dec); set('updates', '');
+  const live = Board.mode === 'live';
+  $('#railPulse').innerHTML = `<b>${open.length} open · ${late} past due</b><span>${live ? 'Live board, shared with the team' : 'Saved on this device only'}</span>`;
+}
 function show(id) {
-  if (!render[id]) id = 'welcome';
+  if (!render[id]) id = 'dash';
+  const mode = isDashView(id) ? 'dash' : 'guide';
+  if (mode !== navMode) buildNav(mode);
+  if (mode === 'guide') store.set('aoic-last-guide', id);
   const hadFocus = !!pendingFocus;
   const app = $('#app');
   app.innerHTML = `<section class="view" data-view="${id}">${render[id]()}</section>`;
   after[id] && after[id]();
   $$('#nav a').forEach(a => { const on = a.getAttribute('href') === '#' + id; if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-  const seen = store.get('aoic-seen', {}); seen[id] = 1; store.set('aoic-seen', seen);
+  const seen = store.get('aoic-seen', {}); if (mode === 'guide') { seen[id] = 1; store.set('aoic-seen', seen); }
   $$('#nav a').forEach(a => a.classList.toggle('visited', !!seen[a.getAttribute('href').slice(1)]));
-  document.title = (id === 'welcome' ? '' : VIEWS.find(v => v.id === id).label + ' · ') + 'AOIC Analytics Onboarding';
+  const label = [...DASH_VIEWS, ...VIEWS].find(v => v.id === id).label;
+  document.title = label + ' · AOIC Analytics';
   if (!hadFocus) window.scrollTo({ top: 0 });
   document.body.classList.remove('nav-open'); $('#scrim').hidden = true;
-  updateProgress();
+  updateProgress(); updateBadges();
 }
 
-$('#nav').innerHTML = VIEWS.map(v => `<li><a href="#${v.id}"><span>${esc(v.label)}</span><span class="seen" aria-hidden="true"></span></a></li>`).join('');
-window.addEventListener('hashchange', () => show(location.hash.slice(1) || 'welcome'));
+$$('[data-mode]').forEach(b => b.addEventListener('click', () => route(b.dataset.mode === 'dash' ? 'dash' : store.get('aoic-last-guide', 'welcome'))));
+window.addEventListener('hashchange', () => show(location.hash.slice(1) || 'dash'));
 $$('[data-open-palette]').forEach(b => b.addEventListener('click', openPalette));
 document.addEventListener('click', e => { const b = e.target.closest('[data-open-palette]'); if (b && !b.closest('.rail') && !b.closest('.topbar')) openPalette(); });
 document.addEventListener('keydown', e => {
@@ -1336,7 +2095,7 @@ $('#themeBtn').addEventListener('click', () => {
   const nextT = cur === 'dark' ? 'light' : 'dark'; applyTheme(nextT); store.set('aoic-theme', nextT);
 });
 
-show(location.hash.slice(1) || 'welcome');
+Board.load().then(() => show(location.hash.slice(1) || 'dash'));
 </script>
 </body>
 </html>
